@@ -1,5 +1,5 @@
 <template>
-  <div class="page-home">
+  <div class="page-collect">
     <common-header></common-header>
     <common-footer></common-footer>
   </div>
@@ -9,10 +9,11 @@
 import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
 export default {
-  name: 'page-home',
+  name: 'page-collect',
   data () {
     return {
-      
+
+
     }
   },
   components:{
@@ -25,5 +26,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../assets/lib/bootstrap/css/bootstrap.css";
-@import "../../assets/css/page/home.css";
+@import "../../assets/css/page/collect.css";
 </style>
