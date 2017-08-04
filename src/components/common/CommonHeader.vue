@@ -9,7 +9,7 @@ export default {
   name: 'common-header',
   data () {
     return {
-      
+
     }
   }
 }
