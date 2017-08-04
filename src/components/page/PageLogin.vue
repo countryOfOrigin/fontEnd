@@ -12,7 +12,8 @@ export default {
   name: 'page-login',
   data () {
     return {
-      
+
+
     }
   },
   components:{
