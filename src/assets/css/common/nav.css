@@ -27,6 +27,7 @@ a:hover{
     margin-top: 8px;
 }
 .common-nav ul li a{
+    position: relative;
     display: block;
     color: #d8d8d8;
     width: 36px;
@@ -34,6 +35,16 @@ a:hover{
 }
 .common-nav ul li a:hover{
     background: #57a600;
+}
+.common-nav ul li a:hover .col-tip{
+    display: block;
+}
+.common-nav .glyphicon{
+    font-size: 18px;
+    width: 30px;
+    height: 30px;
+    margin-left: 9px;
+    margin-top: 10px;
 }
 .common-nav ul .buycar{
     width: 100%;
@@ -53,6 +64,10 @@ a:hover{
 }
 .common-nav ul .usd{
     background: #57a600;
+    
+}
+.common-nav ul .usd .glyphicon-usd{
+    margin-left: 8px;
 }
 .common-nav ul .buycar .num{
     width: 20px;
@@ -66,13 +81,143 @@ a:hover{
     margin: 8px 0 0 8px;
     color: #fff;
 }
-.common-nav .glyphicon{
-    font-size: 18px;
-    width: 30px;
-    height: 30px;
-    margin-left: 8px;
-    margin-top: 9px;
+.common-nav ul .buycar:hover .num{
+    background: #fff;
+    color: gray;
 }
-.common-nav .glyphicon-star-empty{
-    margin-left: 9px;
+
+
+.common-nav ul li a .col-tip{
+    height: 38px;
+    width: 85px;
+    line-height: 20px;
+    font-weight: 400;
+    font-size: 11px;
+    text-align: center;
+    background: #000;
+    padding: 9px 9px;
+    position: absolute;
+    left: -84px;
+    top: 0;
+    color: #d8d8d8;
+    display: none;
+}
+.common-nav ul li a .col-tip::after{
+    content: '';
+    border: 5px solid transparent;
+    border-left: 5px solid #000;
+    position: absolute;
+    bottom: 50%;
+    right: -10px;
+    margin-bottom: -5px;
+}
+.common-nav ul li a .user{
+    height: 125px;
+    width: 227px;
+    font-weight: 400;
+    font-size: 11px;
+    text-align: center;
+    background: #fff;
+    padding: 15px 10px;
+    position: absolute;
+    left: -227px;
+    top: 0;
+    color: gray;
+    box-shadow: 0 0 5px 1px #ccc;
+    display: none;
+}
+.common-nav ul li a .user::after{
+    content: '';
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
+    position: absolute;
+    bottom: 85%;
+    right: -10px;
+    margin-bottom: -5px;
+}
+.common-nav ul li a:hover .col-tip{
+    display: block;
+}
+.common-nav ul li a:hover .user{
+    display: block;
+}
+.common-nav ul li a .user a{
+    display: inline-block;
+    height: 20px;
+    color: #ff5000;
+}
+.common-nav ul li a .user a:hover{
+    color: #57a600;
+    background: #fff;
+}
+.common-nav ul li a .user p{
+    padding-top: 5px;
+}
+.common-nav ul li a .user img{
+    width: 74px;
+    height: 74px;
+    border-radius: 50%;
+}
+.common-nav ul li a .service{
+    height: 88px;
+    width: 130px;
+    font-weight: 400;
+    font-size: 12px;
+    text-align: center;
+    background: #fff;
+    padding: 10px;
+    position: absolute;
+    left: -130px;
+    top: 0;
+    color: #000;
+    box-shadow: 0 0 5px 1px #ccc;
+    display: none;
+}
+.common-nav ul li a:hover .service{
+    display: block;
+}
+.common-nav ul li a .service::after{
+    content: '';
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
+    position: absolute;
+    bottom: 80%;
+    right: -10px;
+    margin-bottom: -5px;
+}
+.common-nav ul li .service a{
+    color: gray;
+    width: 100px;
+    height: 0;
+    margin-bottom: 15px; 
+}
+.common-nav ul li a .service a:hover{
+    color: #57a600;
+}
+.common-nav ul li a .service a i{
+    color: #f55;
+    font-size: 25px;
+}
+.common-nav ul li a .qrcode{
+    height: 130px;
+    width: 130px;
+    text-align: center;
+    background: #fff;
+    position: absolute;
+    left: -130px;
+    top: -92px;
+    box-shadow: 0 0 5px 1px #ccc;
+    display: none;
+}
+.common-nav ul li a:hover .qrcode{
+    display: block;
+}
+.common-nav ul li a .qrcode::after{
+    content: '';
+    border: 5px solid transparent;
+    border-left: 5px solid #fff;
+    position: absolute;
+    bottom: 15%;
+    right: -10px;
+    margin-bottom: -5px;
 }
