@@ -1,0 +1,88 @@
+*{
+  margin:0;
+  padding: 0;
+}
+ul,li{
+  list-style: none;
+}
+a{
+  text-decoration: none;
+}
+img{
+  border: 0;
+}
+/*通用样式*/
+
+
+#footer{
+  background:#3a3a3a;
+  overflow: hidden;
+  padding: 20px;
+
+}
+#footer a:hover{
+  color: #e5412d;
+}
+#footer-menu{
+  overflow: hidden;
+}
+#footer-menu a{
+  color: #cccccc;
+}
+#footer .footer-box{
+  float: left;
+  text-align: center;
+  margin-right: 120px;
+}
+
+#footer .footer-box h3{
+  font-size: 20px;
+  color: #cccccc;
+  margin-bottom: 7px;
+  font-weight: normal;
+}
+#footer .footer-box .box-blog{
+  height: 30px;
+  background:#3a3a3a;
+  border: 1px solid #3a3a3a;
+  color: #cccccc;
+  font-size: 10px;
+}
+#footer-menu .last-box{
+  margin-right: 0;
+
+}
+}
+#footer-menu .last-box-two{
+  margin-right: 70px;
+}
+
+
+
+#footer-followme {
+  text-align: center;
+  color: #cccccc;
+  margin-top: 35px;
+  font-size: 15px;
+
+
+}
+#footer-followme a{
+  color: #cccccc;
+}
+#footer-followme .hao123 {
+  overflow: hidden;
+  text-align: center;
+
+}
+#footer-followme .hao123 li{
+  display: inline-block;;
+  text-align: center;
+}
+#footer-followme .followme{
+  text-align: center;
+
+}
+#footer-followme .followme li{
+  display: inline-block;
+}
