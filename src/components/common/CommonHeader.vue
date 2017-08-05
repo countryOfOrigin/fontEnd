@@ -1,6 +1,5 @@
 <template>
   <div class="common-header">
-    aaaaa
   </div>
 </template>
 
