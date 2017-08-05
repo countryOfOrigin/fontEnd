@@ -7,6 +7,7 @@ import $ from 'jquery'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
+require('./assets/js/rem.js');
 Vue.config.productionTip = false
 
 /* eslint-disable no-new */
