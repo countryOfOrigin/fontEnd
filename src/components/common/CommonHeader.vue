@@ -1,10 +1,6 @@
 <template>
   <div class="common-header">
-    <nav class="navbar navbar-default navbar-fixed-top">
-      <div class="container">
-
-      </div>
-    </nav>
+    aaaaa
   </div>
 </template>
 
@@ -21,6 +17,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/lib/bootstrap/css/bootstrap.css";
-  @import "../../assets/sass/css/commonHeader.css";
+@import "../../assets/css/common/header.css";
 </style>
