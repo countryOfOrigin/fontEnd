@@ -12,7 +12,7 @@ export default {
   name: 'page-reg',
   data () {
     return {
-      
+
     }
   },
   components:{
@@ -22,7 +22,7 @@ export default {
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+<!-- Add "scoped" attribute to limit CSS to this component oly -->
 <style scoped>
 @import "../../assets/css/page/reg.css";
 </style>
