@@ -8,7 +8,7 @@ import VueLazyload from 'vue-lazyload'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
-require('./assets/js/rem.js');
+require('./assets/js/rem.js')
 Vue.config.productionTip = false
 
 //use custom directive
