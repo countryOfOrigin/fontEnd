@@ -1,14 +1,192 @@
 <template>
   <div class="page-home">
-    <common-header></common-header>
-    <common-nav></common-nav>
+    <div class="carousel">
+        
+    </div>
+    <div class="nav">
+      <ul>
+        <li>
+          <i class="iconfont i1">&#xe669;</i><br />
+          <span>农副</span>
+        </li>
+        <li>
+          <i class="iconfont i2">&#xe61e;</i><br />
+          <span>干货</span>
+        </li>
+        <li>
+          <i class="iconfont i3">&#xe602;</i><br />
+          <span>零食</span>
+        </li>
+        <li>
+          <i class="iconfont i4">&#xe650;</i><br />
+          <span>海产</span>
+        </li>
+        <li>
+          <i class="iconfont i5">&#xe601;</i><br />
+          <span>茶酒</span>
+        </li>
+        <li>
+          <i class="iconfont i6">&#xe66f;</i><br />
+          <span>养生</span>
+        </li>
+        <li>
+          <i class="iconfont i7">&#xe65c;</i><br />
+          <span>生鲜</span>
+        </li>
+        <li>
+          <i class="iconfont i8">&#xe69d;</i><br />
+          <span>居家</span>
+        </li>
+      </ul>
+    </div>
+    <div class="packet">
+      <ul>
+        <li>
+          <span class="money">¥15</span>
+          <span class="con">农副<br />满减券</span>
+          <span class="circle1"></span>
+          <span class="circle2"></span>
+        </li>
+        <li>
+          <span class="money">¥15</span>
+          <span class="con">农副<br />满减券</span>
+          <span class="circle1"></span>
+          <span class="circle2"></span>
+        </li>
+        <li>
+          <span class="money">¥15</span>
+          <span class="con">农副<br />满减券</span>
+          <span class="circle1"></span>
+          <span class="circle2"></span>
+        </li>
+      </ul>
+    </div>
+    <div class="details">
+      <img src="../../../static/img/home/g1.jpg">
+      <div class="title">
+        <i class="iconfont">&#xe669;</i>&nbsp;
+        <span>农副</span>
+        <b>></b>
+      </div>
+      <ul>
+        <li>
+          <img src="../../../static/img/home/01.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/02.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/03.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/04.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="details">
+      <img src="../../../static/img/home/g1.jpg">
+      <div class="title">
+        <i class="iconfont">&#xe669;</i>&nbsp;
+        <span>农副</span>
+        <b>></b>
+      </div>
+      <ul>
+        <li>
+          <img src="../../../static/img/home/01.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/02.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/03.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+        <li>
+          <img src="../../../static/img/home/04.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">
+            
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div style="clear: both;"></div>
+    <hr />
+    <div class="message">
+      <ul>
+        <li>
+          <i class="iconfont">&#xe602;</i>
+          <span>300+<br />原产地</span>
+        </li>
+        <li>
+          <i class="iconfont">&#xe602;</i>
+          <span>60万+<br />旅程</span>
+        </li>
+        <li>
+          <i class="iconfont">&#xe602;</i>
+          <span>7个<br />国家</span>
+        </li>
+        <li>
+          <i class="iconfont">&#xe602;</i>
+          <span>400+<br />好食材</span>
+        </li>
+      </ul>
+    </div>
+    <div class="cooperation">
+      <ul>
+        <li>
+          <i class="iconfont">&#xe669;</i>&nbsp;
+          <span>商/务/合/作</span>
+          <b>></b>
+        </li>
+        <li>
+          <i class="iconfont">&#xe669;</i>&nbsp;
+          <span>产/品/合/作</span>
+          <b>></b>
+        </li>
+      </ul>
+    </div>
     <common-footer></common-footer>
   </div>
 </template>
 
 <script>
-import CommonHeader from '../common/CommonHeader'
-import CommonNav from '../common/CommonNav'
+
 import CommonFooter from '../common/CommonFooter'
 export default {
   name: 'page-home',
@@ -17,10 +195,8 @@ export default {
       
     }
   },
-  components:{
-    CommonHeader,
-    CommonFooter,
-    CommonNav
+  components:{   
+    CommonFooter
   },
 }
 </script>
@@ -28,4 +204,5 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../assets/css/page/home.css";
+@import "../../assets/font/iconfont.css";
 </style>
