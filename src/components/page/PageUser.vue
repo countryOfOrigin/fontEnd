@@ -160,5 +160,6 @@ export default {
   #content .link-detail{
     float: right;
     /*margin-right:.7rem;*/
+
   }
 </style>
