@@ -1,12 +1,14 @@
 <template>
   <div class="page-home">
     <common-header></common-header>
+    <common-nav></common-nav>
     <common-footer></common-footer>
   </div>
 </template>
 
 <script>
 import CommonHeader from '../common/CommonHeader'
+import CommonNav from '../common/CommonNav'
 import CommonFooter from '../common/CommonFooter'
 export default {
   name: 'page-home',
@@ -17,7 +19,8 @@ export default {
   },
   components:{
     CommonHeader,
-    CommonFooter
+    CommonFooter,
+    CommonNav
   },
 }
 </script>

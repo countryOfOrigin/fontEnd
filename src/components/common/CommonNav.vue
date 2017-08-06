@@ -1,6 +1,5 @@
 <template>
   <div class="common-nav">
-    
   </div>
 </template>
 
