@@ -1,6 +1,5 @@
 <template>
   <div class="common-footer">
-    
   </div>
 </template>
 
@@ -9,7 +8,7 @@ export default {
   name: 'common-footer',
   data () {
     return {
-      
+
     }
   }
 }
@@ -17,5 +16,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/lib/bootstrap/css/bootstrap.css";
+@import "../../assets/css/common/footer.css";
 </style>
