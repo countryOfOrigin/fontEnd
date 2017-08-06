@@ -3,10 +3,24 @@
     <div class="reg">
       <div class="logo">
         <img src="../../assets/img/logo.jpg" alt="">
-        <p>豆瓣看看</p>
+        <p>龙江原产递</p>
       </div>
-    
+      <p class="show">
+        <span v-if="flag==1">用户名不能为空</span>
+        <span v-else-if="flag==2">手机号不能为空</span>
+        <span v-else-if="flag==3">密码不能为空</span>
+        <span v-else-if="flag==4">请输入正确的手机号</span>
+        <span v-else-if="flag==5">密码只能由6-20位的数字和字母组成</span>
+        <span v-else-if="flag==6">手机号码已存在</span>
+        <span v-else-if="flag==7">注册成功</span>
+        <span v-else-if="flag==8">注册失败</span>   
+      </p>
       <div class="form">
+        <div class="name">
+          <span>用户名：</span><input type="text" name="name" placeholder="请输入用户名" v-model="name">
+        </div>
+      </div>
+      <!-- <div class="form">
         <div class="name">
           <span>用户名：</span><input type="text" name="name" placeholder="请输入用户名" v-model="name">
         </div>
@@ -16,17 +30,12 @@
         <div class="psd">
           <span>密  码：</span><input type="password" name="psd"  placeholder="请输入6-20位密码(数字或字母)" v-model="psd">
         </div>
-        <!-- <div class="rpsd">
-          <span>确认密码：</span><input type="password" name="rpsd"  placeholder="请输入确认密码" v-model="rpsd">
-        </div> -->
-        
-        <!-- <input value="注册" class="button" type="submit" /> -->
         <button class="button">注册</button>
       </div>
       <div class="other">
         <router-link to="/user/user_login">登录</router-link>
         <span>已经有账号了?</span>
-      </div>
+      </div> -->
     </div>
   </div>
 </template>
@@ -41,7 +50,7 @@ export default {
       name:"",
       tel:"",
       psd:"",
-      flag:0
+      flag:5
     }
   },
   components:{
@@ -58,6 +67,7 @@ export default {
   height: 100vh;
   background: rgb(190,205,90) url('../../assets/img/regbg.jpg') no-repeat;
   background-size: 6.4rem 100vh;
+  font-size: .1rem;
 }
 .page-reg .reg{
   width: 100%;
@@ -74,12 +84,15 @@ export default {
   width: 1.5rem;
   height: 1.5rem;
   border-radius: 20%;
-  box-shadow: 0 5px 5px rgba(0,0,0,.3);
-  margin: 1rem 2.5rem .2rem;  
+  box-shadow: 0 0.1rem 0.1rem rgba(0,0,0,.3);
+  margin: 1rem 2.45rem .2rem;  
 }
 .logo p{
-  font-size: 1.3em;
+  font-size: .5rem;
   color: #fff;
+}
+.form{
+
 }
 .show{
   width: 5rem;
@@ -88,7 +101,7 @@ export default {
   padding: .1rem .9rem;
   color: #ec4a4a;
 }
-.form div{
+/*.form div{
   display: block;
   width: 4.4rem;
   height: .4rem;
@@ -124,18 +137,6 @@ export default {
 .form div input:-ms-input-placeholder {
   color:#98edba;
 }
-/*.form input{
-  display: block;
-  width: 4.4rem;
-  height: .4rem;
-  margin: 0 auto .3rem;
-  background: #76cb98;
-  border: 0;
-  border-radius: .25rem;
-  line-height: .5rem;
-  padding: .1rem .3rem;
-  color: #dcfffe;
-}*/
 .form .button{
   display: block;
   width: 5rem;
@@ -159,6 +160,6 @@ export default {
 }
 .other span{
   color: #333;
-}
+}*/
 
 </style>
