@@ -2,15 +2,20 @@
   <div class="page-user">
     <div id="header">
       <div class="header-bg">
-        <img src="../../assets/images/user.png" alt="" class="user-logo">
-        <span class="user-name">游客</span>
-        <span class="user-level">等级</span>
+        <div class="img-box">
+          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
+        </div>
+        <div class="text-box">
+          <p class="user-name">游客</p>
+          <p class="user-level"><span>LV</span>:5</p>
+        </div>
       </div>
     </div>
     <ul id="order-info">
       <li class="order">
-        <span class="look-for-order">查看订单</span>
-        <span class="all-orders">全部订单&nbsp;&nbsp;></span>
+        <strong class="look-for-order">查看订单</strong>
+        <span class="all-orders-left">&rsaquo;</span>
+        <span class="all-orders">全部订单</span>
       </li>
       <li class="order-detail">
         <ul class="order-detail-list">
@@ -39,20 +44,20 @@
     </ul>
     <ul id="content">
       <li>
-        <span>优惠券</span>
-        <span class="link-detail">&gt</span>
+        <strong>优惠券</strong>
+        <span class="link-detail">&rsaquo;</span>
       </li>
       <li>
-        <span>我的收藏</span>
-        <span class="link-detail">&gt</span>
+        <strong>我的收藏</strong>
+        <span class="link-detail">&rsaquo;</span>
       </li>
       <li>
-        <span>地址管理</span>
-        <span class="link-detail">&gt</span>
+        <strong>地址管理</strong>
+        <span class="link-detail">&rsaquo;</span>
       </li>
       <li>
-        <span>关于我们</span>
-        <span class="link-detail">&gt</span>
+        <strong>关于我们</strong>
+        <span class="link-detail">&rsaquo;</span>
       </li>
     </ul>
     <common-footer></common-footer>
@@ -84,17 +89,15 @@ export default {
     list-style: none;
     padding:0;
   }
+  .page-user{
+    height: 100vh;
+    background: #fff;
+  }
   #header{
     width:100%;
     height:3rem;
     /*background-size: contain;*/
     background: url("../../assets/images/userbg1.jpg") no-repeat;
-  }
-  #header .user-logo{
-    width: 2rem;
-    height:2rem;
-    margin-left:.2rem;
-
   }
   #header .header-bg{
     /*width:100%;*/
@@ -103,62 +106,101 @@ export default {
     background-size: contain;
     /*margin-bottom: .2rem;*/
   }
+  #header .img-box,#header .text-box{
+    float: left;
+    color: #555;
+  }
+  #header .img-box{
+    width: 1.5rem;
+    height: 1.5rem;
+    margin: .75rem .3rem;
+    border-radius: .75rem;
+  }
+  #header .user-logo{
+    width: 1.5rem;
+    height:1.5rem;
+    border-radius: .75rem;
+  }
+  #header .text-box{
+    width: 3rem;
+    height: 1rem;
+    padding: 1rem 0;
+  }
   #header .user-name{
     font-size: 0.3rem;
-    margin-left:0.3rem;
-    line-height: 3rem;
+    color: #054509;
   }
   #header .user-level{
-    font-size: 0.3rem;
-    margin-left:0.3rem;
-    line-height: 3rem;
+    font-size: 0.25rem;
+    color: #054509;
+  }
+  #header .user-level span{
+    color: #00990b;
   }
   #order-info{
     border-bottom: .2rem solid #eee;
+    margin: 0;
+    padding: 0;
   }
   #order-info .order{
     margin:0 .3rem;
-  }
-  #order-info .order{
     font-size:0.3rem;
-    height: 1rem;
-    line-height: 1rem;
-    border-bottom: .05rem solid #eeeeee;
+    height: .9rem;
+    line-height: .9rem;
+    border-bottom: .02rem solid #ccc;
   }
   #order-info .look-for-order{
     float: left;
+    font-size: .25rem;
+    /*border-bottom: .05rem solid #ccc;*/
   }
   #order-info .all-orders{
     float: right;
+    font-size: .2rem;
+    color: #999;
+  }
+  #order-info .all-orders-left{
+    font-size: .5rem;
+    float: right;
+    margin-left: .1rem;
+    line-height: .8rem;
   }
   #order-info .order-detail{
-    height: 1.5rem;
+    height: 1.3rem;
     font-size:0.2rem;
-
+    border-bottom: .02rem solid #ccc;
   }
   #order-info .order-detail-list li{
     float: left;
     width: 20%;
     text-align: center;
-    margin-top:.35rem;
+    margin-top:.15rem;
+    color: #666;
+  }
+  #order-info .order-detail-list li .iconfont{
+    font-size: .5rem;
+
   }
   #content{
-    height:3rem;
-    font-size:.3rem;
+    height:3.6rem;
+    font-size:.25rem;
 
   }
   #content li{
-    width: 100%;
-    height: 1rem;
-    line-height: 1rem;
-    padding:0 0.3rem;
-    border-bottom: 2px solid rgba(0,0,0,0.1);
+    width: 6rem;
+    height: .9rem;
+    line-height: .9rem;
+    margin: 0 .2rem;
+    padding:0 .2rem;
+    border-bottom: .02rem solid #ccc;
   }
   #content span{
     float: left;
   }
   #content .link-detail{
     float: right;
+    font-size: .5rem;
+    color: #aaa;
     /*margin-right:.7rem;*/
 
   }
