@@ -19,9 +19,52 @@ img{
 /*carousel开始*/
 .carousel{
     width: 100%;
-    height: 3rem;
-    background: #f00;
-    margin-bottom: 0.1rem;
+    margin-bottom: 0.04rem;
+    border: 0.15rem solid #fff;
+    background: #fff;
+    position: relative;
+}
+.carousel .form-control{
+    width: 5.8rem;
+    position: absolute;
+    z-index: 998;
+    opacity: 0.9; 
+    margin: 0.15rem 0.15rem;
+    padding-left: 0.5rem;
+}
+.carousel .glyphicon-search{
+    position: absolute;
+    color: #a3bbbb;
+    left: 0.3rem;
+    top: 0.33rem;
+    z-index: 999;
+    opacity: 0.9; 
+}
+.carousel .my-swipe {
+  height: 3rem;
+  font-size: 30px;
+  text-align: center;
+}
+.carousel .my-swipe .mint-swipe-item{
+  height: 100%;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+}
+
+.carousel .item1 {
+  background: url('https://img3.doubanio.com/lpic/s27102925.jpg');
+  background-size: cover;
+}
+
+.carousel .item2 {
+  background: url('https://img3.doubanio.com/lpic/s6989253.jpg');
+  background-size: cover;
+}
+
+.carousel .item3 {
+  background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
+  background-size: cover;
 }
 /*carousel结束*/
 
@@ -69,7 +112,7 @@ img{
 .packet ul li{
     width: 2.03rem;
     height: 1rem;
-    background: #f00;
+    background: #f06c5d;
     float: left;
     margin: 0.05rem;
     border-radius: 5px;
@@ -77,11 +120,11 @@ img{
     position: relative;
 }
 .packet ul li .money{
-    font-size: 0.35rem;
+    font-size: 0.33rem;
     font-weight: bold;
     float: left;
-    margin: 0.26rem 0.3rem;
-
+    margin: 0.26rem 0.1rem;
+    margin-left: 0.2rem;
 }
 .packet ul li .con{
     width: 40%;
@@ -190,10 +233,11 @@ img{
     margin: 0 0.08rem;
 }
 hr{
-    background: #ccc;
+    background: #ddd;
     margin: 0.3rem 0.14rem;
 }
 .message ul li span{
+    display: inline-block;
     font-size: 0.2rem;
 }
 /*message结束*/

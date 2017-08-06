@@ -1,7 +1,13 @@
 <template>
   <div class="page-home">
     <div class="carousel">
-        
+      <span class="glyphicon glyphicon-search"></span>
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品">
+      <swipe class="my-swipe">
+        <swipe-item class="item1"></swipe-item>
+        <swipe-item class="item2"></swipe-item>
+        <swipe-item class="item3"></swipe-item>
+      </swipe>
     </div>
     <div class="nav">
       <ul>
@@ -48,7 +54,7 @@
           <span class="circle2"></span>
         </li>
         <li>
-          <span class="money">¥15</span>
+          <span class="money">¥150</span>
           <span class="con">农副<br />满减券</span>
           <span class="circle1"></span>
           <span class="circle2"></span>
@@ -150,19 +156,19 @@
     <div class="message">
       <ul>
         <li>
-          <i class="iconfont">&#xe602;</i>
+          <i class="iconfont">&#xe61a;</i>
           <span>300+<br />原产地</span>
         </li>
         <li>
-          <i class="iconfont">&#xe602;</i>
+          <i class="iconfont">&#xe65e;</i>
           <span>60万+<br />旅程</span>
         </li>
         <li>
-          <i class="iconfont">&#xe602;</i>
+          <i class="iconfont">&#xe625;</i>
           <span>7个<br />国家</span>
         </li>
         <li>
-          <i class="iconfont">&#xe602;</i>
+          <i class="iconfont">&#xe6f3;</i>
           <span>400+<br />好食材</span>
         </li>
       </ul>
@@ -170,12 +176,12 @@
     <div class="cooperation">
       <ul>
         <li>
-          <i class="iconfont">&#xe669;</i>&nbsp;
+          <i class="iconfont">&#xe609;</i>&nbsp;
           <span>商/务/合/作</span>
           <b>></b>
         </li>
         <li>
-          <i class="iconfont">&#xe669;</i>&nbsp;
+          <i class="iconfont">&#xe604;</i>&nbsp;
           <span>产/品/合/作</span>
           <b>></b>
         </li>
@@ -188,6 +194,8 @@
 <script>
 
 import CommonFooter from '../common/CommonFooter'
+import {Swipe, SwipeItem } from 'vue-swipe'
+Swipe.auto= false;
 export default {
   name: 'page-home',
   data () {
@@ -196,6 +204,8 @@ export default {
     }
   },
   components:{   
+    Swipe,
+    SwipeItem,
     CommonFooter
   },
 }
@@ -204,5 +214,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../assets/css/page/home.css";
+@import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
 </style>
