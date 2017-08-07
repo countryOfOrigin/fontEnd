@@ -18,15 +18,15 @@
       <div class="form">
         <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-user" id="user-name"></span>
-          <input type="text" class="form-control" placeholder="请输入用户名" aria-describedby="user-name">
+          <input type="text" class="form-control" placeholder="请输入用户名" aria-describedby="user-name" v-model="name">
         </div>
         <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-phone" id="user-tel"></span>
-          <input type="text" class="form-control" placeholder="请输入手机号" aria-describedby="user-tel">
+          <input type="text" class="form-control" placeholder="请输入手机号" aria-describedby="user-tel" v-model="tel">
         </div>
         <div class="input-group">
           <span class="input-group-addon" id="user-psw"><i class="iconfont">&#xe603;</i></span>
-          <input type="text" class="form-control" placeholder="请输入6-20位密码(数字或字母)" aria-describedby="user-psw">
+          <input type="password" class="form-control" placeholder="请输入6-20位密码(数字或字母)" aria-describedby="user-psw" v-model="psw">
         </div>
         <button type="button" class="btn btn-success" @click="check">注册</button>
       </div>
@@ -39,13 +39,14 @@
 </template>
 
 <script>
+import Axios from 'axios'
 export default {
   name: 'page-reg',
   data () {
     return {
       name:"",
       tel:"",
-      psd:"",
+      psw:"",
       flag:0
     }
   },
@@ -53,18 +54,18 @@ export default {
     check:function () {
       var name=this.name;
       var tel=this.tel;
-      var psd=this.psd;
+      var psw=this.psw;
       var myreg = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
       var regex = /^[a-zA-Z0-9]{6,20}$/;
       if(name==""){
         this.flag=1;
       }else if(tel==""){
         this.flag=2;
-      }else if(psd==""){
+      }else if(psw==""){
         this.flag=3;
       }else if(!myreg.test(tel)){
         this.flag=4;
-      }else if(!regex.test(psd)){
+      }else if(!regex.test(psw)){
         this.flag=5;
       }else{
         this.insert_user();
@@ -73,12 +74,12 @@ export default {
     insert_user:function () {
       var name=this.name;
       var tel=this.tel;
-      var psd=this.psd;
+      var psw=this.psw;
       Axios.get('http://localhost:3000/insert_user',{
         params:{
           name:name,
           tel:tel,
-          psd:psd
+          psw:psw
         }
       }).then((res)=>{
         if(res.data==7){

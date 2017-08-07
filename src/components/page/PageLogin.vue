@@ -15,11 +15,11 @@
       <div class="form">
         <div class="input-group">
           <span class="input-group-addon glyphicon glyphicon-phone" id="user-tel"></span>
-          <input type="text" class="form-control" placeholder="请输入手机号" aria-describedby="user-tel">
+          <input type="text" class="form-control" placeholder="请输入手机号" aria-describedby="user-tel" v-model="tel">
         </div>
         <div class="input-group">
           <span class="input-group-addon" id="user-psw"><i class="iconfont">&#xe603;</i></span>
-          <input type="text" class="form-control" placeholder="请输入密码" aria-describedby="user-psw">
+          <input type="password" class="form-control" placeholder="请输入密码" aria-describedby="user-psw" v-model="psw">
         </div>
         <button type="button" class="btn btn-success" @click="check">登录</button>
       </div>
@@ -32,29 +32,30 @@
 </template>
 
 <script>
+import Axios from 'axios'
 export default {
   name: 'page-login',
   data () {
     return {
       name:"",
       tel:"",
-      psd:"",
+      psw:"",
       flag:0
 
     }
   },
   mounted(){
     if(document.cookie){
-      this.$router.push("/user");
+      this.$router.push("/home");
     }
   },
   methods:{
     check:function () {
       var tel=this.tel;
-      var psd=this.psd;
+      var psw=this.psw;
       if(tel==""){
         this.flag=1;
-      }else if(psd==""){
+      }else if(psw==""){
         this.flag=2;
       }else{
         this.login_user();
@@ -62,20 +63,20 @@ export default {
     },
     login_user:function () {
       var tel=this.tel;
-      var psd=this.psd;
+      var psw=this.psw;
       Axios.get('http://localhost:3000/login_user',{
         params:{
-          tel:"'"+tel+"'",
-          psd:"'"+psd+"'"
+          tel:tel,
+          psw:psw
         }
       }).then((res)=>{
         // console.log(res.data);
-        if(res.data.body==-1){
+        if(res.data==3){
           this.flag=3;
         }else{
           this.flag=4;
-          // document.cookie="logined="+res.data.body;
-          // document.cookie="login_id="+res.data.body;
+          document.cookie="login_id="+JSON.parse(res.data).user_id;
+          document.cookie="login_name="+JSON.parse(res.data).name;
           history.go(-1);
         }
       }).catch((error)=>{
