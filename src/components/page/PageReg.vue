@@ -50,6 +50,11 @@ export default {
       flag:0
     }
   },
+  mounted(){
+    if(document.cookie){
+      this.$router.push("/home");
+    }
+  },
   methods:{
     check:function () {
       var name=this.name;
@@ -82,6 +87,7 @@ export default {
           psw:psw
         }
       }).then((res)=>{
+        console.log(res.data);
         if(res.data==7){
           this.$router.push("/login");
         }else{
