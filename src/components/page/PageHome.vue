@@ -70,7 +70,7 @@
     <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
       <div class="title">
-        <i class="iconfont">{{classifyIcon[index]}}</i>&nbsp;
+        <i class="iconfont" :class="classifyIcon[index]"></i>&nbsp;
         <span>{{classify[index]}}</span>
         <b>></b>
       </div>
@@ -219,7 +219,7 @@ export default {
   data () {
     return {
       classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
-      classifyIcon:["&#xe669;","&#xe61e;","&#xe602;","&#xe650;","&#xe601;","&#xe66f;","&#xe65c;","&#xe69d;"],
+      classifyIcon:["icon-mifan","icon-mogu","icon-lingshi-copy","icon-haixian","icon-cha","icon-shiwu","icon-shengxian","icon-jiaju"],
       commodityList:[]
     }
   },
