@@ -25,7 +25,7 @@
         </router-link>
         <router-link to="/details/:tag" tag="li">
           <i class="iconfont i4">&#xe650;</i><br />
-          <span>海产</span>
+          <span>水产</span>
         </router-link>
         <router-link to="/details/:tag" tag="li">
           <i class="iconfont i5">&#xe601;</i><br />
@@ -67,7 +67,24 @@
         </li>
       </ul>
     </div>
-    <div class="details">
+    <div class="details" v-for="(commodity,index) in commodityList">
+      <img src="../../../static/img/home/g1.jpg">
+      <div class="title">
+        <i class="iconfont">{{classifyIcon[index]}}</i>&nbsp;
+        <span>{{classify[index]}}</span>
+        <b>></b>
+      </div>
+      <ul>
+        <li v-for="common in commodity">
+          <img src="../../../static/img/home/01.jpg">
+          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
+          <p class="price">¥118.00</p>
+          <div class="buybtn">    
+          </div>
+        </li>
+      </ul>
+    </div>
+    <!-- <div class="details">
       <img src="../../../static/img/home/g1.jpg">
       <div class="title">
         <i class="iconfont">&#xe669;</i>&nbsp;
@@ -150,7 +167,7 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
     <div style="clear: both;"></div>
     <hr />
     <div class="message">
@@ -201,6 +218,8 @@ export default {
   name: 'page-home',
   data () {
     return {
+      classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
+      classifyIcon:["&#xe669;","&#xe61e;","&#xe602;","&#xe650;","&#xe601;","&#xe66f;","&#xe65c;","&#xe69d;"],
       commodityList:[]
     }
   },
@@ -210,13 +229,14 @@ export default {
     CommonFooter
   },
   mounted(){
-    com_home();
+    this.com_home();
   },
   methods:{
     com_home:function(){
       Axios.get('http://localhost:3000/com_home')
       .then((res)=>{
-        JSON.parse(res.data);
+        console.log(res.data);
+        this.commodityList=JSON.parse(res.data);
       }).catch((error)=>{
         console.log(error);
       });

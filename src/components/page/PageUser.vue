@@ -1,10 +1,22 @@
 <template>
   <div class="page-user">
-    <div id="header">
+
+    <div class="header unlogin">
       <div class="header-bg">
-        <div class="img-box">
-          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
+        <router-link to="/login"><div class="img-box">
+          <img src="../../assets/images/user.png" alt="" class="user-logo">
+        </div></router-link>
+        <div class="text-box">
+          <p class="user-name">游客</p>
+          <p class="user-level"><span>LV</span>:5</p>
         </div>
+      </div>
+    </div>
+    <div class="header login" v-if="show">
+      <div class="header-bg">
+        <router-link to="/login"><div class="img-box">
+          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
+        </div></router-link>
         <div class="text-box">
           <p class="user-name">游客</p>
           <p class="user-level"><span>LV</span>:5</p>
@@ -12,53 +24,53 @@
       </div>
     </div>
     <ul id="order-info">
-      <li class="order">
+      <router-link to="/order/all"> <li class="order">
         <strong class="look-for-order">查看订单</strong>
         <span class="all-orders-left">&rsaquo;</span>
         <span class="all-orders">全部订单</span>
-      </li>
+      </li></router-link>
       <li class="order-detail">
         <ul class="order-detail-list">
-          <li >
+          <li ><router-link to="/order/wait_pay">
             <i class="iconfont">&#xe649;</i>
             <p>待付款</p>
-          </li>
-          <li >
+          </router-link></li>
+          <li ><router-link to="/order/wait_go">
             <i class="iconfont">&#xe739;</i>
             <p>待发货</p>
-          </li>
-          <li >
+            </router-link></li>
+          <li ><router-link to="/order/wait_arrive">
             <i class="iconfont">&#xe619;</i>
             <p>待收货</p>
-          </li>
-          <li >
+          </router-link></li>
+          <li ><router-link to="/order/on_arrive">
             <i class="iconfont">&#xe610;</i>
             <p>已收货</p>
-          </li>
-          <li >
+          </router-link></li>
+          <li ><router-link to="/order/wait_go"><!--路由不对-->
             <i class="iconfont">&#xe652;</i>
             <p>待评价</p>
-          </li>
+          </router-link></li>
         </ul>
       </li>
     </ul>
     <ul id="content">
-      <li>
+      <li><router-link to="/order/wait_go">  <!--待定-->
         <strong>优惠券</strong>
         <span class="link-detail">&rsaquo;</span>
-      </li>
-      <li>
+      </router-link></li>
+      <li><router-link to="/collect">
         <strong>我的收藏</strong>
         <span class="link-detail">&rsaquo;</span>
-      </li>
-      <li>
+      </router-link></li>
+      <li><router-link to="/user/address">
         <strong>地址管理</strong>
         <span class="link-detail">&rsaquo;</span>
-      </li>
-      <li>
+      </router-link></li>
+      <li><router-link to="/order/wait_go"><!--待定-->
         <strong>关于我们</strong>
         <span class="link-detail">&rsaquo;</span>
-      </li>
+      </router-link></li>
     </ul>
     <common-footer></common-footer>
 
@@ -72,7 +84,7 @@ export default {
   name: 'page-user',
   data () {
     return {
-
+    show:false
 
     }
   },
@@ -89,52 +101,55 @@ export default {
     list-style: none;
     padding:0;
   }
+  a{
+    color: #000;
+  }
   .page-user{
     height: 100vh;
     background: #fff;
   }
-  #header{
+  .header{
     width:100%;
     height:3rem;
     /*background-size: contain;*/
     background: url("../../assets/images/userbg1.jpg") no-repeat;
   }
-  #header .header-bg{
+  .header .header-bg{
     /*width:100%;*/
     height:3rem;
     background: rgba(255,255,255,0.5) no-repeat;
     background-size: contain;
     /*margin-bottom: .2rem;*/
   }
-  #header .img-box,#header .text-box{
+  .header .img-box,#header .text-box{
     float: left;
     color: #555;
   }
-  #header .img-box{
+  .header .img-box{
     width: 1.5rem;
     height: 1.5rem;
     margin: .75rem .3rem;
     border-radius: .75rem;
   }
-  #header .user-logo{
+  .header .user-logo{
     width: 1.5rem;
     height:1.5rem;
     border-radius: .75rem;
   }
-  #header .text-box{
+  .header .text-box{
     width: 3rem;
     height: 1rem;
     padding: 1rem 0;
   }
-  #header .user-name{
+  .header .user-name{
     font-size: 0.3rem;
     color: #054509;
   }
-  #header .user-level{
+  .header .user-level{
     font-size: 0.25rem;
     color: #054509;
   }
-  #header .user-level span{
+  .header .user-level span{
     color: #00990b;
   }
   #order-info{

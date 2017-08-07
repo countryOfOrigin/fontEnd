@@ -47,7 +47,7 @@ export default {
     list-style:none;
     padding:0.2rem .1rem 0 0.1rem;
     margin-bottom: 0.1rem;
-    
+
 
   }
   #collect{
