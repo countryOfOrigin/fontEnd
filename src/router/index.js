@@ -9,6 +9,7 @@ import PageOrder from '@/components/page/PageOrder'//订单
 import PageDetails from '@/components/page/PageDetails'//详情页
 import PageUser from '@/components/page/PageUser'//个人主页
 import PageAddress from '@/components/page/PageAddress'//地址管理
+import PageEditAddress from '@/components/page/PageEditAddress'//编辑地址
 import PageOrderAll from '@/components/page/PageOrderAll'//全部订单
 import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
 import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
@@ -75,6 +76,10 @@ export default new Router({
     {
       path:'/user/address',
       component: PageAddress
+    },
+    {
+      path:'/user/address/edit/:id',
+      component: PageEditAddress
     }
   ]
 })
