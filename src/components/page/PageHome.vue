@@ -11,38 +11,38 @@
     </div>
     <div class="nav">
       <ul>
-        <li>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i1">&#xe669;</i><br />
           <span>农副</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i2">&#xe61e;</i><br />
           <span>干货</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i3">&#xe602;</i><br />
           <span>零食</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i4">&#xe650;</i><br />
           <span>海产</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i5">&#xe601;</i><br />
           <span>茶酒</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i6">&#xe66f;</i><br />
           <span>养生</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i7">&#xe65c;</i><br />
           <span>生鲜</span>
-        </li>
-        <li>
+        </router-link>
+        <router-link to="/details/:tag" tag="li">
           <i class="iconfont i8">&#xe69d;</i><br />
           <span>居家</span>
-        </li>
+        </router-link>
       </ul>
     </div>
     <div class="packet">
@@ -193,6 +193,7 @@
 
 <script>
 
+import Axios from 'axios'
 import CommonFooter from '../common/CommonFooter'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
@@ -200,7 +201,7 @@ export default {
   name: 'page-home',
   data () {
     return {
-      
+      commodityList:[]
     }
   },
   components:{   
@@ -208,6 +209,19 @@ export default {
     SwipeItem,
     CommonFooter
   },
+  mounted(){
+    com_home();
+  },
+  methods:{
+    com_home:function(){
+      Axios.get('http://localhost:3000/com_home')
+      .then((res)=>{
+        JSON.parse(res.data);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    }
+  }
 }
 </script>
 
