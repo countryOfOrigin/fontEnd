@@ -9,6 +9,11 @@ import PageOrder from '@/components/page/PageOrder'//订单
 import PageDetails from '@/components/page/PageDetails'//详情页
 import PageUser from '@/components/page/PageUser'//个人主页
 import PageAddress from '@/components/page/PageAddress'//地址管理
+import PageOrderAll from '@/components/page/PageOrderAll'//全部订单
+import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
+import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
+import PageOrderWait from '@/components/page/PageOrderWait'//待收货订单
+import PageOrderOn from '@/components/page/PageOrderOn'//已收货订单
 
 import MyTest from '@/components/MyTest'
 
@@ -46,7 +51,18 @@ export default new Router({
     },
     {
       path:'/order',
-      component: PageOrder
+      redirect:'/order/all'
+    },
+    {
+      path: '/order',
+      component: PageOrder,
+      children: [
+        { path: "/order/all", component: PageOrderAll },
+        { path: "/order/wait_pay", component: PageOrderPay },
+        { path: "/order/wait_go", component: PageOrderGo },
+        { path: "/order/wait_arrive", component: PageOrderWait },
+        { path: "/order/on_arrive", component: PageOrderOn }
+      ]
     },
     {
       path:'/details/:tag',
