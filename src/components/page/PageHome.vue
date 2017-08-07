@@ -11,38 +11,45 @@
     </div>
     <div class="nav">
       <ul>
-        <router-link to="/details/:tag" tag="li">
+        <li v-for="n in 8">
+          <router-link :to="'/classify/'+classify[n-1]" tag="div">
+            <i class="iconfont i1" :class="classifyIcon[n-1]"></i><br />
+            <span>{{classify[n-1]}}</span>
+          </router-link>
+        </li>
+        
+        <!-- <router-link to="/classify/:name" tag="li">
           <i class="iconfont i1">&#xe669;</i><br />
           <span>农副</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i2">&#xe61e;</i><br />
           <span>干货</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i3">&#xe602;</i><br />
           <span>零食</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i4">&#xe650;</i><br />
           <span>水产</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i5">&#xe601;</i><br />
           <span>茶酒</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i6">&#xe66f;</i><br />
           <span>养生</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i7">&#xe65c;</i><br />
           <span>生鲜</span>
         </router-link>
-        <router-link to="/details/:tag" tag="li">
+        <router-link to="/classify/:name" tag="li">
           <i class="iconfont i8">&#xe69d;</i><br />
           <span>居家</span>
-        </router-link>
+        </router-link> -->
       </ul>
     </div>
     <div class="packet">
@@ -218,6 +225,7 @@ export default {
   name: 'page-home',
   data () {
     return {
+      nl:["i1","i2","i3","i4","i5","i6","i7","i8"],
       classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
       classifyIcon:["icon-mifan","icon-mogu","icon-lingshi-copy","icon-haixian","icon-cha","icon-shiwu","icon-shengxian","icon-jiaju"],
       commodityList:[]
