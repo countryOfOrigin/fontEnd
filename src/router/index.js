@@ -15,6 +15,7 @@ import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
 import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
 import PageOrderWait from '@/components/page/PageOrderWait'//待收货订单
 import PageOrderOn from '@/components/page/PageOrderOn'//已收货订单
+import PageClassify from '@/components/page/PageClassify'//分类页
 
 import MyTest from '@/components/MyTest'
 
@@ -80,6 +81,10 @@ export default new Router({
     {
       path:'/user/address/edit/:id',
       component: PageEditAddress
+    },
+    {
+      path:'/classify/:name',
+      component: PageClassify
     }
   ]
 })
