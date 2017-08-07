@@ -176,8 +176,10 @@ img{
 }
 .details .title b,.cooperation ul li b{
     float: right;
-    font-size: 0.25rem;
+    font-size: 0.5rem;
+    font-weight: 400;
     color: #bec2c3;
+    margin-top: -0.2rem;
 }
 .details ul li{
     width: 3.06rem;
