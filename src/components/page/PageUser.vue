@@ -1,15 +1,15 @@
 <template>
   <div class="page-user">
 
-    <div class="header unlogin">
+    <div class="header unlogin" v-if="flag">
       <div class="header-bg">
         <router-link to="/login"><div class="img-box">
           <img src="../../assets/images/user.png" alt="" class="user-logo">
         </div></router-link>
-        <div class="text-box">
-          <p class="user-name">游客</p>
-          <p class="user-level"><span>LV</span>:5</p>
-        </div>
+        <!--<div class="text-box">-->
+          <!--<p class="user-name">游客</p>-->
+          <!--<p class="user-level"><span>LV</span>:5</p>-->
+        <!--</div>-->
       </div>
     </div>
     <div class="header login" v-if="show">
@@ -18,7 +18,7 @@
           <img src="../../assets/images/user.jpg" alt="" class="user-logo">
         </div></router-link>
         <div class="text-box">
-          <p class="user-name">游客</p>
+          <p class="user-name">{{user_name}}</p>
           <p class="user-level"><span>LV</span>:5</p>
         </div>
       </div>
@@ -84,13 +84,24 @@ export default {
   name: 'page-user',
   data () {
     return {
-    show:false
-
+    show:false,
+    flag:true,
+    user_name:""
     }
   },
   components:{
     CommonFooter
   },
+  mounted(){
+      if(document.cookie){
+          console.log(document.cookie);
+          this.show=true;
+          this.flag=false;
+          var arr=document.cookie.split(";")[1];
+          var user_name=arr.split("=")[1];
+          this.user_name=user_name;
+      }
+  }
 }
 </script>
 
@@ -114,6 +125,14 @@ export default {
     /*background-size: contain;*/
     background: url("../../assets/images/userbg1.jpg") no-repeat;
   }
+  .login .user-logo{
+    position: absolute;
+    left: .5rem;
+    width: 1.5rem;
+    height:1.5rem;
+    border-radius: .75rem;
+
+  }
   .header .header-bg{
     /*width:100%;*/
     height:3rem;
@@ -125,29 +144,48 @@ export default {
     float: left;
     color: #555;
   }
-  .header .img-box{
+  .unlogin .img-box{
     width: 1.5rem;
     height: 1.5rem;
-    margin: .75rem .3rem;
+    margin: .75rem 2.5rem;
     border-radius: .75rem;
+
   }
-  .header .user-logo{
+  .login .img-box{
     width: 1.5rem;
-    height:1.5rem;
+    height: 1.5rem;
+    margin: .75rem .5rem;
     border-radius: .75rem;
+
   }
+  .unlogin .img-box img{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+  /*.header .user-logo{*/
+    /*width: 1.5rem;*/
+    /*height:1.5rem;*/
+    /*border-radius: .75rem;*/
+  /*}*/
   .header .text-box{
     width: 3rem;
     height: 1rem;
     padding: 1rem 0;
+    position: relative;
   }
   .header .user-name{
     font-size: 0.3rem;
     color: #054509;
+    position: absolute;
+    left: 2.2rem;
+    top: 1.2rem;
   }
   .header .user-level{
     font-size: 0.25rem;
     color: #054509;
+    position: absolute;
+    left: 2.2rem;
+    top: 1.7rem;
   }
   .header .user-level span{
     color: #00990b;
