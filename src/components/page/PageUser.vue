@@ -3,11 +3,11 @@
     <div class="header login" v-if="show">
       <div class="header-bg">
         <div class="img-box"><router-link to="/user/address/edit/select/:id" >
-          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
+          <img :src='user_info.url' alt="" class="user-logo">
         </router-link></div>
         <div class="text-box">
           <p class="user-name">{{user_name}}</p>
-          <p class="user-level"><span>LV</span>:5</p>
+          <p class="user-level"><span>LV</span>:{{user_info.grade}}</p>
         </div>
       </div>
     </div>
@@ -16,10 +16,7 @@
         <router-link to="/login"><div class="img-box">
           <img src="../../assets/images/user.png" alt="" class="user-logo">
         </div></router-link>
-        <!--<div class="text-box">-->
-          <!--<p class="user-name">游客</p>-->
-          <!--<p class="user-level"><span>LV</span>:5</p>-->
-        <!--</div>-->
+
       </div>
     </div>
 
@@ -80,13 +77,17 @@
 <script>
 import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
+import Axios from "axios"
 export default {
   name: 'page-user',
   data () {
     return {
-    show:false,
-    flag:true,
-    user_name:""
+      show:false,
+      user_name:"",
+      user_id:"",
+      level:"",
+      url:"",
+      user_info:{}
     }
   },
   components:{
@@ -97,9 +98,28 @@ export default {
           console.log(document.cookie);
           this.show=true;
           this.flag=false;
-          var arr=document.cookie.split(";")[1];
-          var user_name=arr.split("=")[1];
+          var arr=document.cookie.split(";");
+          var user_name=arr[1].split("=")[1];
+          var user_id=arr[0].split("=")[1];
           this.user_name=user_name;
+          this.user_id=user_id;
+          this.get_user_info();
+
+      }
+  },
+  methods:{
+
+      get_user_info:function(){
+        var _this=this;
+          Axios.get('http://127.0.0.1:3000/get_user',{
+              params:{
+                userid:this.user_id
+              }
+          }).then(function(res){
+             console.log(res.data);
+            _this.user_info=JSON.parse(res.data);
+          });
+
       }
   }
 }
