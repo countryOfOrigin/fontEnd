@@ -56,31 +56,5 @@ export default {
   background: #fff;
   border-bottom: .05rem solid #08dc03;
 }
-/*.nav{
-  height: 1rem;
-  color: #ccc;
-  background: rgb(33, 150, 243);
-}
-.nav ul{
-  display: flex;
-}
-.nav ul li{
-  flex: 1;
-  height: 1rem;
-  text-align: center;
-  line-height: 1rem;
-}
-.nav{
-  position: fixed;
-  top: 1rem;
-  width: 100%;
-}
-.nav a{
-  color: #ccc;
-  outline: none;
-}
-.nav a.router-link-active{
-  color: #fff;
-}*/
 
 </style>

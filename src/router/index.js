@@ -17,6 +17,7 @@ import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
 import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
 import PageOrderWait from '@/components/page/PageOrderWait'//待收货订单
 import PageOrderOn from '@/components/page/PageOrderOn'//已收货订单
+import PageAllClass from '@/components/page/PageAllClass'//所有分类
 import PageClassify from '@/components/page/PageClassify'//分类页
 import PageSearch from '@/components/page/PageSearch'//搜索
 import PageSearchRecommend from '@/components/page/PageSearchRecommend'//搜索推荐
@@ -94,6 +95,10 @@ export default new Router({
     {
       path:'/user/address/edit/select/:id',
       component: PageEditAddressSelect
+    },
+    {
+      path:'/all_class',
+      component: PageAllClass
     },
     {
       path:'/classify/:name',

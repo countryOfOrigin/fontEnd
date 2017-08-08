@@ -2,7 +2,7 @@
   <div class="page-home">
     <div class="carousel">
       <span class="glyphicon glyphicon-search"></span>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品">
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品" @focus="focus">
       <swipe class="my-swipe">
         <swipe-item class="item1"></swipe-item>
         <swipe-item class="item2"></swipe-item>
@@ -129,11 +129,14 @@ export default {
     com_home:function(){
       Axios.get('http://localhost:3000/com_home')
       .then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         this.commodityList=JSON.parse(res.data);
       }).catch((error)=>{
         console.log(error);
       });
+    },
+    focus:function(){
+      this.$router.push("/search");
     }
   }
 }
