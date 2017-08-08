@@ -8,14 +8,19 @@ import PageCart from '@/components/page/PageCart'//购物车
 import PageOrder from '@/components/page/PageOrder'//订单
 import PageDetails from '@/components/page/PageDetails'//详情页
 import PageUser from '@/components/page/PageUser'//个人主页
+import PageUserSet from '@/components/page/PageUserSet'//个人信息
 import PageAddress from '@/components/page/PageAddress'//地址管理
 import PageEditAddress from '@/components/page/PageEditAddress'//编辑地址
+import PageEditAddressSelect from '@/components/page/PageEditAddressSelect'//编辑省市
 import PageOrderAll from '@/components/page/PageOrderAll'//全部订单
 import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
 import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
 import PageOrderWait from '@/components/page/PageOrderWait'//待收货订单
 import PageOrderOn from '@/components/page/PageOrderOn'//已收货订单
 import PageClassify from '@/components/page/PageClassify'//分类页
+import PageSearch from '@/components/page/PageSearch'//搜索
+import PageSearchRecommend from '@/components/page/PageSearchRecommend'//搜索推荐
+import PageSearchResult from '@/components/page/PageSearchResult'//搜索结果
 
 import MyTest from '@/components/MyTest'
 
@@ -75,16 +80,36 @@ export default new Router({
       component: PageUser
     },
     {
+      path:'/user/set',
+      component: PageUserSet
+    },
+    {
       path:'/user/address',
       component: PageAddress
     },
     {
-      path:'/user/address/edit/:id',
+      path:'/user/address/edit/:id',//地址id
       component: PageEditAddress
+    },
+    {
+      path:'/user/address/edit/select/:id',
+      component: PageEditAddressSelect
     },
     {
       path:'/classify/:name',
       component: PageClassify
+    },
+    {
+      path:'/search',
+      redirect:'/search/recommend'
+    },
+    {
+      path:'/search',
+      component: PageSearch,
+      children: [
+        { path: "/search/recommend", component: PageSearchRecommend },
+        { path: "/search/result", component: PageSearchResult },
+      ]
     }
   ]
 })

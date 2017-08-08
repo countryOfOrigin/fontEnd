@@ -13,43 +13,10 @@
       <ul>
         <li v-for="n in 8">
           <router-link :to="'/classify/'+classify[n-1]" tag="div">
-            <i class="iconfont i1" :class="classifyIcon[n-1]"></i><br />
+            <i class="iconfont" :class="classifyIconColor[n-1]"></i><br />
             <span>{{classify[n-1]}}</span>
           </router-link>
         </li>
-        
-        <!-- <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i1">&#xe669;</i><br />
-          <span>农副</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i2">&#xe61e;</i><br />
-          <span>干货</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i3">&#xe602;</i><br />
-          <span>零食</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i4">&#xe650;</i><br />
-          <span>水产</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i5">&#xe601;</i><br />
-          <span>茶酒</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i6">&#xe66f;</i><br />
-          <span>养生</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i7">&#xe65c;</i><br />
-          <span>生鲜</span>
-        </router-link>
-        <router-link to="/classify/:name" tag="li">
-          <i class="iconfont i8">&#xe69d;</i><br />
-          <span>居家</span>
-        </router-link> -->
       </ul>
     </div>
     <div class="packet">
@@ -76,105 +43,23 @@
     </div>
     <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
-      <div class="title">
-        <i class="iconfont" :class="classifyIcon[index]"></i>&nbsp;
+      <router-link :to="'/classify/'+classify[index]" tag="div" class="title">
+        <i class="iconfont" :class="classifyIcon[index]" ></i>&nbsp;
         <span>{{classify[index]}}</span>
         <b>></b>
-      </div>
+      </router-link>
       <ul>
         <li v-for="common in commodity">
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
+          <router-link :to="'/details/'+common.good_id">
+            <img :src="common.url">
+          </router-link>
+          <router-link :to="'/details/'+common.good_id" class="goodname" tag="p">{{common.name}}</router-link>
+          <p class="price">￥{{common.price}}</p>
           <div class="buybtn">    
           </div>
         </li>
       </ul>
     </div>
-    <!-- <div class="details">
-      <img src="../../../static/img/home/g1.jpg">
-      <div class="title">
-        <i class="iconfont">&#xe669;</i>&nbsp;
-        <span>农副</span>
-        <b>></b>
-      </div>
-      <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="details">
-      <img src="../../../static/img/home/g1.jpg">
-      <div class="title">
-        <i class="iconfont">&#xe669;</i>&nbsp;
-        <span>农副</span>
-        <b>></b>
-      </div>
-      <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-      </ul>
-    </div> -->
     <div style="clear: both;"></div>
     <hr />
     <div class="message">
@@ -228,6 +113,7 @@ export default {
       nl:["i1","i2","i3","i4","i5","i6","i7","i8"],
       classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
       classifyIcon:["icon-mifan","icon-mogu","icon-lingshi-copy","icon-haixian","icon-cha","icon-shiwu","icon-shengxian","icon-jiaju"],
+      classifyIconColor:["icon-mifan i1","icon-mogu i2","icon-lingshi-copy i3","icon-haixian i4","icon-cha i5","icon-shiwu i6","icon-shengxian i7","icon-jiaju i8"],
       commodityList:[]
     }
   },

@@ -38,6 +38,7 @@ export default {
   position: fixed;
   border-bottom: .005rem solid #eee;
   font-size: .23rem;
+  background: #fff;
 }
 .nav li{
   flex:1;
