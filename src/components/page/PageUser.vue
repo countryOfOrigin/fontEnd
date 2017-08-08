@@ -1,7 +1,17 @@
 <template>
   <div class="page-user">
-
-    <div class="header unlogin" v-if="flag">
+    <div class="header login" v-if="show">
+      <div class="header-bg">
+        <div class="img-box"><router-link to="/user/address/edit/select/:id" >
+          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
+        </router-link></div>
+        <div class="text-box">
+          <p class="user-name">{{user_name}}</p>
+          <p class="user-level"><span>LV</span>:5</p>
+        </div>
+      </div>
+    </div>
+    <div class="header unlogin" v-else>
       <div class="header-bg">
         <router-link to="/login"><div class="img-box">
           <img src="../../assets/images/user.png" alt="" class="user-logo">
@@ -12,17 +22,7 @@
         <!--</div>-->
       </div>
     </div>
-    <div class="header login" v-if="show">
-      <div class="header-bg">
-        <router-link to="/login"><div class="img-box">
-          <img src="../../assets/images/user.jpg" alt="" class="user-logo">
-        </div></router-link>
-        <div class="text-box">
-          <p class="user-name">{{user_name}}</p>
-          <p class="user-level"><span>LV</span>:5</p>
-        </div>
-      </div>
-    </div>
+
     <ul id="order-info">
       <router-link to="/order/all"> <li class="order">
         <strong class="look-for-order">查看订单</strong>
@@ -158,7 +158,12 @@ export default {
     border-radius: .75rem;
 
   }
-  .unlogin .img-box img{
+  .img-box img{
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+   .img-box a{
+     display: block;
     width: 1.5rem;
     height: 1.5rem;
   }
@@ -168,9 +173,7 @@ export default {
     /*border-radius: .75rem;*/
   /*}*/
   .header .text-box{
-    width: 3rem;
     height: 1rem;
-    padding: 1rem 0;
     position: relative;
   }
   .header .user-name{
