@@ -25,16 +25,18 @@ export default {
 <style scoped>
 @import "../../assets/css/common/footer.css";
 @import "../../assets/font/iconfont.css";
+.common-footer{
+  position: fixed;
+  bottom: 0;
+}
 .nav{
   height: .995rem;
   line-height: .995rem;
   width: 6.4rem;
   display: flex;
-  position: fixed;
   border-top: .005rem solid #eee;
   font-size: .4rem;
   background: #fff;
-  bottom: 0;
 }
 .nav li{
   flex:1;
