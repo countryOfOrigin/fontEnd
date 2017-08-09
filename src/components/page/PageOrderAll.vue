@@ -77,6 +77,7 @@ export default {
     width:66%;
     float: right;
 
+
   }
   #order-all .order-detail p{
     margin-bottom: .1rem;
