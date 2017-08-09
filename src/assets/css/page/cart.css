@@ -22,6 +22,13 @@ img{
     font-size: 0.36rem;
     margin-right: 0.1rem;
     color: #38f;
+    /*color: #fff;*/
+}
+.empty{
+    font-size: 0.36rem;
+    margin-right: 0.1rem;
+    color: #38f;
+    display: none;
 }
 .editor i{
     font-size: 0.36rem;
@@ -37,20 +44,27 @@ img{
     margin-top: 0.1rem;
 }
 .list{
-    /*margin: 0 0.2rem;*/
     margin-bottom: 1rem;
     
 }
 .list li{
     width: 100%;
     height: 2.12rem;
-    /*background: #f00;*/
     border-bottom: 0.1rem solid #fff;
     padding: 0.1rem 0.2rem;
+    position: relative;
 }
 .list .ok{
     float: left;
     line-height: 1.8rem; 
+
+    /*display: none;*/
+}
+.list .empty{
+    /*font-size: 0.34rem;*/
+    float: left;
+    line-height: 1.8rem;
+    display: none; 
 }
 .list img{
     width: 1.8rem;
@@ -70,7 +84,7 @@ img{
 .list .price{
     color: #f60;
 }
-.list .num{
+.list .number{
     font-size: 0.22rem;
     color: #666;
     float: right;
@@ -82,6 +96,7 @@ img{
     border-top: 0.01rem solid #ccc;
     position: fixed;
     bottom: 0;
+    z-index: 1000;
 }
 .foot .left-box{
     float: left;
@@ -91,10 +106,15 @@ img{
     padding-left: 0.2rem;
     float: left;
 }
+.foot .empty{
+    line-height: 1rem;
+    padding-left: 0.2rem;
+    float: left;
+    display: none;
+}
 .foot .all{
     display: inline-block;
     line-height: 1rem;
-    /*width: 1rem;*/
 }
 .foot .total{
     display: inline-block;
@@ -104,7 +124,6 @@ img{
 .foot .min{
     height: 100%;
     width: 1.2rem;
-    /*background: #f00;*/
     float: left;
     margin-top: 0.1rem;
     margin-left: 2rem;
@@ -122,7 +141,56 @@ img{
     background: #ff4444;
     color: #fff;
     padding: 0 0.4rem;
-    /*position: absolute;
-    bottom: 0;
-    right: 0;*/
+}
+
+.buynum{
+    position: relative;
+    display: inline-block;
+    margin-left: 0.9rem;
+    margin-bottom: 0.85rem;
+    display: none;
+}
+.buynum .num{
+    width: 0.85rem;
+    height: 0.6rem;
+    text-align: center;
+    float: right;
+    margin-right: 1.8rem;
+}
+.buynum span{
+    display: inline-block;
+    font-size: 0.33rem;
+    width: 0.8rem;
+    height: 0.6rem;
+    line-height: 0.55rem;
+    text-align: center;
+    border: 0.01rem solid #999;
+    position: absolute;
+}
+.buynum .add{
+    right: 1rem;
+    top: 0;
+    border-left: none;
+}
+.buynum .sub{
+    right: 2.65rem;
+    border-right: none;
+}
+.buynum .cancel{
+    border-color: #ccc;
+    background: #f2f2f2;
+    color: #bbb;
+}
+.list .del{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    line-height: 1.9rem;
+    text-align: center;
+    font-size: 0.25rem;
+    width: 1.1rem;
+    background: #ff4343;
+    color: #fff;
+    display: none;
 }
