@@ -21,12 +21,15 @@
       <a href="" class="prev">上一页</a>
       <a href="" class="next">下一页</a>
     </div>
+    <!-- <common-footer-logo  style="position:absolute; bottom:.5rem;"></common-footer-logo> -->
+    <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
   </div>
 </template>
 
 <script>
 import Axios from 'axios'
+import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonFooter from '../common/CommonFooter'
 export default {
   name: 'page-home',
@@ -38,6 +41,7 @@ export default {
     }
   },
   components:{   
+    CommonFooterLogo,
     CommonFooter
   },
   mounted(){
@@ -77,4 +81,5 @@ export default {
 <style scoped>
 @import "../../assets/css/page/classify.css";
 @import "../../assets/font/iconfont.css";
+
 </style>
