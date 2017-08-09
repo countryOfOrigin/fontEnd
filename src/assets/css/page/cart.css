@@ -14,6 +14,10 @@ a{
 img{
     border: 0;
 }
+b{
+    font-weight: 400;
+}
+/*editor开始*/
 .editor{
     padding: 0.25rem 0.2rem;
     background: #fff;
@@ -22,7 +26,6 @@ img{
     font-size: 0.36rem;
     margin-right: 0.1rem;
     color: #38f;
-    /*color: #fff;*/
 }
 .empty{
     font-size: 0.36rem;
@@ -43,6 +46,9 @@ img{
     color: #38f;
     margin-top: 0.1rem;
 }
+/*editor结束*/
+
+/*list开始*/
 .list{
     margin-bottom: 1rem;
     
@@ -57,11 +63,8 @@ img{
 .list .ok{
     float: left;
     line-height: 1.8rem; 
-
-    /*display: none;*/
 }
 .list .empty{
-    /*font-size: 0.34rem;*/
     float: left;
     line-height: 1.8rem;
     display: none; 
@@ -88,63 +91,6 @@ img{
     font-size: 0.22rem;
     color: #666;
     float: right;
-}
-.foot{
-    height: 1rem;
-    width: 100%;
-    background: #fff;
-    border-top: 0.01rem solid #ccc;
-    position: fixed;
-    bottom: 0;
-    z-index: 1000;
-}
-.foot .left-box{
-    float: left;
-}
-.foot .ok{
-    line-height: 1rem;
-    padding-left: 0.2rem;
-    float: left;
-}
-.foot .empty{
-    line-height: 1rem;
-    padding-left: 0.2rem;
-    float: left;
-    display: none;
-}
-.foot .all{
-    display: inline-block;
-    line-height: 1rem;
-}
-.foot .total{
-    display: inline-block;
-    color: rgb(255, 102, 0);
-    font-size: 0.22rem;
-}
-.foot .min{
-    height: 100%;
-    width: 1.2rem;
-    float: left;
-    margin-top: 0.1rem;
-    margin-left: 2rem;
-}
-.foot p{
-    display: inline-block;
-    font-size: 0.24rem;
-    color: #999;
-    float: right;
-}
-.foot a{
-    height: 100%;
-    line-height: 1rem;
-    float: right;
-    background: #ff4444;
-    color: #fff;
-    padding: 0 0.4rem;
-}
-.foot .null{
-    color: #999 !important;
-    background: #f1f1f1 !important;
 }
 .buynum{
     position: relative;
@@ -197,3 +143,87 @@ img{
     color: #fff;
     display: none;
 }
+/*list结束*/
+
+/*foot开始*/
+.foot{
+    height: 1rem;
+    width: 100%;
+    background: #fff;
+    border-top: 0.01rem solid #ccc;
+    position: fixed;
+    bottom: 0;
+    z-index: 1000;
+}
+.foot .left-box{
+    float: left;
+}
+.foot .ok{
+    line-height: 1rem;
+    padding-left: 0.2rem;
+    float: left;
+}
+.foot .empty{
+    line-height: 1rem;
+    padding-left: 0.2rem;
+    float: left;
+    display: none;
+}
+.foot .all{
+    display: inline-block;
+    line-height: 1rem;
+}
+.foot .total{
+    display: inline-block;
+    color: rgb(255, 102, 0);
+    font-size: 0.22rem;
+}
+.foot .min{
+    height: 100%;
+    width: 1.5rem;
+    float: left;
+    margin-top: 0.1rem;
+    margin-left: 1.8rem;
+}
+.foot p{
+    display: inline-block;
+    font-size: 0.24rem;
+    color: #999;
+    float: right;
+}
+.foot a{
+    height: 100%;
+    line-height: 1rem;
+    float: right;
+    background: #ff4444;
+    color: #fff;
+    padding: 0 0.4rem;
+}
+.foot .null{
+    color: #999 !important;
+    background: #f1f1f1 !important;
+}
+/*foot结束*/
+
+/*empty-list开始*/
+.empty-list{
+    margin: 1rem 1rem;
+    text-align: center;
+}
+.empty-list h4{
+    font-size: 0.32rem;
+    margin-bottom: 0.2rem;
+    color: #666;
+}
+.empty-list p{
+    color: #999;
+}
+.empty-list a{
+    display: inline-block;
+    border-radius: 3px;
+    color: #f60;
+    border: 0.01rem solid #f60;
+    padding: 0.1rem 0.6rem 0.13rem 0.6rem;
+    margin-top: 0.15rem;
+}
+/*empty-list结束*/

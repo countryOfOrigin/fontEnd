@@ -20,9 +20,9 @@
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥68.00</span>
-            <span class="number">×1</span>
-            <a href="" class="del">删除</a>
+            <span class="price">¥<b>68.00</b></span>
+            <span class="number">×<b>1</b></span>
+            <a href="javascript:;" class="del">删除</a>
           </li>
           <li>
             <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -34,9 +34,9 @@
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥68.00</span>
-            <span class="number">×1</span>
-            <a href="" class="del">删除</a>
+            <span class="price">¥<b>68.00</b></span>
+            <span class="number">×<b>2</b></span>
+            <a href="javascript:;" class="del">删除</a>
           </li>
           <li>
             <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -48,9 +48,9 @@
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥68.00</span>
-            <span class="number">×1</span>
-            <a href="" class="del">删除</a>
+            <span class="price">¥<b>68.00</b></span>
+            <span class="number">×<b>3</b></span>
+            <a href="javascript:;" class="del">删除</a>
           </li>
           <li>
             <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -62,9 +62,9 @@
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥68.00</span>
-            <span class="number">×1</span>
-            <a href="" class="del">删除</a>
+            <span class="price">¥<b>68.00</b></span>
+            <span class="number">×<b>1</b></span>
+            <a href="javascript:;" class="del">删除</a>
           </li>
           <li>
             <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -76,9 +76,9 @@
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥68.00</span>
-            <span class="number">×1</span>
-            <a href="" class="del">删除</a>
+            <span class="price">¥<b>68.00</b></span>
+            <span class="number">×<b>1</b></span>
+            <a href="javascript:;" class="del">删除</a>
           </li>
         </ul>
       </div>
@@ -95,14 +95,17 @@
         <a href="">结算 (2)</a>
       </div>
     </div>
-    <div v-else>bbbbb</div>
-    <common-footer></common-footer>
+    <div v-else>
+      <div class="empty-list">
+        <h4>购物车快饿瘪了 T.T</h4>
+        <p>快给我挑点宝贝</p>
+        <a href="">去逛逛</a>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
-import CommonHeader from '../common/CommonHeader'
-import CommonFooter from '../common/CommonFooter'
 import $ from 'jquery'
 export default {
   name: 'page-cart',
@@ -113,18 +116,18 @@ export default {
     }
   },
   components:{
-    CommonHeader,
-    CommonFooter
+    
   },
   mounted(){
     var $sub = $('.sub');
     var $add = $('.add');
-    var $num = $('.num');
     var $edit = $('.editor a');
     var $ok = $('.ok');
     var $listOk = $('.list .ok');
     var $editOk = $('.editor .ok');
     var $footOk = $('.foot .ok');
+    
+
     $listOk.on('click',function(){
       if($(this).attr('ch')==1){
         $(this).html('&#xe67c;').attr('ch','0');
@@ -187,13 +190,11 @@ export default {
       }
       else{
         $(this).text('编辑');
-        $('.ok').html('&#xe657;');
-        $listOk.attr('ch','1');
-        $editOk.attr('ch','1');
-        $footOk.attr('ch','1');
       }
-    })
+
+    });
     $add.on('click',function(){
+      var $num =  $(this).siblings('.num');
         $num.val(parseInt($num.val())+1);
         if($num.val()>=999){
             $num.val(999);
@@ -201,10 +202,11 @@ export default {
         }
         else{
             $(this).removeClass('cancel');
-            $sub.removeClass('cancel');
+            $(this).siblings('.sub').removeClass('cancel');
         }
     });
     $sub.on('click',function(){
+      var $num =  $(this).siblings('.num');
         $num.val(parseInt($num.val())-1);
         if($num.val()<=1){
             $num.val(1);
@@ -212,15 +214,17 @@ export default {
         }
         else{
             $(this).removeClass('cancel');
-            $add.removeClass('cancel');
+            $(this).siblings('.add').removeClass('cancel');
         }
     });
     $('input').bind('input propertychange', function() {
-        if($num.val()>=999){
+      var $add = $(this).siblings('.add');
+      var $sub = $(this).siblings('.sub');
+        if($(this).val()>=999){
             $add.addClass('cancel');
             $sub.removeClass('cancel');
         }
-        else if($num.val()<=1){
+        else if($(this).val()<=1){
             $sub.addClass('cancel');
             $add.removeClass('cancel');
         }else{
@@ -228,7 +232,9 @@ export default {
             $add.removeClass('cancel');
         }
     });
-
+    $('.del').on('click',function(){
+      $(this).parent().remove();
+    });
   }
 }
 </script>
