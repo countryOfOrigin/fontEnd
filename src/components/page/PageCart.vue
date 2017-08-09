@@ -3,9 +3,7 @@
     <common-header></common-header>
     <div v-if="flag">
       <div class="editor">
-        <!-- <span class="glyphicon glyphicon-ok-sign ok"></span> -->
-        <i class="iconfont ok">&#xe632;</i>
-        <i class="iconfont empty">&#xe67c;</i>
+        <i class="iconfont ok" ch="1">&#xe657;</i>
         <i class="iconfont">&#xe67e;</i>
         <p>黑龙江电视台--龙江原产递</p>
         <a href="javascript:;">编辑</a>
@@ -13,9 +11,7 @@
       <div class="list">
         <ul>
           <li>
-            <!-- <span class="glyphicon glyphicon-ok-sign ok"></span> -->
-            <i class="iconfont ok">&#xe632;</i>
-            <i class="iconfont empty">&#xe67c;</i>
+            <i class="iconfont ok" ch="1">&#xe657;</i>
             <img src="../../assets/img/m01.jpg">
             <p class="goodname">五常大米</p>
             <div class="buynum">
@@ -29,8 +25,7 @@
             <a href="" class="del">删除</a>
           </li>
           <li>
-            <i class="iconfont ok">&#xe632;</i>
-            <i class="iconfont empty">&#xe67c;</i>
+            <i class="iconfont ok" ch="1">&#xe657;</i>
             <img src="../../assets/img/m01.jpg">
             <p class="goodname">五常大米</p>
             <div class="buynum">
@@ -44,8 +39,7 @@
             <a href="" class="del">删除</a>
           </li>
           <li>
-            <i class="iconfont ok">&#xe632;</i>
-            <i class="iconfont empty">&#xe67c;</i>
+            <i class="iconfont ok" ch="1">&#xe657;</i>
             <img src="../../assets/img/m01.jpg">
             <p class="goodname">五常大米</p>
             <div class="buynum">
@@ -59,8 +53,7 @@
             <a href="" class="del">删除</a>
           </li>
           <li>
-            <i class="iconfont ok">&#xe632;</i>
-            <!-- <i class="iconfont empty">&#xe67c;</i> -->
+            <i class="iconfont ok" ch="1">&#xe657;</i>
             <img src="../../assets/img/m01.jpg">
             <p class="goodname">五常大米</p>
             <div class="buynum">
@@ -74,8 +67,7 @@
             <a href="" class="del">删除</a>
           </li>
           <li>
-            <i class="iconfont ok">&#xe632;</i>
-            <!-- <i class="iconfont empty">&#xe67c;</i> -->
+            <i class="iconfont ok" ch="1">&#xe657;</i>
             <img src="../../assets/img/m01.jpg">
             <p class="goodname">五常大米</p>
             <div class="buynum">
@@ -92,8 +84,7 @@
       </div>
       <div class="foot">
         <div class="left-box">
-          <i class="iconfont ok">&#xe632;</i>
-          <i class="iconfont empty">&#xe67c;</i>
+          <i class="iconfont ok" ch="1">&#xe657;</i>
           <span class="all">全选</span>
         </div>
         <div class="min">
@@ -131,45 +122,75 @@ export default {
     var $num = $('.num');
     var $edit = $('.editor a');
     var $ok = $('.ok');
-    var fla = true;
-    $('.list .ok').on('click',function(){
-      if(fla == false){
-        $(this).html('&#xe632;');
-        fla = true;
+    var $listOk = $('.list .ok');
+    var $editOk = $('.editor .ok');
+    var $footOk = $('.foot .ok');
+    $listOk.on('click',function(){
+      if($(this).attr('ch')==1){
+        $(this).html('&#xe67c;').attr('ch','0');
+        $editOk.html('&#xe67c;').attr('ch','0');
+        $footOk.html('&#xe67c;').attr('ch','0');     
       }
       else{
-        $(this).html('&#xe67c;');
-        $('.editor .ok').html('&#xe67c;');
-        $('.foot .ok').html('&#xe67c;');
-        fla = false;
+        $(this).html('&#xe657;');
+        $(this).attr('ch','1');
+        var arr = new Array();
+        $listOk.each(function(){
+          arr.push($(this).attr('ch'));
+          if($.inArray('0', arr)==-1){
+            $editOk.html('&#xe657;').attr('ch','1');
+            $footOk.html('&#xe657;').attr('ch','1');
+          }else{
+            $editOk.html('&#xe67c;').attr('ch','0');
+            $footOk.html('&#xe67c;').attr('ch','0');
+          }
+        });        
       }
     });
-
-
-
-
-
-
-
-
-
-
-
-
+    $editOk.on('click',function(){
+      if($(this).attr('ch')==1){
+        $(this).html('&#xe67c;').attr('ch','0');
+        $listOk.html('&#xe67c;').attr('ch','0');
+        $footOk.html('&#xe67c;').attr('ch','0');
+      }
+      else{
+        $(this).html('&#xe657;').attr('ch','1');
+        $listOk.html('&#xe657;').attr('ch','1');
+        $footOk.html('&#xe657;').attr('ch','1');
+      }
+    });
+    $footOk.on('click',function(){
+      if($(this).attr('ch')==1){
+        $(this).html('&#xe67c;').attr('ch','0');
+        $listOk.html('&#xe67c;').attr('ch','0');
+        $editOk.html('&#xe67c;').attr('ch','0');
+      }
+      else{
+        $(this).html('&#xe657;').attr('ch','1');
+        $listOk.html('&#xe657;').attr('ch','1');
+        $editOk.html('&#xe657;').attr('ch','1');
+      }
+    });
 
     $edit.on('click',function(){
       $('.goodname').toggle();
       $('.buynum').toggle();
       $('.number').toggle();
       $('.del').toggle();
-      
+      $('.foot a').toggleClass('null');
       if($(this).text()=='编辑'){
         $(this).text('完成');
         $('.ok').html('&#xe67c;');
+        $listOk.attr('ch','0');
+        $editOk.attr('ch','0');
+        $footOk.attr('ch','0');
       }
       else{
         $(this).text('编辑');
-        $('.ok').html('&#xe632;');
+        $('.ok').html('&#xe657;');
+        $listOk.attr('ch','1');
+        $editOk.attr('ch','1');
+        $footOk.attr('ch','1');
       }
     })
     $add.on('click',function(){
