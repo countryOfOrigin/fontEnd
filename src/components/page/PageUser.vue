@@ -4,11 +4,11 @@
       <div class="header-bg">
         <div class="img-box"><router-link to="/user/address/edit/select/:id" >
           <img :src='user_info.url' alt="" class="user-logo">
-        </router-link></div>
-        <div class="text-box">
-          <p class="user-name">{{user_name}}</p>
-          <p class="user-level"><span>LV</span>:{{user_info.grade}}</p>
-        </div>
+          </router-link></div>
+          <div class="text-box">
+            <p class="user-name">{{user_name}}</p>
+            <p class="user-level"><span>LV</span>:{{user_info.grade}}</p>
+          </div>
       </div>
     </div>
     <div class="header unlogin" v-else>
@@ -144,6 +144,8 @@ export default {
     height:3rem;
     /*background-size: contain;*/
     background: url("../../assets/images/userbg1.jpg") no-repeat;
+    background-size: cover;
+
   }
   .login .user-logo{
     position: absolute;
@@ -157,7 +159,6 @@ export default {
     /*width:100%;*/
     height:3rem;
     background: rgba(255,255,255,0.5) no-repeat;
-    background-size: contain;
     /*margin-bottom: .2rem;*/
   }
   .header .img-box,#header .text-box{

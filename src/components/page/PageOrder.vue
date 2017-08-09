@@ -7,6 +7,7 @@
       <li><router-link to="/order/wait_arrive">待收货</router-link></li>
       <li><router-link to="/order/on_arrive">已收货</router-link></li>
     </ul>
+    <router-view></router-view>
     <common-footer></common-footer>
   </div>
 </template>
@@ -47,7 +48,7 @@ export default {
 }
 .nav a{
   color: #333;
-  padding: 0; 
+  padding: 0;
   margin: 0 10px;
   text-align: center;
 }
