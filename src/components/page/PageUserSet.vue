@@ -2,7 +2,7 @@
   <div class="page-user-set">
     <div class="userset-1">
       <span class="user-font font-2">头像</span>
-      <span class="user-content"><img src="" alt="" class="user-logo"> <a href=""> > </a></span>
+      <span class="user-content"><img src="../../../static/img/userset/userset.png" alt="" class="user-logo"> <a href=""> > </a></span>
     </div>
     <div class="userset-2">
 
