@@ -96,6 +96,7 @@
         </li>
       </ul>
     </div>
+    <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
   </div>
 </template>
@@ -104,6 +105,7 @@
 
 import Axios from 'axios'
 import CommonFooter from '../common/CommonFooter'
+import CommonFooterLogo from '../common/CommonFooterLogo'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
 export default {
@@ -120,7 +122,8 @@ export default {
   components:{   
     Swipe,
     SwipeItem,
-    CommonFooter
+    CommonFooter,
+    CommonFooterLogo,
   },
   mounted(){
     this.com_home();
