@@ -23,8 +23,8 @@
     </div> -->
     <nav>
       <ul class="pager">
-        <li class="disabled"><router-link to="">上一页</router-link></li>
-        <li><router-link to="">下一页</router-link></li>
+        <li class="disabled"><router-link :to="'/classify/'+name+'/1'">上一页</router-link></li>
+        <li><router-link :to="'/classify/'+name+'/2'">下一页</router-link></li>
       </ul>
     </nav>
     <!-- <common-footer-logo  style="position:absolute; bottom:.5rem;"></common-footer-logo> -->

@@ -17,7 +17,7 @@ img{
 /*购物车弹层*/
 .dialog-box{
     background: rgba(0,0,0,0.7);
-    position: absolute;
+    position: fixed;
     left: 0;
     top: 0;
     right: 0;
@@ -102,6 +102,7 @@ img{
     text-align: center;
     float: right;
     margin-right: 1rem;
+    border: .01rem solid #888;
 }
 .buynum span{
     display: inline-block;
