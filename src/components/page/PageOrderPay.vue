@@ -16,7 +16,9 @@
         <p class="total-price">共&nbsp;1件商品 合计：￥15</p>
         <div class="order-state-list">
           <span>联系客服</span>
-          <span>取消订单</span>
+          <span class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+            取消付款
+          </span>
           <span>付款</span>
         </div>
       </li>
