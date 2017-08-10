@@ -193,11 +193,15 @@ b{
 }
 .foot a{
     height: 100%;
+    width: 1.8rem;
     line-height: 1rem;
+    text-align: center;
     float: right;
     background: #ff4444;
     color: #fff;
-    padding: 0 0.4rem;
+}
+.foot .del-all{
+    display: none;
 }
 .foot .null{
     color: #999 !important;

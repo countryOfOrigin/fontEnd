@@ -55,7 +55,7 @@
           </router-link>
           <router-link :to="'/details/'+common.good_id" class="goodname" tag="p">{{common.name}}</router-link>
           <p class="price">￥{{common.price}}</p>
-          <div class="buybtn">    
+          <div class="buybtn" @click="buy(common.good_id)">    
           </div>
         </li>
       </ul>
@@ -98,6 +98,7 @@
     </div>
     <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
+    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
@@ -106,6 +107,7 @@
 import Axios from 'axios'
 import CommonFooter from '../common/CommonFooter'
 import CommonFooterLogo from '../common/CommonFooterLogo'
+import CommonAddBuycar from '../common/CommonAddBuycar'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
 export default {
@@ -116,7 +118,9 @@ export default {
       classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
       classifyIcon:["icon-mifan","icon-mogu","icon-lingshi-copy","icon-haixian","icon-cha","icon-shiwu","icon-shengxian","icon-jiaju"],
       classifyIconColor:["icon-mifan i1","icon-mogu i2","icon-lingshi-copy i3","icon-haixian i4","icon-cha i5","icon-shiwu i6","icon-shengxian i7","icon-jiaju i8"],
-      commodityList:[]
+      commodityList:[],
+      show:false,
+      shopId:0
     }
   },
   components:{   
@@ -124,6 +128,7 @@ export default {
     SwipeItem,
     CommonFooter,
     CommonFooterLogo,
+    CommonAddBuycar
   },
   mounted(){
     this.com_home();
@@ -140,6 +145,14 @@ export default {
     },
     focus:function(){
       this.$router.push("/search");
+    },
+    buy:function(id){
+      this.show=true;
+      this.shopId=id;
+      // console.log(id);
+    },
+    isshow: function (a){
+      this.show = false;
     }
   }
 }
