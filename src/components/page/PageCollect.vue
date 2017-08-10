@@ -52,7 +52,7 @@ export default {
   }
   #collect{
     border-bottom: 0.05rem solid #eee;
-    font-size:0.3rem;
+    font-size:0.25rem;
 
   }
   #collect .collect-list{
@@ -88,12 +88,13 @@ export default {
     font-size: 0.3rem;
   }
   #collect .overhide {
-    color: #000;
     display: -webkit-box !important;
     text-overflow: ellipsis;
     overflow: hidden;
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
+    color: #867e7e;
+
   }
 
 </style>
