@@ -22,6 +22,7 @@ import PageClassify from '@/components/page/PageClassify'//分类页
 import PageSearch from '@/components/page/PageSearch'//搜索
 import PageSearchRecommend from '@/components/page/PageSearchRecommend'//搜索推荐
 import PageSearchResult from '@/components/page/PageSearchResult'//搜索结果
+import PageDiscount from '@/components/page/PageDiscount'//搜索结果
 
 import MyTest from '@/components/MyTest'
 
@@ -101,7 +102,7 @@ export default new Router({
       component: PageAllClass
     },
     {
-      path:'/classify/:name',
+      path:'/classify/:name/:page',
       component: PageClassify
     },
     {
@@ -115,6 +116,10 @@ export default new Router({
         { path: "/search/recommend", component: PageSearchRecommend },
         { path: "/search/result", component: PageSearchResult },
       ]
+    },
+    {
+      path:'/discount',
+      component: PageDiscount,
     }
   ]
 })
