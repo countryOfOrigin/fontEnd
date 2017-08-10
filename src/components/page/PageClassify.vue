@@ -17,10 +17,16 @@
       </ul>
     </div>
     <div style="clear: both;"></div>
-    <div class="page">
+    <!-- <div class="page">
       <a href="" class="prev">上一页</a>
       <a href="" class="next">下一页</a>
-    </div>
+    </div> -->
+    <nav>
+      <ul class="pager">
+        <li class="disabled"><router-link to="">上一页</router-link></li>
+        <li><router-link to="">下一页</router-link></li>
+      </ul>
+    </nav>
     <!-- <common-footer-logo  style="position:absolute; bottom:.5rem;"></common-footer-logo> -->
     <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
@@ -37,6 +43,9 @@ export default {
     return {
       commodityList:[],
       name:this.$route.params.name,
+      count:4,
+      page:this.$route.params.page,
+      all_page:1,
       icon:""
     }
   },
@@ -62,17 +71,28 @@ export default {
       Axios.get('http://localhost:3000/goods_paging',{
         params:{
           cls:this.name,
-          // count:,
-          // page:
+          count:this.count,
+          page:this.page
         }
       }).then((res)=>{
         console.log(res.data);
-        this.commodityList=JSON.parse(res.data);
+        this.commodityList=JSON.parse(res.data).goods;
+        this.all_page=JSON.parse(res.data).sum;
         console.log(this.commodityList);
       }).catch((error)=>{
         console.log(error);
       });
-    }
+    },
+    // prev:function(){
+    //   if(this.page!=1){
+    //     this.page--;
+    //   }
+    // },
+    // next:function(){
+    //   if(this.page!=this.all_page){
+    //     this.page++;
+    //   }
+    // }
   }
 }
 </script>
@@ -81,5 +101,8 @@ export default {
 <style scoped>
 @import "../../assets/css/page/classify.css";
 @import "../../assets/font/iconfont.css";
+nav ul.pager li a{
+  width: 3rem;
+}
 
 </style>
