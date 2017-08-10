@@ -73,6 +73,12 @@ img{
   /*border: 0.053rem solid #f0f4f5;*/
 
 }
+.userset-5{
+  height:1rem;
+}
+.userset-6{
+  height:1rem;
+}
 .user-footer{
   display: inline-block;
 
@@ -91,6 +97,43 @@ img{
   background: #ffffff;
   margin-left: 0.5rem;
   margin-top: 0.35rem;
+}
+/*弹层开始*/
+.btn-me{
+  border: 0;
+  color: #ccc;
+  background-color: #ffffff;
+
+}
+.btn-you{
+  border: 0;
+  color: #ccc;
+  background-color: #ffffff;
+
+}
+.btn-he{
+  border: 0;
+  color: #ccc;
+  background-color: #ffffff;
+
+}
+.modal-dialog{
+  width: 6rem;
+  height:5rem;
+  line-height: normal;
+  position: absolute;
+  top: 50%;
+  margin-top: -2.5rem;
+
+}
+
+.btn-content{
+  width: 6rem;
+  height:5rem;
+
+}
+.modal-footer{
+  height: 1rem;
 }
 
 
