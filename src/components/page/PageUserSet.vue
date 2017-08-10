@@ -121,7 +121,8 @@ export default {
       $userTitle.html(
         '设置昵称'
       );
-      $fb.html('<input type="text" style="width:5.2rem;border:0; border-bottom: 1px solid #ecf0f1">');
+
+      $fbc.html('<input type="text" style="width:5.2rem;border:0; border-bottom: 1px solid #ecf0f1">');
       $sbc.html('')
 
     });
