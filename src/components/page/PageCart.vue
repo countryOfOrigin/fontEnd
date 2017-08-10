@@ -91,7 +91,8 @@
           <p>不含运费</p>
         </div>
         
-        <a href="">结算 (<b>2</b>)</a>
+        <a href="" class="clear">结算 (<b>2</b>)</a>
+        <a href="" class="del-all">删除</a>
       </div>
     </div>
     
@@ -160,9 +161,7 @@ export default {
     
     totalAll();
     listAll();
-    $('.del').on('click',function(){
-      $(this).parent().remove();
-    });
+    
     $listOk.on('click',function(){
       if($(this).attr('ch')==1){
         $(this).html('&#xe67c;').attr('ch','0');
@@ -223,7 +222,10 @@ export default {
       $('.number').toggle();
       $('.del').toggle();
       $('.min').toggle();
+      $('.clear').toggle();
+      $('.del-all').toggle();
       $('.foot a').toggleClass('null');
+      
       if($(this).text()=='编辑'){
         $(this).text('完成');
         $('.ok').html('&#xe67c;');
@@ -231,9 +233,11 @@ export default {
         $editOk.attr('ch','0');
         $footOk.attr('ch','0');
         totalAll();
+        
       }
       else{
         $(this).text('编辑');
+
         $listOk.each(function(){
           $(this).siblings('.number').find('b').text($(this).siblings('.buynum').find('.num').val());
         });
