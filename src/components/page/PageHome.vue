@@ -139,6 +139,7 @@ export default {
       .then((res)=>{
         // console.log(res.data);
         this.commodityList=JSON.parse(res.data);
+        console.log(this.commodityList);
       }).catch((error)=>{
         console.log(error);
       });
@@ -159,9 +160,12 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../../assets/css/page/home.css" scoped></style>
 <style scoped>
 /*@import "../../assets/css/page/home.css";*/
 @import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
+.page-home{
+  background: #eee;
+}
 </style>
-<style src="../../assets/css/page/home.css" scoped></style>

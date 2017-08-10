@@ -124,7 +124,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/page/details.css";
 @import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
 </style>
+<style src="../../assets/css/page/details.css" scoped></style>

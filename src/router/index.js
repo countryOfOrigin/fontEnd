@@ -22,7 +22,8 @@ import PageClassify from '@/components/page/PageClassify'//分类页
 import PageSearch from '@/components/page/PageSearch'//搜索
 import PageSearchRecommend from '@/components/page/PageSearchRecommend'//搜索推荐
 import PageSearchResult from '@/components/page/PageSearchResult'//搜索结果
-import PageDiscount from '@/components/page/PageDiscount'//搜索结果
+import PageDiscount from '@/components/page/PageDiscount'//优惠券
+import PageAboutus from '@/components/page/PageAboutus'//优惠券
 
 import MyTest from '@/components/MyTest'
 
@@ -120,6 +121,10 @@ export default new Router({
     {
       path:'/discount',
       component: PageDiscount,
+    },
+    {
+      path:'/aboutus',
+      component: PageAboutus,
     }
   ]
 })
