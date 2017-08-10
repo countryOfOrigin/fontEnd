@@ -1,6 +1,5 @@
 <template>
   <div class="page-cart">
-    <common-header></common-header>
     <div v-if="flag">
       <div class="editor">
         <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -30,7 +29,7 @@
             <p class="goodname">五常大米</p>
             <div class="buynum">
                 <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
+                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" class="num">
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
@@ -92,9 +91,10 @@
           <p>不含运费</p>
         </div>
         
-        <a href="">结算 (2)</a>
+        <a href="">结算 (<b>2</b>)</a>
       </div>
     </div>
+    
     <div v-else>
       <div class="empty-list">
         <h4>购物车快饿瘪了 T.T</h4>
@@ -126,8 +126,43 @@ export default {
     var $listOk = $('.list .ok');
     var $editOk = $('.editor .ok');
     var $footOk = $('.foot .ok');
-    
 
+
+    
+    function listAll(){
+      var sum = 0;
+      $listOk.each(function(){
+      if($(this).attr('ch')==1){
+          sum += 1;
+        }
+      });
+      $('.foot a b').text(sum);
+      if($('.foot a b').text()==0){
+        $('.foot a').addClass('null');
+      }else{
+        $('.foot a').removeClass('null');
+      }
+    }
+
+
+
+    function totalAll(){
+      var total = 0;
+      $listOk.each(function(){
+        $(this).siblings('.buynum').find('.num').val($(this).siblings('.number').find('b').text());
+        var itemtotal = $(this).siblings('.price').find('b').text()*$(this).siblings('.number').find('b').text();
+        if($(this).attr('ch')==1){
+          total += itemtotal;
+        }
+      });
+      $('.total b').text(total);
+    }
+    
+    totalAll();
+    listAll();
+    $('.del').on('click',function(){
+      $(this).parent().remove();
+    });
     $listOk.on('click',function(){
       if($(this).attr('ch')==1){
         $(this).html('&#xe67c;').attr('ch','0');
@@ -147,8 +182,11 @@ export default {
             $editOk.html('&#xe67c;').attr('ch','0');
             $footOk.html('&#xe67c;').attr('ch','0');
           }
-        });        
+          
+        }); 
       }
+      totalAll();
+      listAll();
     });
     $editOk.on('click',function(){
       if($(this).attr('ch')==1){
@@ -161,6 +199,8 @@ export default {
         $listOk.html('&#xe657;').attr('ch','1');
         $footOk.html('&#xe657;').attr('ch','1');
       }
+      totalAll();
+      listAll();
     });
     $footOk.on('click',function(){
       if($(this).attr('ch')==1){
@@ -173,6 +213,8 @@ export default {
         $listOk.html('&#xe657;').attr('ch','1');
         $editOk.html('&#xe657;').attr('ch','1');
       }
+      totalAll();
+      listAll();
     });
 
     $edit.on('click',function(){
@@ -180,6 +222,7 @@ export default {
       $('.buynum').toggle();
       $('.number').toggle();
       $('.del').toggle();
+      $('.min').toggle();
       $('.foot a').toggleClass('null');
       if($(this).text()=='编辑'){
         $(this).text('完成');
@@ -187,11 +230,16 @@ export default {
         $listOk.attr('ch','0');
         $editOk.attr('ch','0');
         $footOk.attr('ch','0');
+        totalAll();
       }
       else{
         $(this).text('编辑');
+        $listOk.each(function(){
+          $(this).siblings('.number').find('b').text($(this).siblings('.buynum').find('.num').val());
+        });
+        
       }
-
+      listAll();
     });
     $add.on('click',function(){
       var $num =  $(this).siblings('.num');
@@ -232,15 +280,13 @@ export default {
             $add.removeClass('cancel');
         }
     });
-    $('.del').on('click',function(){
-      $(this).parent().remove();
-    });
+
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/page/cart.css";
 @import "../../assets/font/iconfont.css";
 </style>
+<style src="../../assets/css/page/cart.css" scoped></style>

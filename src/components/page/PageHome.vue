@@ -12,7 +12,7 @@
     <div class="nav">
       <ul>
         <li v-for="n in 8">
-          <router-link :to="'/classify/'+classify[n-1]" tag="div">
+          <router-link :to="'/classify/'+classify[n-1]+'/1'" tag="div">
             <i class="iconfont" :class="classifyIconColor[n-1]"></i><br />
             <span>{{classify[n-1]}}</span>
           </router-link>
@@ -43,7 +43,7 @@
     </div>
     <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
-      <router-link :to="'/classify/'+classify[index]" tag="div" class="title">
+      <router-link :to="'/classify/'+classify[index]+'/1'" tag="div" class="title">
         <i class="iconfont" :class="classifyIcon[index]" ></i>&nbsp;
         <span>{{classify[index]}}</span>
         <b>></b>
@@ -147,7 +147,8 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/page/home.css";
+/*@import "../../assets/css/page/home.css";*/
 @import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
 </style>
+<style src="../../assets/css/page/home.css" scoped></style>

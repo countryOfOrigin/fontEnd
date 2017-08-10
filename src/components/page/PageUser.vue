@@ -52,22 +52,22 @@
       </li>
     </ul>
     <ul id="content">
-      <li><router-link to="/order/wait_go">  <!--待定-->
+      <router-link to="/discount" tag="li">
         <strong>优惠券</strong>
         <span class="link-detail">&rsaquo;</span>
-      </router-link></li>
-      <li><router-link to="/collect">
+      </router-link>
+      <router-link to="/collect" tag="li">
         <strong>我的收藏</strong>
         <span class="link-detail">&rsaquo;</span>
-      </router-link></li>
-      <li><router-link to="/user/address">
+      </router-link>
+      <router-link to="/user/address" tag="li">
         <strong>地址管理</strong>
         <span class="link-detail">&rsaquo;</span>
-      </router-link></li>
-      <li><router-link to="/order/wait_go"><!--待定-->
+      </router-link>
+      <router-link to="/order/wait_go" tag="li"><!--待定-->
         <strong>关于我们</strong>
         <span class="link-detail">&rsaquo;</span>
-      </router-link></li>
+      </router-link>
     </ul>
     <common-footer></common-footer>
 
