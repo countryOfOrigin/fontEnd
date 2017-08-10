@@ -105,6 +105,18 @@ img{
   background-color: #ffffff;
 
 }
+.btn-you{
+  border: 0;
+  color: #ccc;
+  background-color: #ffffff;
+
+}
+.btn-he{
+  border: 0;
+  color: #ccc;
+  background-color: #ffffff;
+
+}
 .modal-dialog{
   width: 6rem;
   height:5rem;

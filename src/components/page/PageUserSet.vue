@@ -20,10 +20,11 @@
             </div>
             <div class="modal-body userset-content">
              <div class="userset-5">
-              <span class="first-box"> <span class="glyphicon glyphicon-ok-sign ok"></span><a href="">拍照</a></span>
+              <span class="first-box"> <span class="glyphicon glyphicon-ok-sign ok first-box-icon"></span><a href="" class="first-box-content">拍照</a></span>
              </div>
                 <div class="userset-6">
-                  <span class="secont-box"> <span class="glyphicon glyphicon-ok-sign ok"></span><a href="">相册</a></span>
+
+                  <span class="secont-box"> <span class="glyphicon glyphicon-ok-sign ok first-box-icon"></span><a href="" class="secont-box-content">相册</a></span>
                 </div>
 
 
@@ -45,11 +46,13 @@
       <span class="user-font">昵称</span>
       <span class="user-content"><a href="">fontEnd </a><button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">
 ></button></span>
+
     </div>
     <div class="userset-2">
 
       <span class="user-font">性别</span>
-      <span class="user-content"><a href="">未填写 > </a></span>
+      <span class="user-content"><a href="">性别 </a><button class="btn btn-primary  btn-he" data-toggle="modal" data-target="#myModal">
+></button></span>
 
     </div>
     <div class="userset-2">
@@ -81,23 +84,46 @@ export default {
   },
   mounted(){
       var $btnme =$('.btn-me');
-    var $btnyou =$('.btn-you');
-    var $userContent = $('.user-content');
+      var $btnyou =$('.btn-you');
+      var $btnhe =$('.btn-he');
+      var $userContent = $('.user-content');
       var $userTitle = $('.userset-title');
-      var $user5 = $('userset-5');
-      var $user6 = $('userser-6');
+      var $fb = $('.first-box');
+      var $sb = $('.secont-box');
+      var $fbc = $('.first-box-content');
+      var $sbc = $('.secont-box-content');
+      var $fbi = $(".first-box-icon");
+//      var $sbi = $(".secont-box-icon");
       $btnme.on('click',function(){
+          $fbi.hide();
+            $sb.show();
          $userTitle.html(
              '设置头像'
          );
-      $user5.html()
+      $fbc.html('拍照');
+      $sbc.html('相册')
 
-      })
+      });
     $btnyou.on('click',function(){
+        $fbi.show();
+      $sb.show();
+
       $userTitle.html(
         '设定性别'
       );
+      $fbc.html('男');
+      $sbc.html('女')
 //
+    });
+    $btnhe.on('click',function(){
+      $fbi.hide();
+      $sb.hide();
+      $userTitle.html(
+        '设置昵称'
+      );
+      $fb.html('<input type="text" style="width:5.2rem;border:0; border-bottom: 1px solid #ecf0f1">');
+      $sbc.html('')
+
     });
 //
 //
