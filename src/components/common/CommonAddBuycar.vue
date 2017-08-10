@@ -3,38 +3,45 @@
     <div class="dialog-box">
         <div class="buycar">
             <div class="content">
-                <img src="../../assets/img/m01.jpg">
-                <p>五常大米</p>
-                <span class="price">¥68.00 - 128.00</span>                   
-                <span class="glyphicon glyphicon-remove-circle remove"></span>
+                <img :src="goods.url">
+                <!-- <img src="../../assets/img/m01.jpg"> -->
+                <!-- <img src="/static/img/nongfu/01.jpg" alt=""> -->
+                <p>{{goods.name}}</p>
+                <span class="price">¥{{goods.price}}</span>                   
+                <span class="glyphicon glyphicon-remove-circle remove" @click="isshow"></span>
             </div>
             <div class="size">
                 <p>规格：</p>
                 <ul>
-                    <li class="selected">5kg</li>
-                    <li>10kg</li>
+                    <li class="selected">默认</li>
+                    <!-- <li>10kg</li> -->
                 </ul>
                 <div style="clear: both;"></div>
             </div>
             <div class="buynum">
                 <p>购买数量：</p>
                 <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
+                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="num" v-model="num" class="num">
                 <span class="add">+</span>
             </div>
-            <a href="" class="addbtn">加入购物车</a>
+            <span class="addbtn" @click="buy">加入购物车</span>
         </div>
     </div>
   </div>
 </template>
 
 <script>
+import Axios from 'axios'
 import $ from 'jquery'
 export default {
   name: 'common-addbuycar',
+  props: ['shopId'],
   data () {
     return {
-
+        goods:{},
+        num:1,
+        user_id:0, 
+        show:true
     }
   },
   mounted(){
@@ -46,12 +53,13 @@ export default {
     $('.size li').on('click',function(){
         $(this).addClass('selected').siblings().removeClass('selected');
     });
-    
-    
+    console.log(this.shopId);
+    var _this=this;
     $add.on('click',function(){
-        $num.val(parseInt($num.val())+1);
-        if($num.val()>=999){
-            $num.val(999);
+        // $num.val(parseInt($num.val())+1);
+        _this.num++;
+        if(_this.num>=999){
+            _this.num=999;
             $(this).addClass('cancel');
         }
         else{
@@ -60,9 +68,9 @@ export default {
         }
     });
     $sub.on('click',function(){
-        $num.val(parseInt($num.val())-1);
-        if($num.val()<=1){
-            $num.val(1);
+        _this.num--;
+        if(_this.num<=1){
+            _this.num=1;
             $(this).addClass('cancel');       
         }
         else{
@@ -71,11 +79,13 @@ export default {
         }
     });
     $('input').bind('input propertychange', function() {
-        if($num.val()>=999){
+        if(_this.num>=999){
+            _this.num=999;
             $add.addClass('cancel');
             $sub.removeClass('cancel');
         }
-        else if($num.val()<=1){
+        else if(_this.num<=1){
+            _this.num=1;
             $sub.addClass('cancel');
             $add.removeClass('cancel');
         }else{
@@ -84,9 +94,48 @@ export default {
         }
     
     });
-    $rem.on('click',function(){
-        $box.hide();
-    })
+    this.info();
+  },
+  methods:{
+    info:function(){
+        Axios.get('http://localhost:3000/info',{
+            params:{
+              shop_id:this.shopId
+            }
+        }).then((res)=>{
+            console.log(JSON.parse(res.data));
+            this.goods=JSON.parse(res.data);
+        }).catch((error)=>{
+            console.log(error);
+        });
+    },
+    buy:function(){
+        if(!document.cookie){
+           this.$router.push("/login"); 
+        }
+        var arr=document.cookie.split(";");
+        var user_id=arr[0].split("=")[1];
+        this.user_id=user_id;
+        Axios.get('http://localhost:3000/insert_cart',{
+            params:{
+                u_id:this.user_id,
+                shop_id:this.shopId,
+                count:this.num
+            }
+        }).then((res)=>{
+            // if(res.data==1){
+                this.show=false;
+                this.$emit('child-isshow',this.show);
+            // }
+        }).catch((error)=>{
+            console.log(error);
+        });
+    },
+    isshow:function(){
+        // console.log("close");
+        this.show=false;
+        this.$emit('child-isshow',this.show);
+    }
   }
     
 }
@@ -94,5 +143,5 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/common/addbuycar.css";
 </style>
+<style src="../../assets/css/common/addbuycar.css" scoped></style>
