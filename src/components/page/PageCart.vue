@@ -1,6 +1,5 @@
 <template>
   <div class="page-cart">
-    <common-header></common-header>
     <div v-if="flag">
       <div class="editor">
         <i class="iconfont ok" ch="1">&#xe657;</i>
@@ -92,7 +91,7 @@
           <p>不含运费</p>
         </div>
         
-        <a href="">结算 (2)</a>
+        <a href="">结算 (<b>2</b>)</a>
       </div>
     </div>
     <div v-else>
@@ -127,7 +126,21 @@ export default {
     var $editOk = $('.editor .ok');
     var $footOk = $('.foot .ok');
     
-
+    function listAll(){
+      var sum = 0;
+      $listOk.each(function(){
+      if($(this).attr('ch')==1){
+          sum += 1;
+        }
+      });
+      $('.foot a b').text(sum);
+      if($('.foot a b').text()==0){
+        $('.foot a').addClass('null');
+      }else{
+        $('.foot a').removeClass('null');
+      }
+    }
+    listAll();
     $listOk.on('click',function(){
       if($(this).attr('ch')==1){
         $(this).html('&#xe67c;').attr('ch','0');
@@ -147,8 +160,10 @@ export default {
             $editOk.html('&#xe67c;').attr('ch','0');
             $footOk.html('&#xe67c;').attr('ch','0');
           }
-        });        
+          
+        }); 
       }
+      listAll();
     });
     $editOk.on('click',function(){
       if($(this).attr('ch')==1){
@@ -161,6 +176,7 @@ export default {
         $listOk.html('&#xe657;').attr('ch','1');
         $footOk.html('&#xe657;').attr('ch','1');
       }
+      listAll();
     });
     $footOk.on('click',function(){
       if($(this).attr('ch')==1){
@@ -173,6 +189,7 @@ export default {
         $listOk.html('&#xe657;').attr('ch','1');
         $editOk.html('&#xe657;').attr('ch','1');
       }
+      listAll();
     });
 
     $edit.on('click',function(){
@@ -187,11 +204,12 @@ export default {
         $listOk.attr('ch','0');
         $editOk.attr('ch','0');
         $footOk.attr('ch','0');
+        // $('.foot a').text('删除');
       }
       else{
         $(this).text('编辑');
       }
-
+      listAll();
     });
     $add.on('click',function(){
       var $num =  $(this).siblings('.num');
