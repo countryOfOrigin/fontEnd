@@ -44,22 +44,62 @@
 </template>
 
 <script>
-
+  import Axios from "axios"
 export default {
   name: 'page-order-all',
   data () {
     return {
-
-
+      user_id:"",
+      goods_info:{},
+      state:"待收货"
     }
   },
   components:{
 
   },
+  mounted(){
+      if(document.cookie){
+//        console.log(document.cookie)
+        var arr=document.cookie.split(";");
+        var user_id=arr[0].split("=")[1];
+        this.user_id=user_id;
+        console.log(this.user_id);
+        console.log(this.state);
+        // var _this=this;
+        Axios.post('http://127.0.0.1:3000/get_orders',{
+          params:{
+            uid:this.user_id,
+            state:this.state,
+          }
+        }).then(function(res){
+            console.log(res.data);
+          // this.goods_info=JSON.parse(res.data);
+
+        });
+        this.get_orders();
+      }else{
+          console.log("未登录");
+      }
+  },
+  methods:{
+    get_orders:function(){
+        // var _this=this;
+        // Axios.post('http://localhost:3000/get_orders',{
+        //   params:{
+        //     uid:_this.user_id,
+        //     state:_this.state,
+        //   }
+        // }).then(function(res){
+        //     console.log(res.data);
+        //   // this.goods_info=JSON.parse(res.data);
+
+        // });
+      }
+  }
+
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
   body{

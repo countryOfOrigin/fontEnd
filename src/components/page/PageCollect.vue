@@ -21,24 +21,42 @@
 <script>
 //import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
+import Axios  from 'axios'
 export default {
   name: 'page-collect',
   data () {
     return {
       name:"aaa aaa aaaa qwhd fs dfs hb fhbfv df ds ssss sss ss ss sss sss ss sss ssaa aa aaaa",
-      price:"37"
+      price:"37",
+      collect_info:{}
 //      products:[]
 
     }
   },
   components:{
-//    CommonHeader,
+
     CommonFooter
   },
+  mounted(){
+    // if(document.cookie){
+    //   var arr=document.cookie.split(";");
+    //   var user_id=arr[0].split("=")[1];
+    //   this.user_id=user_id;
+    //   console.log(this.user_id);
+    //    var _this=this;
+    //   Axios.get('http://127.0.0.1:3000/get_collect', {
+    //     params:{
+    //       userid:this.user_id
+    //     }
+    //   }).then(res){
+    //     _this.collect_info=JSON.parse(res.data);
+    //   }
+    // }
+  }
 }
 </script>
 
-<!-- Add "scoped" attribute to limit CSS to this component only -->
+
 <style src="../../assets/font/iconfont.css" scoped></style>
 <style scoped>
   /*@import "../../assets/font/iconfont.css";*/
