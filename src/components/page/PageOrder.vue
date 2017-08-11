@@ -7,6 +7,7 @@
       <li><router-link to="/order/wait_arrive">待收货</router-link></li>
       <li><router-link to="/order/on_arrive">已收货</router-link></li>
     </ul>
+    <router-view></router-view>
     <common-footer></common-footer>
   </div>
 </template>
@@ -38,6 +39,7 @@ export default {
   position: fixed;
   border-bottom: .005rem solid #eee;
   font-size: .23rem;
+  background: #fff;
 }
 .nav li{
   flex:1;
@@ -46,7 +48,7 @@ export default {
 }
 .nav a{
   color: #333;
-  padding: 0; 
+  padding: 0;
   margin: 0 10px;
   text-align: center;
 }
@@ -55,31 +57,5 @@ export default {
   background: #fff;
   border-bottom: .05rem solid #08dc03;
 }
-/*.nav{
-  height: 1rem;
-  color: #ccc;
-  background: rgb(33, 150, 243);
-}
-.nav ul{
-  display: flex;
-}
-.nav ul li{
-  flex: 1;
-  height: 1rem;
-  text-align: center;
-  line-height: 1rem;
-}
-.nav{
-  position: fixed;
-  top: 1rem;
-  width: 100%;
-}
-.nav a{
-  color: #ccc;
-  outline: none;
-}
-.nav a.router-link-active{
-  color: #fff;
-}*/
 
 </style>

@@ -3,8 +3,9 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
-import $ from 'jquery' 
+import $ from 'jquery'
 import VueLazyload from 'vue-lazyload'
+import VDistpicker from 'v-distpicker'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 
@@ -21,6 +22,8 @@ Vue.use(VueLazyload, {
   loading: 'https://gw.alicdn.com/tps/i1/TB147JCLFXXXXc1XVXXxGsw1VXX-112-168.png',
   attempt: 1
 })
+
+Vue.component('v-distpicker',VDistpicker);
 
 /* eslint-disable no-new */
 new Vue({

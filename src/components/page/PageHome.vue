@@ -2,7 +2,7 @@
   <div class="page-home">
     <div class="carousel">
       <span class="glyphicon glyphicon-search"></span>
-      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品">
+      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品" @focus="focus">
       <swipe class="my-swipe">
         <swipe-item class="item1"></swipe-item>
         <swipe-item class="item2"></swipe-item>
@@ -11,37 +11,11 @@
     </div>
     <div class="nav">
       <ul>
-        <li>
-          <i class="iconfont i1">&#xe669;</i><br />
-          <span>农副</span>
-        </li>
-        <li>
-          <i class="iconfont i2">&#xe61e;</i><br />
-          <span>干货</span>
-        </li>
-        <li>
-          <i class="iconfont i3">&#xe602;</i><br />
-          <span>零食</span>
-        </li>
-        <li>
-          <i class="iconfont i4">&#xe650;</i><br />
-          <span>海产</span>
-        </li>
-        <li>
-          <i class="iconfont i5">&#xe601;</i><br />
-          <span>茶酒</span>
-        </li>
-        <li>
-          <i class="iconfont i6">&#xe66f;</i><br />
-          <span>养生</span>
-        </li>
-        <li>
-          <i class="iconfont i7">&#xe65c;</i><br />
-          <span>生鲜</span>
-        </li>
-        <li>
-          <i class="iconfont i8">&#xe69d;</i><br />
-          <span>居家</span>
+        <li v-for="n in 8">
+          <router-link :to="'/classify/'+classify[n-1]+'/1'" tag="div">
+            <i class="iconfont" :class="classifyIconColor[n-1]"></i><br />
+            <span>{{classify[n-1]}}</span>
+          </router-link>
         </li>
       </ul>
     </div>
@@ -67,86 +41,21 @@
         </li>
       </ul>
     </div>
-    <div class="details">
+    <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
-      <div class="title">
-        <i class="iconfont">&#xe669;</i>&nbsp;
-        <span>农副</span>
+      <router-link :to="'/classify/'+classify[index]+'/1'" tag="div" class="title">
+        <i class="iconfont" :class="classifyIcon[index]" ></i>&nbsp;
+        <span>{{classify[index]}}</span>
         <b>></b>
-      </div>
+      </router-link>
       <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-      </ul>
-    </div>
-    <div class="details">
-      <img src="../../../static/img/home/g1.jpg">
-      <div class="title">
-        <i class="iconfont">&#xe669;</i>&nbsp;
-        <span>农副</span>
-        <b>></b>
-      </div>
-      <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
-          </div>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-          <div class="buybtn">
-            
+        <li v-for="common in commodity">
+          <router-link :to="'/details/'+common.good_id">
+            <img :src="common.url">
+          </router-link>
+          <router-link :to="'/details/'+common.good_id" class="goodname" tag="p">{{common.name}}</router-link>
+          <p class="price">￥{{common.price}}</p>
+          <div class="buybtn" @click="buy(common.good_id)">    
           </div>
         </li>
       </ul>
@@ -187,33 +96,76 @@
         </li>
       </ul>
     </div>
+    <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
+    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
 <script>
 
+import Axios from 'axios'
 import CommonFooter from '../common/CommonFooter'
+import CommonFooterLogo from '../common/CommonFooterLogo'
+import CommonAddBuycar from '../common/CommonAddBuycar'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
 export default {
   name: 'page-home',
   data () {
     return {
-      
+      nl:["i1","i2","i3","i4","i5","i6","i7","i8"],
+      classify:["农副","干货","零食","水产","酒茶","养生","生鲜","居家"],
+      classifyIcon:["icon-mifan","icon-mogu","icon-lingshi-copy","icon-haixian","icon-cha","icon-shiwu","icon-shengxian","icon-jiaju"],
+      classifyIconColor:["icon-mifan i1","icon-mogu i2","icon-lingshi-copy i3","icon-haixian i4","icon-cha i5","icon-shiwu i6","icon-shengxian i7","icon-jiaju i8"],
+      commodityList:[],
+      show:false,
+      shopId:0
     }
   },
   components:{   
     Swipe,
     SwipeItem,
-    CommonFooter
+    CommonFooter,
+    CommonFooterLogo,
+    CommonAddBuycar
   },
+  mounted(){
+    this.com_home();
+  },
+  methods:{
+    com_home:function(){
+      Axios.get('http://localhost:3000/com_home')
+      .then((res)=>{
+        // console.log(res.data);
+        this.commodityList=JSON.parse(res.data);
+        console.log(this.commodityList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
+    focus:function(){
+      this.$router.push("/search");
+    },
+    buy:function(id){
+      this.show=true;
+      this.shopId=id;
+      // console.log(id);
+    },
+    isshow: function (a){
+      this.show = false;
+    }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../../assets/css/page/home.css" scoped></style>
 <style scoped>
-@import "../../assets/css/page/home.css";
+/*@import "../../assets/css/page/home.css";*/
 @import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
+.page-home{
+  background: #eee;
+}
 </style>

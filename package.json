@@ -15,7 +15,9 @@
   "dependencies": {
     "axios": "^0.16.2",
     "bootstrap": "^3.3.7",
+    "distpicker": "^2.0.0",
     "jquery": "^3.2.1",
+    "v-distpicker": "^1.0.1",
     "vue": "^2.3.3",
     "vue-lazyload": "^1.0.6",
     "vue-router": "^2.6.0",
