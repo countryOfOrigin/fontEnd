@@ -44,14 +44,14 @@
     <div class="userset-2">
 
       <span class="user-font">昵称</span>
-      <span class="user-content"><a href="">fontEnd </a><button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">
+      <span class="user-content"><a href="">fontEnd </a><button class="btn btn-primary  btn-he" data-toggle="modal" data-target="#myModal">
 ></button></span>
 
     </div>
     <div class="userset-2">
 
       <span class="user-font">性别</span>
-      <span class="user-content"><a href="">性别 </a><button class="btn btn-primary  btn-he" data-toggle="modal" data-target="#myModal">
+      <span class="user-content"><a href="">性别 </a><button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">
 ></button></span>
 
     </div>
@@ -137,7 +137,7 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 
-  @import "../../assets/css/page/userset.css";
   @import "../../assets/font/iconfont.css";
 
 </style>
+<style src="../../assets/css/page/userset.css"></style>

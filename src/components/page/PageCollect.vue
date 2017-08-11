@@ -39,8 +39,9 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../../assets/font/iconfont.css" scoped></style>
 <style scoped>
-  @import "../../assets/font/iconfont.css";
+  /*@import "../../assets/font/iconfont.css";*/
 
   /*@import "../../assets/css/page/collect.css";*/
   ul{

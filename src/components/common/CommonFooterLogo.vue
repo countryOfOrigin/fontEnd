@@ -40,12 +40,15 @@ export default {
 	display: flex;
 	margin: 0 auto;
 	border-bottom: .001rem solid #ccc;
+	list-style: none;
+	padding: 0;
 }
 .common-footer-logo .navv ul li{
 	height: .7rem;
 	line-height: .7rem;
 	flex: 1;
 	text-align: center;
+	list-style: none;
 }
 .common-footer-logo img{
 	width: 2.4rem;

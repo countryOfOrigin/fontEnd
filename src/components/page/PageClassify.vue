@@ -98,11 +98,19 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../../assets/css/page/classify.css" scoped></style>
 <style scoped>
-@import "../../assets/css/page/classify.css";
 @import "../../assets/font/iconfont.css";
+.page-classify{
+  background: #eee;
+}
+.page-classify .title{
+  margin-top: 0;
+}
+nav ul.pager{
+  margin: .3rem 0;
+}
 nav ul.pager li a{
   width: 3rem;
 }
-
 </style>
