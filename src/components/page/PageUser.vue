@@ -64,7 +64,7 @@
         <strong>地址管理</strong>
         <span class="link-detail">&rsaquo;</span>
       </router-link>
-      <router-link to="/order/wait_go" tag="li"><!--待定-->
+      <router-link to="/aboutus" tag="li"><!--待定-->
         <strong>关于我们</strong>
         <span class="link-detail">&rsaquo;</span>
       </router-link>
@@ -95,9 +95,7 @@ export default {
   },
   mounted(){
       if(document.cookie){
-          console.log(document.cookie);
           this.show=true;
-          this.flag=false;
           var arr=document.cookie.split(";");
           var user_name=arr[1].split("=")[1];
           var user_id=arr[0].split("=")[1];
@@ -116,7 +114,7 @@ export default {
                 userid:this.user_id
               }
           }).then(function(res){
-             console.log(res.data);
+//             console.log(res.data);
             _this.user_info=JSON.parse(res.data);
           });
 
