@@ -1,7 +1,7 @@
 <template>
   <div class="page-aboutus">
     <div id="abbout-header">
-      <router-link to="/home"><span class="about-header-home"><</span></router-link>
+      <router-link to="/user"><span class="about-header-home"><</span></router-link>
       <span class="about-header-logo">龙江原产递</span>
     </div>
     <div class="about-title">
