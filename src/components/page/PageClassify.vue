@@ -23,8 +23,8 @@
     </div> -->
     <nav>
       <ul class="pager">
-        <li class="disabled"><router-link :to="'/classify/'+name+'/1'">上一页</router-link></li>
-        <li><router-link :to="'/classify/'+name+'/2'">下一页</router-link></li>
+        <li class="prev-page disabled"><router-link :to="'/classify/'+name+'/'+prev_page">上一页</router-link></li>
+        <li class="next-page"><router-link :to="'/classify/'+name+'/'+next_page">下一页</router-link></li>
       </ul>
     </nav>
     <!-- <common-footer-logo  style="position:absolute; bottom:.5rem;"></common-footer-logo> -->
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import Axios from 'axios'
 import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonFooter from '../common/CommonFooter'
@@ -45,6 +46,8 @@ export default {
       name:this.$route.params.name,
       count:4,
       page:this.$route.params.page,
+      prev_page:1,
+      next_page:1,
       all_page:1,
       icon:""
     }
@@ -66,6 +69,12 @@ export default {
     }
     this.goods_paging();
   },
+    watch:{
+      '$route'(to,from){
+        this.page=this.$route.params.page;
+        this.goods_paging();
+      }
+    },
   methods:{
     goods_paging:function(){
       Axios.get('http://localhost:3000/goods_paging',{
@@ -78,21 +87,26 @@ export default {
         console.log(res.data);
         this.commodityList=JSON.parse(res.data).goods;
         this.all_page=JSON.parse(res.data).sum;
-        console.log(this.commodityList);
+        if(this.page == 1){
+          this.prev_page = 1;
+          $(".prev-page").addClass("disabled");
+        }else{
+          this.prev_page = this.page - 1;
+          $(".prev-page").removeClass("disabled");
+        }
+        if(this.page == this.all_page){
+          this.next_page = this.all_page;
+          $(".next-page").addClass("disabled");
+        }else{
+          this.next_page = Number(this.page) + 1;
+          $(".next-page").removeClass("disabled");
+        }
+        // console.log(this.commodityList);
       }).catch((error)=>{
         console.log(error);
       });
-    },
-    // prev:function(){
-    //   if(this.page!=1){
-    //     this.page--;
-    //   }
-    // },
-    // next:function(){
-    //   if(this.page!=this.all_page){
-    //     this.page++;
-    //   }
-    // }
+      
+    }
   }
 }
 </script>
@@ -112,5 +126,6 @@ nav ul.pager{
 }
 nav ul.pager li a{
   width: 3rem;
+  background: #fff;
 }
 </style>
