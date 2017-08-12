@@ -98,12 +98,10 @@
       <a href="" class="buycar col-md-4">加入购物车</a>
       <a href="" class="buyying col-md-4">立即购买</a>
     </div>
-    <common-footer></common-footer>
   </div>
 </template>
 
 <script>
-import CommonFooter from '../common/CommonFooter'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
 export default {
@@ -117,7 +115,6 @@ export default {
   components:{
     Swipe,
     SwipeItem,
-    CommonFooter
   },
 }
 </script>
