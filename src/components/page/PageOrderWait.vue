@@ -1,61 +1,69 @@
 <template>
   <div class="page-order-wait">
     <ul id="order-wait">
-      <li class="order-list">
+      <li class="order-list" v-for="elem in orders_info">
         <div class="time-state">
-          <p class="order-time">下单时间：2016-11-21 13:51.11</p>
-          <p class="order-state">买家已收货</p>
+          <p class="order-time">下单时间：{{elem.time}}</p>
+          <p class="order-state">{{elem.state}}</p>
         </div>
         <div class="order-content">
-          <img src="static/img/home/01.jpg" alt="">
+          <img :src='elem.url' alt="">
           <div class="order-detail">
-            <p class="overhide">订单编号：12d234444444444eeeeeeeeeee56789shfkjashdfhsfkdsfk3456789</p>
-            <p class="overhide">商品名：超级无敌好吃的麻辣小龙虾</p>
+            <p class="overhide">订单编号：{{elem.order_id}}</p>
+            <p class="overhide">商品名：{{elem.name}}</p>
           </div>
         </div>
-        <p class="total-price">共&nbsp;1件商品 合计：￥15</p>
+        <p class="total-price">共&nbsp;{{elem.count}}件商品 合计：{{elem.price*elem.count}}</p>
         <div class="order-state-list">
           <span>延长收货</span>
           <span>查看物流</span>
           <span>确认收货</span>
         </div>
       </li>
-      <li class="order-list">
-        <div class="time-state">
-          <p class="order-time">下单时间：2016-11-21 13:51.11</p>
-          <p class="order-state">买家已收货</p>
-        </div>
-        <div class="order-content">
-          <img src="static/img/home/01.jpg" alt="">
-          <div class="order-detail">
-            <p class="overhide">订单编号：12d234444444444eeeeeeeeeee56789shfkjashdfhsfkdsfk3456789</p>
-            <p class="overhide">商品名：超级无敌好吃的麻辣小龙虾</p>
-          </div>
-        </div>
-        <p class="total-price">共&nbsp;1件商品 合计：￥15</p>
-        <div class="order-state-list">
-          <span>延长收货</span>
-          <span>查看物流</span>
-          <span>确认收货</span>
-        </div>
-      </li>
+     
     </ul>
   </div>
 </template>
 
 <script>
-
+import Axios from "axios"
 export default {
   name: 'page-order-wait',
   data () {
     return {
-
-
+       user_id:"",
+      orders_info:{},
+      state:"待收货"
     }
   },
   components:{
 
   },
+  mounted(){
+       if(document.cookie){
+          this.show=true;
+          var arr=document.cookie.split(";");
+          var user_id=arr[0].split("=")[1];
+          this.user_id=user_id;
+          this.get_orders_info();
+
+      }
+  },
+  methods:{
+      get_orders_info:function(){
+        var _this=this;
+          Axios.get('http://127.0.0.1:3000/get_orders',{
+              params:{
+                userid:this.user_id,
+                state:this.state
+              }
+          }).then(function(res){
+            _this.orders_info=JSON.parse(res.data);
+
+          });
+
+      }
+  }
 }
 </script>
 
