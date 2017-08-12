@@ -1,12 +1,5 @@
 <template>
   <div class="page-all-class">
-    <div class="carousel">
-      <swipe class="my-swipe">
-        <swipe-item class="item1"></swipe-item>
-        <swipe-item class="item2"></swipe-item>
-        <swipe-item class="item3"></swipe-item>
-      </swipe>
-    </div>
     <div class="content">
       <ul>
         <li class="a1">
@@ -58,12 +51,6 @@
             <p>生鲜</p>
           </div>
         </li>
-        <li class="a9">
-          <div>
-            <i class="iconfont">&#xe67e;</i>
-            <p>首页</p>
-          </div>
-        </li>
       </ul>
     </div>
     <common-footer></common-footer>
@@ -72,9 +59,8 @@
 
 <script>
 import CommonFooter from '../common/CommonFooter'
-import {Swipe, SwipeItem } from 'vue-swipe'
+// import {Swipe, SwipeItem } from 'vue-swipe'
 import $ from 'jquery'
-Swipe.auto= false;
 export default {
   name: 'page-all-class',
   data () {
@@ -82,8 +68,6 @@ export default {
     }
   },
   components:{
-    Swipe,
-    SwipeItem,
     CommonFooter
   },
   mounted(){
@@ -94,7 +78,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/vue-swipe.css";
+/*@import "../../assets/css/vue-swipe.css";*/
 @import "../../assets/font/iconfont.css";
 </style>
 <style src="../../assets/css/page/allclass.css" scoped></style>
