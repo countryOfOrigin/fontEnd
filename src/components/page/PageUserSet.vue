@@ -44,14 +44,14 @@
     <div class="userset-2">
 
       <span class="user-font">昵称</span>
-      <span class="user-content"><a href="">fontEnd </a><button class="btn btn-primary  btn-he" data-toggle="modal" data-target="#myModal">
-></button></span>
+      <span class="user-content"><button class="btn btn-primary  btn-he" data-toggle="modal" data-target="#myModal">
+fontEnd ></button></span>
 
     </div>
     <div class="userset-2">
 
       <span class="user-font">性别</span>
-      <span class="user-content"><a href="">性别 </a><button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">
+      <span class="user-content"><button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">性别
 ></button></span>
 
     </div>
@@ -62,7 +62,7 @@
     </div>
     <img src="../../assets/img/logo.jpg" class alt="" class="userset-3">
     <div class="userset-4">
-        <button class="cencle-box">退出登录</button>
+      <router-link to="/user"><<button class="cencle-box">退出登录</button></router-link>
 
     </div>
 
