@@ -9,74 +9,18 @@
       </div>
       <div class="list">
         <ul>
-          <li>
+          <li v-for="cart in cartList">
             <i class="iconfont ok" ch="1">&#xe657;</i>
-            <img src="../../assets/img/m01.jpg">
-            <p class="goodname">五常大米</p>
+            <img :src="cart.url">
+            <p class="goodname">{{cart.name}}</p>
             <div class="buynum">
                 <span class="sub cancel">-</span>
                 <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
                 <span class="add">+</span>
             </div>
             <p class="size">5kg</p>
-            <span class="price">¥<b>68.00</b></span>
-            <span class="number">×<b>1</b></span>
-            <a href="javascript:;" class="del">删除</a>
-          </li>
-          <li>
-            <i class="iconfont ok" ch="1">&#xe657;</i>
-            <img src="../../assets/img/m01.jpg">
-            <p class="goodname">五常大米</p>
-            <div class="buynum">
-                <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" class="num">
-                <span class="add">+</span>
-            </div>
-            <p class="size">5kg</p>
-            <span class="price">¥<b>68.00</b></span>
-            <span class="number">×<b>2</b></span>
-            <a href="javascript:;" class="del">删除</a>
-          </li>
-          <li>
-            <i class="iconfont ok" ch="1">&#xe657;</i>
-            <img src="../../assets/img/m01.jpg">
-            <p class="goodname">五常大米</p>
-            <div class="buynum">
-                <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
-                <span class="add">+</span>
-            </div>
-            <p class="size">5kg</p>
-            <span class="price">¥<b>68.00</b></span>
-            <span class="number">×<b>3</b></span>
-            <a href="javascript:;" class="del">删除</a>
-          </li>
-          <li>
-            <i class="iconfont ok" ch="1">&#xe657;</i>
-            <img src="../../assets/img/m01.jpg">
-            <p class="goodname">五常大米</p>
-            <div class="buynum">
-                <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
-                <span class="add">+</span>
-            </div>
-            <p class="size">5kg</p>
-            <span class="price">¥<b>68.00</b></span>
-            <span class="number">×<b>1</b></span>
-            <a href="javascript:;" class="del">删除</a>
-          </li>
-          <li>
-            <i class="iconfont ok" ch="1">&#xe657;</i>
-            <img src="../../assets/img/m01.jpg">
-            <p class="goodname">五常大米</p>
-            <div class="buynum">
-                <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
-                <span class="add">+</span>
-            </div>
-            <p class="size">5kg</p>
-            <span class="price">¥<b>68.00</b></span>
-            <span class="number">×<b>1</b></span>
+            <span class="price">¥<b>{{cart.price}}</b></span>
+            <span class="number">×<b>{{cart.count}}</b></span>
             <a href="javascript:;" class="del">删除</a>
           </li>
         </ul>
@@ -108,18 +52,27 @@
 
 <script>
 import $ from 'jquery'
+import Axios from 'axios'
 export default {
   name: 'page-cart',
   data () {
     return {
-
+      user_id:0,
       flag:true,
+      cartList:[]
     }
   },
   components:{
     
   },
   mounted(){
+    this.all_cart();
+    
+
+
+
+
+
     var $sub = $('.sub');
     var $add = $('.add');
     var $edit = $('.editor a');
@@ -284,7 +237,28 @@ export default {
             $add.removeClass('cancel');
         }
     });
-
+  },
+  methods:{
+    all_cart:function(){
+      if(!document.cookie){
+        this.$router.push("/login"); 
+      }
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+      Axios.get('http://localhost:3000/cart_all',{
+          params:{
+              u_id:this.user_id,
+          }
+      }).then((res)=>{
+          // if(res.data==1){
+          console.log(res.data);
+          this.cartList=JSON.parse(res.data);
+          console.log(this.cartList);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    }
   }
 }
 </script>

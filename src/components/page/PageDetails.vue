@@ -95,27 +95,40 @@
         <i class="iconfont">&#xe60a;</i><br />
         <span>收藏</span>
       </a>
-      <a href="" class="buycar col-md-4">加入购物车</a>
+      <span class="buycar col-md-4" @click="buy()">加入购物车</span>
       <a href="" class="buyying col-md-4">立即购买</a>
     </div>
+    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
 <script>
 import {Swipe, SwipeItem } from 'vue-swipe'
+import CommonAddBuycar from '../common/CommonAddBuycar'
 Swipe.auto= false;
 export default {
   name: 'page-details',
   data () {
     return {
-
+      show:false,
+      shopId:this.$route.params.tag
 
     }
   },
   components:{
     Swipe,
     SwipeItem,
+    CommonAddBuycar
   },
+  methods:{
+    buy:function(){
+      this.show=true;
+      // console.log(id);
+    },
+    isshow: function (a){
+      this.show = false;
+    }
+  }
 }
 </script>
 
