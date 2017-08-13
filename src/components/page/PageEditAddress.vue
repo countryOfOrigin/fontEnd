@@ -9,13 +9,31 @@
 			<span>联系电话</span>
 			<input v-model="message1" placeholder=" 13104013181">
 		</li>
-		<li class="address">
-			<span>所在地区</span>
+		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			<span class="address-text">所在地区</span>
+      <span class="link-detail">&rsaquo;</span>
 		</li>
 		<li class="detail-address">
 			<textarea v-model="message2" placeholder="哈西街道"></textarea>
 		</li>
 	</ul>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">请选择</h5>
+          </div>
+          <div class="modal-body">
+            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile"></v-distpicker>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
+            <button type="button" class="btn btn-primary" @click="onSelected">确定</button>
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
+    </div>
 	<div id="delete-save">
 		<span class="del">删除地址</span>
 		<span class="save">保存</span>
@@ -24,7 +42,8 @@
 </template>
 
 <script>
-
+  import VDistpicker from 'v-distpicker'
+  import $ from 'jquery'
 export default {
   name: 'page-edit-address',
   data () {
@@ -34,15 +53,38 @@ export default {
     }
   },
   components:{
-
+    VDistpicker,
   },
+  methods:{
+    onSelected(data) {
+//        console.log(data);
+//        alert(data.province+'|'+data.city+'|'+data.area);
+        console.log(data.selected())
+//        console.log(data);
+//        this.form.cityValue=data;
+    }
+
+
+
+
+//      get_text:function(){
+////        alert($(".unit").options[this.selectedIndex].value);
+//
+//      }
+  }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
+  html{
+    height:42rem;
+    width: 100%;
+  }
 	body{
-		background-color:#eee;
+		/*background-color:#eee;*/
+    background: #000;
+
 	}
 	ul{
 		list-style: none;
@@ -53,6 +95,7 @@ export default {
 		outline:none;
 		width: 80%;
 		height: .6rem;
+    border:none;
 	}
 	li{
 		height: .8rem;
@@ -75,13 +118,26 @@ export default {
 		height: 2rem;
 	}
 	#edit-dress .detail-address textarea{
+    border:none;
 		width: 99%;
 		height: 99%;
 		outline:none;
 	/*	outline-color: rgba(187, 188, 189, 0.46);
 		outline-width: .01rem;*/
 	}
-	
+  #edit-dress .btn{
+    width:100%;
+    border:0;
+    background: #fff;
+    font-size: .2rem;
+    color: #333333;
+  }
+  #edit-dress .address-text{
+    float: left;
+  }
+  #edit-dress .link-detail{
+    float : right;
+  }
 	input::-webkit-input-placeholder {
 		color: rgba(215, 217, 218, 0.7);
 	}
@@ -100,7 +156,7 @@ export default {
 		line-height: .8rem;
 		width: 1.5rem;
 		text-align: center;
-		padding:0 .2rem; 
+		padding:0 .2rem;
 		/*border-bottom: .1rem solid #eee;*/
 		/*color: #fff;*/
 		color: rgba(255,67,0,1);
@@ -115,7 +171,7 @@ export default {
 		line-height: .8rem;
 		width: 1.5rem;
 		text-align: center;
-		padding:0 .2rem; 
+		padding:0 .2rem;
 		/*color: #fff;*/
 		color: rgba(255,67,0,1);
 		border-radius: .4rem;

@@ -2,7 +2,7 @@
   <div class="page-user">
     <div class="header login" v-if="show">
       <div class="header-bg">
-        <div class="img-box"><router-link to="/user/address/edit/select/:id" >
+        <div class="img-box"><router-link to="/user/set" >
           <img :src='user_info.url' alt="" class="user-logo">
           </router-link></div>
           <div class="text-box">

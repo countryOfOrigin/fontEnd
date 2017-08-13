@@ -27,87 +27,36 @@
           黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
         </p>
         <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
+          <router-link to="/user/address/edit/:id"><span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
+          </span></router-link>
+          <span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
+          </span>
         </div>
       </li>
       <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
+      <div class="name-tel">
+        <span class="name">张三</span>
+        <span class="tel">123456789</span>
+      </div>
+      <p class="address">
+        黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
+      </p>
+      <div class="edit">
+        <router-link to="/user/address/edit/:id"><span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
+          </span></router-link>
+        <span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
+          </span>
+      </div>
+    </li>
 
     </ul>
-    <div id="footer">
+    <router-link to="/user/address/edit/select/:id"><div id="footer">
       添加新地址
-    </div>
+    </div> </router-link>
   </div>
 
 </template>
