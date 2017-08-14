@@ -113,6 +113,7 @@ export default {
       show:false,
       shopId:this.$route.params.tag
 
+
     }
   },
   components:{
