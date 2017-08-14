@@ -2,7 +2,7 @@
   <div class="page-cart">
     <div v-if="flag">
       <div class="editor">
-        <i class="iconfont ok" ch="1">&#xe657;</i>
+        <i class="iconfont ok" ch="1" style="display:none">&#xe657;</i>
         <i class="iconfont">&#xe67e;</i>
         <p>黑龙江电视台--龙江原产递</p>
         <a href="javascript:;">编辑</a>
@@ -11,17 +11,19 @@
         <ul>
           <li v-for="cart in cartList">
             <i class="iconfont ok" ch="1">&#xe657;</i>
+            <!-- <i class="iconfont ok" ch="1">&#xe67c;</i> -->
+            <!-- <span class="ok"><input type="checkbox" v-model="check" :value="cart"></span> -->
             <img :src="cart.url">
             <p class="goodname">{{cart.name}}</p>
-            <div class="buynum">
-                <span class="sub cancel">-</span>
-                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" value="1" class="num">
-                <span class="add">+</span>
+            <div class="buynum"> 
+                <span class="sub" @click="sub(cart.count,cart.shop_id);cart.count==1?1:cart.count--;">-</span>
+                <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" v-model="cart.count" class="num" @blur="update_cart(cart.count,cart.shop_id);">
+                <span class="add" @click="add(cart.count,cart.shop_id);cart.count==999?999:cart.count++;">+</span>
             </div>
             <p class="size">5kg</p>
             <span class="price">¥<b>{{cart.price}}</b></span>
             <span class="number">×<b>{{cart.count}}</b></span>
-            <a href="javascript:;" class="del">删除</a>
+            <span class="del" @click="del(cart.shop_id)">删除</span>
           </li>
         </ul>
       </div>
@@ -31,7 +33,7 @@
           <span class="all">全选</span>
         </div>
         <div class="min">
-          <span class="total">合计：¥<b>158</b></span>
+          <span class="total">合计：¥<b>{{totalPrice}}</b></span>
           <p>不含运费</p>
         </div>
         
@@ -59,15 +61,21 @@ export default {
     return {
       user_id:0,
       flag:true,
-      cartList:[]
+      cartList:[],
+      // check:[]
     }
   },
   components:{
     
   },
   mounted(){
+    if(!document.cookie){
+      this.$router.push("/login"); 
+    }
+    var arr=document.cookie.split(";");
+    var user_id=arr[0].split("=")[1];
+    this.user_id=user_id;
     this.all_cart();
-    
 
 
 
@@ -83,91 +91,91 @@ export default {
 
 
     
-    function listAll(){
-      var sum = 0;
-      $listOk.each(function(){
-      if($(this).attr('ch')==1){
-          sum += 1;
-        }
-      });
-      $('.foot a b').text(sum);
-      if($('.foot a b').text()==0){
-        $('.foot a').addClass('null');
-      }else{
-        $('.foot a').removeClass('null');
-      }
-    }
+    // function listAll(){
+    //   var sum = 0;
+    //   $listOk.each(function(){
+    //   if($(this).attr('ch')==1){
+    //       sum += 1;
+    //     }
+    //   });
+    //   $('.foot a b').text(sum);
+    //   if($('.foot a b').text()==0){
+    //     $('.foot a').addClass('null');
+    //   }else{
+    //     $('.foot a').removeClass('null');
+    //   }
+    // }
 
 
 
-    function totalAll(){
-      var total = 0;
-      $listOk.each(function(){
-        $(this).siblings('.buynum').find('.num').val($(this).siblings('.number').find('b').text());
-        var itemtotal = $(this).siblings('.price').find('b').text()*$(this).siblings('.number').find('b').text();
-        if($(this).attr('ch')==1){
-          total += itemtotal;
-        }
-      });
-      $('.total b').text(total);
-    }
+    // function totalAll(){
+    //   var total = 0;
+    //   $listOk.each(function(){
+    //     $(this).siblings('.buynum').find('.num').val($(this).siblings('.number').find('b').text());
+    //     var itemtotal = $(this).siblings('.price').find('b').text()*$(this).siblings('.number').find('b').text();
+    //     if($(this).attr('ch')==1){
+    //       total += itemtotal;
+    //     }
+    //   });
+    //   $('.total b').text(total);
+    // }
     
-    totalAll();
-    listAll();
+    // totalAll();
+    // listAll();
     
-    $listOk.on('click',function(){
-      if($(this).attr('ch')==1){
-        $(this).html('&#xe67c;').attr('ch','0');
-        $editOk.html('&#xe67c;').attr('ch','0');
-        $footOk.html('&#xe67c;').attr('ch','0');     
-      }
-      else{
-        $(this).html('&#xe657;');
-        $(this).attr('ch','1');
-        var arr = new Array();
-        $listOk.each(function(){
-          arr.push($(this).attr('ch'));
-          if($.inArray('0', arr)==-1){
-            $editOk.html('&#xe657;').attr('ch','1');
-            $footOk.html('&#xe657;').attr('ch','1');
-          }else{
-            $editOk.html('&#xe67c;').attr('ch','0');
-            $footOk.html('&#xe67c;').attr('ch','0');
-          }
+    // $listOk.on('click',function(){
+    //   if($(this).attr('ch')==1){
+    //     $(this).html('&#xe67c;').attr('ch','0');
+    //     $editOk.html('&#xe67c;').attr('ch','0');
+    //     $footOk.html('&#xe67c;').attr('ch','0');     
+    //   }
+    //   else{
+    //     $(this).html('&#xe657;');
+    //     $(this).attr('ch','1');
+    //     var arr = new Array();
+    //     $listOk.each(function(){
+    //       arr.push($(this).attr('ch'));
+    //       if($.inArray('0', arr)==-1){
+    //         $editOk.html('&#xe657;').attr('ch','1');
+    //         $footOk.html('&#xe657;').attr('ch','1');
+    //       }else{
+    //         $editOk.html('&#xe67c;').attr('ch','0');
+    //         $footOk.html('&#xe67c;').attr('ch','0');
+    //       }
           
-        }); 
-      }
-      totalAll();
-      listAll();
-    });
-    $editOk.on('click',function(){
-      if($(this).attr('ch')==1){
-        $(this).html('&#xe67c;').attr('ch','0');
-        $listOk.html('&#xe67c;').attr('ch','0');
-        $footOk.html('&#xe67c;').attr('ch','0');
-      }
-      else{
-        $(this).html('&#xe657;').attr('ch','1');
-        $listOk.html('&#xe657;').attr('ch','1');
-        $footOk.html('&#xe657;').attr('ch','1');
-      }
-      totalAll();
-      listAll();
-    });
-    $footOk.on('click',function(){
-      if($(this).attr('ch')==1){
-        $(this).html('&#xe67c;').attr('ch','0');
-        $listOk.html('&#xe67c;').attr('ch','0');
-        $editOk.html('&#xe67c;').attr('ch','0');
-      }
-      else{
-        $(this).html('&#xe657;').attr('ch','1');
-        $listOk.html('&#xe657;').attr('ch','1');
-        $editOk.html('&#xe657;').attr('ch','1');
-      }
-      totalAll();
-      listAll();
-    });
+    //     }); 
+    //   }
+    //   totalAll();
+    //   listAll();
+    // });
+    // $editOk.on('click',function(){
+    //   if($(this).attr('ch')==1){
+    //     $(this).html('&#xe67c;').attr('ch','0');
+    //     $listOk.html('&#xe67c;').attr('ch','0');
+    //     $footOk.html('&#xe67c;').attr('ch','0');
+    //   }
+    //   else{
+    //     $(this).html('&#xe657;').attr('ch','1');
+    //     $listOk.html('&#xe657;').attr('ch','1');
+    //     $footOk.html('&#xe657;').attr('ch','1');
+    //   }
+    //   totalAll();
+    //   listAll();
+    // });
+    // $footOk.on('click',function(){
+    //   if($(this).attr('ch')==1){
+    //     $(this).html('&#xe67c;').attr('ch','0');
+    //     $listOk.html('&#xe67c;').attr('ch','0');
+    //     $editOk.html('&#xe67c;').attr('ch','0');
+    //   }
+    //   else{
+    //     $(this).html('&#xe657;').attr('ch','1');
+    //     $listOk.html('&#xe657;').attr('ch','1');
+    //     $editOk.html('&#xe657;').attr('ch','1');
+    //   }
+    //   totalAll();
+    //   listAll();
+    // });
 
     $edit.on('click',function(){
       $('.goodname').toggle();
@@ -181,11 +189,11 @@ export default {
       
       if($(this).text()=='编辑'){
         $(this).text('完成');
-        $('.ok').html('&#xe67c;');
+        // $('.ok').html('&#xe67c;');
         $listOk.attr('ch','0');
         $editOk.attr('ch','0');
         $footOk.attr('ch','0');
-        totalAll();
+        // totalAll();
         
       }
       else{
@@ -196,56 +204,50 @@ export default {
         });
         
       }
-      listAll();
+      // listAll();
     });
-    $add.on('click',function(){
-      var $num =  $(this).siblings('.num');
-        $num.val(parseInt($num.val())+1);
-        if($num.val()>=999){
-            $num.val(999);
-            $(this).addClass('cancel');
-        }
-        else{
-            $(this).removeClass('cancel');
-            $(this).siblings('.sub').removeClass('cancel');
-        }
-    });
-    $sub.on('click',function(){
-      var $num =  $(this).siblings('.num');
-        $num.val(parseInt($num.val())-1);
-        if($num.val()<=1){
-            $num.val(1);
-            $(this).addClass('cancel');       
-        }
-        else{
-            $(this).removeClass('cancel');
-            $(this).siblings('.add').removeClass('cancel');
-        }
-    });
-    $('input').bind('input propertychange', function() {
-      var $add = $(this).siblings('.add');
-      var $sub = $(this).siblings('.sub');
-        if($(this).val()>=999){
-            $add.addClass('cancel');
-            $sub.removeClass('cancel');
-        }
-        else if($(this).val()<=1){
-            $sub.addClass('cancel');
-            $add.removeClass('cancel');
-        }else{
-            $sub.removeClass('cancel');
-            $add.removeClass('cancel');
-        }
-    });
+    // $add.on('click',function(){
+    //   var $num =  $(this).siblings('.num');
+    //     $num.val(parseInt($num.val())+1);
+    //     if($num.val()>=999){
+    //         $num.val(999);
+    //         $(this).addClass('cancel');
+    //     }
+    //     else{
+    //         $(this).removeClass('cancel');
+    //         $(this).siblings('.sub').removeClass('cancel');
+    //     }
+    // });
+    // $sub.on('click',function(){
+    //   var $num =  $(this).siblings('.num');
+    //     $num.val(parseInt($num.val())-1);
+    //     if($num.val()<=1){
+    //         $num.val(1);
+    //         $(this).addClass('cancel');       
+    //     }
+    //     else{
+    //         $(this).removeClass('cancel');
+    //         $(this).siblings('.add').removeClass('cancel');
+    //     }
+    // });
+    // $('input').bind('input propertychange', function() {
+    //   var $add = $(this).siblings('.add');
+    //   var $sub = $(this).siblings('.sub');
+    //     if($(this).val()>=999){
+    //         $add.addClass('cancel');
+    //         $sub.removeClass('cancel');
+    //     }
+    //     else if($(this).val()<=1){
+    //         $sub.addClass('cancel');
+    //         $add.removeClass('cancel');
+    //     }else{
+    //         $sub.removeClass('cancel');
+    //         $add.removeClass('cancel');
+    //     }
+    // });
   },
   methods:{
     all_cart:function(){
-      if(!document.cookie){
-        this.$router.push("/login"); 
-      }
-      var arr=document.cookie.split(";");
-      var user_id=arr[0].split("=")[1];
-      this.user_id=user_id;
       Axios.get('http://localhost:3000/cart_all',{
           params:{
               u_id:this.user_id,
@@ -258,13 +260,77 @@ export default {
       }).catch((error)=>{
           console.log(error);
       });
+    },
+    update_cart:function(count,sid){
+      Axios.get('http://localhost:3000/update_cart',{
+          params:{
+              s_id:sid,
+              count:count
+          }
+      }).then((res)=>{
+          console.log(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    sub:function(count,sid){
+      // this.cart.count==1?1:this.cart.count--;
+      if(count!=1){
+        count--;
+        this.update_cart(count,sid);
+      }
+    },
+    add:function(count,sid){
+      // this.cart.count==1?1:this.cart.count--;
+      if(count!=999){
+        count++;
+        this.update_cart(count,sid);
+      }
+    },
+    del:function(sid){
+      Axios.get('http://localhost:3000/cart_del',{
+          params:{
+              u_id:this.user_id,
+              s_id:sid,
+          }
+      }).then((res)=>{
+          // if(res.data==1){
+          console.log(res.data);
+          this.cartList=JSON.parse(res.data);
+          console.log(this.cartList);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    }
+  },
+  computed:{
+    totalPrice:function(){
+      var total = 0;
+      this.cartList.forEach(function(val){
+          total += val.price * val.count;
+      })
+      console.log(total);
+      return total;
     }
   }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
+<style src="../../assets/css/page/cart.css" scoped></style>
 <style scoped>
 @import "../../assets/font/iconfont.css";
+.page-cart .buynum input{
+  border: .005rem solid #999;
+}
+.page-cart .min{
+  text-align: right;
+}
+/*.page-cart .ok input{
+  width: .3rem;
+  height: .3rem;
+  display: inline-block;
+  border-radius: .1rem;
+  background: blue;
+}*/
 </style>
-<style src="../../assets/css/page/cart.css" scoped></style>
