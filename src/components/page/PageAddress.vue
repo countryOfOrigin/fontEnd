@@ -64,21 +64,52 @@
 <script>
 import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
+import Axios from 'axios'
 export default {
   name: 'page-address',
   data () {
     return {
-
-
+      user_id:"",
+      address_info:{}
     }
   },
   components:{
 
   },
+  mounted(){
+    if(document.cookie){
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+      var adressInfo=this.get_address();
+      console.log(adressInfo);
+//      var oAds=this.adressInfo.address;
+//      var aAds=oAds.split('&');
+//      console.log(aAds);
+    }
+  },
+  methods:{
+      get_address:function(){
+        var _this=this;
+        Axios.get('http://127.0.0.1:3000/get_address',{
+          params:{
+            userid:this.user_id,
+          }
+        }).then(function(res){
+         return  JSON.parse(res.data);
+//          console.log(res.data);  _this.address_info=
+        });
+      }
+
+  }
+
 }
 </script>
 
 <style scoped>
+  body{
+    background: #fff;
+  }
   .page-address{
     /*padding:.2rem 0  1rem .2rem ;*/
     font-size:.2rem;

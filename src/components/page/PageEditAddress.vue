@@ -11,7 +11,10 @@
 		</li>
 		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 			<span class="address-text">所在地区</span>
-      <span class="link-detail">&rsaquo;</span>
+      <!--<span class="box-footer" @click="showCode = !showCode">-->
+      <!--{{ showCode ? 'Hide Code' : 'Show Code' }}</span>-->
+
+      <span class="link-detail"> {{select.province.value}} {{select.city.value}}  {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
 		</li>
 		<li class="detail-address">
 			<textarea v-model="message2" placeholder="哈西街道"></textarea>
@@ -25,11 +28,11 @@
             <h5 class="modal-title" id="myModalLabel">请选择</h5>
           </div>
           <div class="modal-body">
-            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile"></v-distpicker>
+            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal">关闭</button>
-            <button type="button" class="btn btn-primary" @click="onSelected">确定</button>
+            <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
+            <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal -->
@@ -48,7 +51,8 @@ export default {
   name: 'page-edit-address',
   data () {
     return {
-
+      showCode: false,
+      select: { province: '', city: '', area: '' },
 
     }
   },
@@ -56,21 +60,22 @@ export default {
     VDistpicker,
   },
   methods:{
-    onSelected(data) {
-//        console.log(data);
-//        alert(data.province+'|'+data.city+'|'+data.area);
-        console.log(data.selected())
-//        console.log(data);
-//        this.form.cityValue=data;
+    onselect(){
+        console.log(this.select);
+    },
+    selectProvince(value) {
+      this.select.province = value
+
+    },
+    selectCity(value) {
+      this.select.city = value
+
+    },
+    selectArea(value) {
+      this.select.area = value
+
     }
 
-
-
-
-//      get_text:function(){
-////        alert($(".unit").options[this.selectedIndex].value);
-//
-//      }
   }
 }
 </script>
@@ -83,7 +88,7 @@ export default {
   }
 	body{
 		/*background-color:#eee;*/
-    background: #000;
+    background: #eeeeee;
 
 	}
 	ul{
