@@ -25,7 +25,7 @@ import PageSearchResult from '@/components/page/PageSearchResult'//搜索结果
 import PageDiscount from '@/components/page/PageDiscount'//优惠券
 import PageAboutus from '@/components/page/PageAboutus'//关于我们
 import PageComment from '@/components/page/PageComment'//评论页
-import PageOrderForGoods from '@/components/page/PageOrderForGoods'//代付款的订单
+import PageOrderForGoods from '@/components/page/PageOrderForGoods'//评论页
 
 import MyTest from '@/components/MyTest'
 
@@ -133,7 +133,7 @@ export default new Router({
       component: PageComment,
     },
     {
-    path:'/orderforgoods',
+      path:'/cart/orderforgoods',
       component:PageOrderForGoods,
     }
 
