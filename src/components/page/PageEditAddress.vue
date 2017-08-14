@@ -1,23 +1,22 @@
 <template>
   <div class="page-edit-address">
-	<ul id="edit-dress">
-		<li class="name">
+	<ul id="edit-dress" v-for="elem in address_info" >
+		<li class="name" >
 			<span>收货人</span>
-			<input v-model="message" placeholder=" 张三">
+			<input v-model="elem.name" >
 		</li>
 		<li class="tel">
 			<span>联系电话</span>
-			<input v-model="message1" placeholder=" 13104013181">
+			<input v-model="elem.telephone" >
 		</li>
 		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 			<span class="address-text">所在地区</span>
-      <!--<span class="box-footer" @click="showCode = !showCode">-->
-      <!--{{ showCode ? 'Hide Code' : 'Show Code' }}</span>-->
+      <span class="de-address" v-show="show" >{{elem.province}}{{elem.city}}{{elem.district}}</span>
+      <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
 
-      <span class="link-detail"> {{select.province.value}} {{select.city.value}}  {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
-		</li>
+    </li>
 		<li class="detail-address">
-			<textarea v-model="message2" placeholder="哈西街道"></textarea>
+			<textarea v-model="elem.address" ></textarea>
 		</li>
 	</ul>
     <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -38,8 +37,8 @@
       </div><!-- /.modal -->
     </div>
 	<div id="delete-save">
-		<span class="del">删除地址</span>
-		<span class="save">保存</span>
+		<!--<span class="del" @click="delete_address">删除地址</span>-->
+		<span class="save" @click="save_address">保存</span>
 	</div>
   </div>
 </template>
@@ -47,21 +46,72 @@
 <script>
   import VDistpicker from 'v-distpicker'
   import $ from 'jquery'
+  import Axios from 'axios'
 export default {
   name: 'page-edit-address',
   data () {
     return {
       showCode: false,
-      select: { province: '', city: '', area: '' },
+      select: { city: '', province: '', area: '' },
+      address_id:this.$route.params.id,
+      address_info:{},
+      flag:"",
+      show:true,
+
 
     }
   },
   components:{
     VDistpicker,
   },
+  mounted(){
+//      console.log(this.address_info.telephone);
+    if(document.cookie){
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+      this.get_single_address();
+
+    }
+  },
   methods:{
+    get_single_address:function(){
+      var _this=this;
+      Axios.get('http://127.0.0.1:3000/get_single_address',{
+        params:{
+          address_id:this.address_id,
+        }
+      }).then(function(res){
+        _this.address_info=JSON.parse(res.data);
+//        console.log(_this.address_info.telephone);
+      });
+    },
+    save_address(){
+      console.log(this.address_info);
+      console.log(this.address_info[0].name);
+      var _this=this;
+      Axios.get('http://127.0.0.1:3000/save_address',{
+        params:{
+          address_id:this.address_info[0].receipt_id,
+          name:this.address_info[0].name,
+          tel:this.address_info[0].telephone,
+
+          city:this.select.city.value,
+          pro:this.select.province.value,
+          dis:this.select.area.value,
+          detail:this.address_info[0].address
+        },
+
+      }).then(function(res){
+//        _this.address_info=JSON.parse(res.data);
+        console.log(_this.address_info);
+      });
+//      console.log(this.address_info);
+
+    },
     onselect(){
         console.log(this.select);
+        this.show=false;
     },
     selectProvince(value) {
       this.select.province = value
@@ -136,6 +186,7 @@ export default {
     background: #fff;
     font-size: .2rem;
     color: #333333;
+    position: relative;
   }
   #edit-dress .address-text{
     float: left;
@@ -143,12 +194,12 @@ export default {
   #edit-dress .link-detail{
     float : right;
   }
-	input::-webkit-input-placeholder {
-		color: rgba(215, 217, 218, 0.7);
-	}
-	textarea::-webkit-input-placeholder {
-		color: rgba(215, 217, 218, 0.7);
-	}
+	/*input::-webkit-input-placeholder {*/
+		/*color: #eee;*/
+	/*}*/
+	/*textarea::-webkit-input-placeholder {*/
+		/*color: #eee;*/
+	/*}*/
 	#delete-save{
 		height: .8rem;
 		border-bottom: .02rem solid #eee;
@@ -184,6 +235,10 @@ export default {
 		/*border-bottom: .1rem solid #eee;*/
 
 	}
+  #edit-dress .de-address{
+    position: absolute;
+    right: .5rem;
+  }
 </style>
 
 
