@@ -1,11 +1,25 @@
 <template>
   <div class="page-details">
     <div class="carousel">
-      <swipe class="my-swipe">
-        <swipe-item class="item1"></swipe-item>
-        <swipe-item class="item2"></swipe-item>
-        <swipe-item class="item3"></swipe-item>
-      </swipe>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/1.jpg">
+          </div>
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/2.jpg">
+          </div>
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/3.jpg">
+          </div>
+        </div>
+        <div class="swiper-pagination">
+          <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
+          <span class="swiper-pagination-bullet"></span>
+          <span class="swiper-pagination-bullet"></span>
+        </div>
+
+      </div>
       <div class="gooddetail">
         <p class="goodname">圣谷山日照绿茶（赠茶具）</p>
         <span class="price">¥158.00-¥198.00</span>
@@ -103,9 +117,8 @@
 </template>
 
 <script>
-import {Swipe, SwipeItem } from 'vue-swipe'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import CommonAddBuycar from '../common/CommonAddBuycar'
-Swipe.auto= false;
 export default {
   name: 'page-details',
   data () {
@@ -117,8 +130,8 @@ export default {
     }
   },
   components:{
-    Swipe,
-    SwipeItem,
+    swiper,
+    swiperSlide,
     CommonAddBuycar
   },
   methods:{
@@ -129,13 +142,27 @@ export default {
     isshow: function (a){
       this.show = false;
     }
-  }
+  },
+  mounted() {
+   var mySwiper = new Swiper('.swiper-container', {
+      // paginationType : "fraction",
+      pagination : '.swiper-pagination',
+      paginationClickable: true,
+      paginationBulletRender: function (swiper, index, className) {
+        return '<span class="swiper-pagination-bullet" style="display:inline-block;background:#000;width:0.18rem;height:0.18rem;border-radius:50%;margin-left:0.05rem;opacity:0.2;"></span><span class="swiper-pagination-bullet-active" style="background:#fff;"></span>';
+        
+      },
+      loop : true,
+      loopAdditionalSlides : 0,
+      watchSlidesProgress : true,
+      watchSlidesVisibility : true,
+    })
+ }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
 </style>
 <style src="../../assets/css/page/details.css" scoped></style>

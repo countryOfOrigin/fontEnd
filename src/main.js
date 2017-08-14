@@ -8,10 +8,17 @@ import VueLazyload from 'vue-lazyload'
 import VDistpicker from 'v-distpicker'
 import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
+import VueTouch from 'vue-touch'
+import VueAwesomeSwiper from 'vue-awesome-swiper'
 
 require('./assets/js/rem.js')
+Vue.use(VueAwesomeSwiper)
+
+
 Vue.config.productionTip = false
 
+
+Vue.use(VueTouch,{name:'v-touch'})
 //use custom directive
 Vue.use(VueLazyload)
 
