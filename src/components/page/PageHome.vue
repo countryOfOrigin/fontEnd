@@ -52,33 +52,7 @@
             <span class="circle1"></span>
             <span class="circle2"></span>
           </div>
-            <!-- <ul>
-              <li class="swiper-slide">
-                <span class="money">¥15</span>
-                <span class="con">农副<br />满减券</span>
-                <span class="circle1"></span>
-                <span class="circle2"></span>
-              </li>
-              <li class="swiper-slide">
-                <span class="money">¥150</span>
-                <span class="con">农副<br />满减券</span>
-                <span class="circle1"></span>
-                <span class="circle2"></span>
-              </li>
-              <li class="swiper-slide">
-                <span class="money">¥15</span>
-                <span class="con">农副<br />满减券</span>
-                <span class="circle1"></span>
-                <span class="circle2"></span>
-              </li>
-              <li class="swiper-slide">
-                <span class="money">¥15</span>
-                <span class="con">农副<br />满减券</span>
-                <span class="circle1"></span>
-                <span class="circle2"></span>
-              </li>
-            </ul> -->
-          <!-- <div class="swiper-slide"></div> -->
+            
         </div>
       </div>
     </div>

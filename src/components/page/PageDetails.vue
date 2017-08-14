@@ -14,9 +14,6 @@
           </div>
         </div>
         <div class="swiper-pagination">
-          <span class="swiper-pagination-bullet swiper-pagination-bullet-active"></span>
-          <span class="swiper-pagination-bullet"></span>
-          <span class="swiper-pagination-bullet"></span>
         </div>
 
       </div>
@@ -145,13 +142,8 @@ export default {
   },
   mounted() {
    var mySwiper = new Swiper('.swiper-container', {
-      // paginationType : "fraction",
       pagination : '.swiper-pagination',
       paginationClickable: true,
-      paginationBulletRender: function (swiper, index, className) {
-        return '<span class="swiper-pagination-bullet" style="display:inline-block;background:#000;width:0.18rem;height:0.18rem;border-radius:50%;margin-left:0.05rem;opacity:0.2;"></span><span class="swiper-pagination-bullet-active" style="background:#fff;"></span>';
-        
-      },
       loop : true,
       loopAdditionalSlides : 0,
       watchSlidesProgress : true,
@@ -164,5 +156,6 @@ export default {
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
 @import "../../assets/font/iconfont.css";
+@import "../../assets/css/swiper.min.css";
 </style>
 <style src="../../assets/css/page/details.css" scoped></style>
