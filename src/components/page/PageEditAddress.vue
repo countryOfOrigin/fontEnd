@@ -111,6 +111,8 @@ export default {
       Axios.get('http://127.0.0.1:3000/save_address',{
         params:{
           address_id:this.address_info[0].receipt_id,
+
+
           name:this.address_info[0].name,
           tel:this.address_info[0].telephone,
           city:this.cit,
