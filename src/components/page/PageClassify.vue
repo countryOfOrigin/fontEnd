@@ -12,7 +12,7 @@
           </router-link>
           <router-link :to="'/details/'+commodity.good_id" class="goodname" tag="p">{{commodity.name}}</router-link>
           <p class="price">￥{{commodity.price}}</p>
-          <span class="glyphicon glyphicon-shopping-cart"></span>
+          <span class="glyphicon glyphicon-shopping-cart" @click="buy(commodity.good_id)"></span>
         </li>
       </ul>
     </div>
@@ -30,6 +30,7 @@
     <!-- <common-footer-logo  style="position:absolute; bottom:.5rem;"></common-footer-logo> -->
     <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
+    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
@@ -38,6 +39,7 @@ import $ from 'jquery'
 import Axios from 'axios'
 import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonFooter from '../common/CommonFooter'
+import CommonAddBuycar from '../common/CommonAddBuycar'
 export default {
   name: 'page-home',
   data () {
@@ -49,12 +51,15 @@ export default {
       prev_page:1,
       next_page:1,
       all_page:1,
-      icon:""
+      icon:"",
+      show:false,
+      shopId:0
     }
   },
   components:{   
     CommonFooterLogo,
-    CommonFooter
+    CommonFooter,
+    CommonAddBuycar
   },
   mounted(){
     switch(this.name){
@@ -106,6 +111,14 @@ export default {
         console.log(error);
       });
       
+    },
+    buy:function(id){
+      this.show=true;
+      this.shopId=id;
+      // console.log(id);
+    },
+    isshow: function (a){
+      this.show = false;
     }
   }
 }

@@ -18,51 +18,36 @@ img{
 
 
 /*carousel开始*/
-.carousel{
+.page-details .carousel{
     width: 100%;
     margin-bottom: 0.04rem;
     border: 0.15rem solid #fff;
     background: #fff;
 }
-.carousel .my-swipe {
+.page-details .swiper-slide img{
+  width: 100%;
   height: 5.8rem;
-  font-size: 30px;
-  text-align: center;
 }
-.carousel .my-swipe .mint-swipe-item{
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
+.page-details .swiper-pagination-bullet{
+  background:#000;
+}
+.page-details .swiper-pagination-bullet-active{
+  background:#fff;
 }
 
-.carousel .item1 {
-  background: url('https://img3.doubanio.com/lpic/s27102925.jpg');
-  background-size: cover;
-}
-
-.carousel .item2 {
-  background: url('https://img3.doubanio.com/lpic/s6989253.jpg');
-  background-size: cover;
-}
-
-.carousel .item3 {
-  background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
-  background-size: cover;
-}
-.gooddetail{
+.page-details .gooddetail{
   border-bottom: 0.01rem solid #ddd;
   margin: 0 0.1rem;
   padding-bottom: 0.15rem;
 }
-.gooddetail .goodname{
+.page-details .gooddetail .goodname{
   margin: 0.1rem 0;
 }
-.gooddetail .price{
+.page-details .gooddetail .price{
   color: #09bb07;
   
 }
-.gooddetail .like{
+.page-details .gooddetail .like{
   float: right;
   color: #f5926b;
   font-size: 0.08rem;
@@ -71,14 +56,14 @@ img{
   border-radius: 3px;
   padding: 0.03rem 0.05rem;
 }
-.gooddetail .like i{
+.page-details .gooddetail .like i{
   font-size: 0.05rem;
 }
-.stockdetail{
+.page-details .stockdetail{
   padding: 0.1rem 0;
   margin: 0 0.1rem;
 }
-.stockdetail li{
+.page-details .stockdetail li{
   float: left;
   width: 33.3%;
   text-align: center;
@@ -88,28 +73,28 @@ img{
 /*carousel结束*/
 
 /*sale开始*/
-.sale{
+.page-details .sale{
   margin: 0.15rem 0;
   padding: 0.15rem 0.1rem;
   background: #fff;
 }
-.sale span{
+.page-details .sale span{
   color: #fff;
   font-size: 0.01rem;
   background: #e33a35;
   padding: 0.03rem 0.05rem;
   border-radius: 3px;
 }
-.sale p{
+.page-details .sale p{
   display:inline;
   font-size: 0.2rem;
 }
 
-.sale p b{
+.page-details .sale p b{
   font-weight: 400;
   color: #2d96d0;
 }
-.sale .next{
+.page-details .sale .next{
   float: right;
   font-size: 0.4rem;
   color: #bec2c3;
@@ -118,13 +103,13 @@ img{
 /*sale结束*/
 
 /*size开始*/
-.size{
+.page-details .size{
   margin: 0.15rem 0;
   padding: 0.15rem 0.1rem;
   background: #fff;
   font-size: 0.21rem;
 }
-.size b{
+.page-details .size b{
   float: right;
   font-size: 0.4rem;
   color: #bec2c3;
@@ -133,35 +118,35 @@ img{
 /*size结束*/
 
 /*store开始*/
-.store{
+.page-details .store{
   margin: 0.15rem 0;
   padding: 0.15rem 0.1rem;
   background: #fff;
 }
-.store .enter{
+.page-details .store .enter{
   font-size: 0.21rem;
   padding-bottom: 0.15rem;
   border-bottom: 0.01rem solid #ddd;
 }
-.store .enter p{
+.page-details .store .enter p{
   display: inline;
 }
-.store .enter span{
+.page-details .store .enter span{
   float: right;
   color: #999;
   margin-top: -0.16rem;
 }
-.store .enter span b{
+.page-details .store .enter span b{
   font-size: 0.4rem;
   color: #bec2c3;
   margin-left: 0.1rem;
 }
-.store .safety{
+.page-details .store .safety{
   color: #777;
   font-size: 0.2rem;
   margin-top: 0.15rem;
 }
-.store .safety i{
+.page-details .store .safety i{
   font-size: 0.2rem;
   font-weight: bold;
   color: #09bb07;
@@ -169,20 +154,20 @@ img{
 /*store结束*/
 
 /*goodimg开始*/
-.goodimg img{
+.page-details .goodimg img{
   width: 100%;
 }
 /*goodimg结束*/
 
 /*more开始*/
-.more{
+.page-details .more{
   margin-top: 0.15rem;
   margin-bottom: 1rem;
 }
-.more .title{
+.page-details .more .title{
   text-align: center;
 }
-.more ul li{
+.page-details .more ul li{
   width: 3.06rem;
   float: left;
   background: #fff;
@@ -191,24 +176,24 @@ img{
   position: relative;
     
 }
-.more ul li img{
+.page-details .more ul li img{
   width: 2.9rem;
   height: 2.9rem;
 }
-.more ul li .goodname{
+.page-details .more ul li .goodname{
   height: 0.65rem;
   font-size: 0.23rem;
 }
-.more ul li .price{
+.page-details .more ul li .price{
   float: left;
   font-size: 0.23rem;
   font-weight: bold;
   color: #09bb07;
 }
-.more .pb{
+.page-details .more .pb{
   text-align: center;
 }
-.more a{
+.page-details .more a{
   background: #fff;
   border: 0.01rem solid #ccc;
   color: #333;
@@ -218,7 +203,7 @@ img{
 /*more结束*/
 
 /*details-foot开始*/
-.details-foot{
+.page-details .details-foot{
   width: 100%;
   height: 1rem;
   background: #fff;
@@ -226,11 +211,11 @@ img{
   bottom: 0;
   display: flex;
 }
-.details-foot a{
+.page-details .details-foot a{
   margin: 0;
   padding: 0;
 }
-.details-foot .service{
+.page-details .details-foot .service{
   display: inline-block;
   float: left;
   flex: 2;
@@ -240,7 +225,7 @@ img{
   border-top: 0.01rem solid #ccc;
   text-align: center;
 }
-.details-foot .collect{
+.page-details .details-foot .collect{
   display: inline-block;
   float: left;
   flex: 2;
@@ -249,22 +234,22 @@ img{
   border-top: 0.01rem solid #ccc;
   text-align: center;
 }
-.details-foot .service i,.details-foot .collect i{
+.page-details .details-foot .service i,.details-foot .collect i{
   font-size: 0.4rem;
   font-weight: bold;
 }
-.details-foot .service i{
+.page-details .details-foot .service i{
   color: #09bb07;
 }
-.details-foot .collect i{
+.page-details .details-foot .collect i{
   color: #f5926b;
 }
-.details-foot .service span,.details-foot .collect span{
+.page-details .details-foot .service span,.details-foot .collect span{
   display: block;
   font-size: 0.21rem;
   color: #333;
 }
-.details-foot .buycar{
+.page-details .details-foot .buycar{
   display: inline-block;
   height: 100%;
   flex: 3;
@@ -274,7 +259,7 @@ img{
   padding-top: 0.27rem;
   text-align: center;
 }
-.details-foot .buyying{
+.page-details .details-foot .buyying{
   display: inline-block;
   height: 100%;
   flex: 3;

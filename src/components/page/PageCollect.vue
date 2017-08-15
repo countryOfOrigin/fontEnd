@@ -1,16 +1,15 @@
 <template>
   <div class="page-collect">
     <ul id="collect">
-      <li class="collect-list"> <!--/*遍历传入数据，包括商品名，价格*/-->
+      <li class="collect-list" v-for="elem in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
         <div class="img-detail">
          <!-- /*跳转页面传参数为tag（商品id）*/ -->
-          <router-link to="/details/:tag"><img src="static/img/home/01.jpg" alt=""></router-link>
+          <router-link to="/details/:tag"><img :src='elem.url' alt=""></router-link>
         </div>
         <div class="product-detail" >
-          <router-link to="/details/:tag"><p class="product-info overhide">{{name}}</p></router-link>
-          <span class="product-price">￥&nbsp;{{price}}</span>
-          <span class="like"><i class="iconfont">&#xe60a;</i> <!--//调用收藏接口，传出数据为商品id-->
-</span>
+          <router-link to="/details/:tag"><p class="product-info overhide">{{elem.name}}</p></router-link>
+          <span class="product-price">￥&nbsp;{{elem.price}}</span>
+          <span class="like"><i class="iconfont">&#xe60a;</i> <!--//调用收藏接口，传出数据为商品id--></span>
         </div>
       </li>
     </ul>
@@ -26,11 +25,8 @@ export default {
   name: 'page-collect',
   data () {
     return {
-      name:"aaa aaa aaaa qwhd fs dfs hb fhbfv df ds ssss sss ss ss sss sss ss sss ssaa aa aaaa",
-      price:"37",
+      user_id:"",
       collect_info:{}
-//      products:[]
-
     }
   },
   components:{
@@ -38,20 +34,20 @@ export default {
     CommonFooter
   },
   mounted(){
-    // if(document.cookie){
-    //   var arr=document.cookie.split(";");
-    //   var user_id=arr[0].split("=")[1];
-    //   this.user_id=user_id;
-    //   console.log(this.user_id);
-    //    var _this=this;
-    //   Axios.get('http://127.0.0.1:3000/get_collect', {
-    //     params:{
-    //       userid:this.user_id
-    //     }
-    //   }).then(res){
-    //     _this.collect_info=JSON.parse(res.data);
-    //   }
-    // }
+    if(document.cookie){
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+       var _this=this;
+      Axios.get('http://127.0.0.1:3000/get_collect', {
+        params:{
+          user_id:this.user_id
+        }
+      }).then(function(res){
+
+        _this.collect_info=JSON.parse(res.data);
+      });
+    }
   }
 }
 </script>
@@ -59,50 +55,48 @@ export default {
 
 <style src="../../assets/font/iconfont.css" scoped></style>
 <style scoped>
-  /*@import "../../assets/font/iconfont.css";*/
-
-  /*@import "../../assets/css/page/collect.css";*/
   ul{
     list-style:none;
-    padding:0.2rem .1rem 0 0.1rem;
+    padding: .1rem 0  ;
     margin-bottom: 0.1rem;
 
 
   }
   #collect{
-    border-bottom: 0.05rem solid #eee;
     font-size:0.25rem;
 
   }
   #collect .collect-list{
-    height:2.6rem;
+    height:2.1rem;
     width:100%;
+    border-bottom: .1rem solid #eee;
+    padding: 0.1rem 0.2rem 0 .2rem;
   }
   #collect .img-detail{
     float: left;
-    width: 40%;
+    width: 30%;
   }
   #collect .collect-list img{
     width: 100%;
   }
   #collect .product-detail{
     float: right;
-    width:60%;
+    width:69%;
     padding-left:0.2rem;
     position: relative;
-    height:2.55rem;
+    height:2.0rem;
 
   }
   #collect .product-price{
     position: absolute;
     left:0.2rem;
-    bottom: .05rem;
+    bottom: .2rem;
     color: red;
   }
   #collect .like i{
     position: absolute;
     left:2rem;
-    bottom: .05rem;
+    bottom: .2rem;
     color: red;
     font-size: 0.3rem;
   }

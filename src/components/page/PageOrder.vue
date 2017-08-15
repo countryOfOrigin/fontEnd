@@ -40,6 +40,7 @@ export default {
   border-bottom: .005rem solid #eee;
   font-size: .23rem;
   background: #fff;
+  z-index: 100;
 }
 .nav li{
   flex:1;

@@ -1,11 +1,22 @@
 <template>
   <div class="page-details">
     <div class="carousel">
-      <swipe class="my-swipe">
-        <swipe-item class="item1"></swipe-item>
-        <swipe-item class="item2"></swipe-item>
-        <swipe-item class="item3"></swipe-item>
-      </swipe>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/1.jpg">
+          </div>
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/2.jpg">
+          </div>
+          <div class="swiper-slide">
+            <img src="../../../static/img/details/3.jpg">
+          </div>
+        </div>
+        <div class="swiper-pagination">
+        </div>
+
+      </div>
       <div class="gooddetail">
         <p class="goodname">圣谷山日照绿茶（赠茶具）</p>
         <span class="price">¥158.00-¥198.00</span>
@@ -95,36 +106,56 @@
         <i class="iconfont">&#xe60a;</i><br />
         <span>收藏</span>
       </a>
-      <a href="" class="buycar col-md-4">加入购物车</a>
+      <span class="buycar col-md-4" @click="buy()">加入购物车</span>
       <a href="" class="buyying col-md-4">立即购买</a>
     </div>
-    <common-footer></common-footer>
+    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
 <script>
-import CommonFooter from '../common/CommonFooter'
-import {Swipe, SwipeItem } from 'vue-swipe'
-Swipe.auto= false;
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import CommonAddBuycar from '../common/CommonAddBuycar'
 export default {
   name: 'page-details',
   data () {
     return {
+      show:false,
+      shopId:this.$route.params.tag
 
 
     }
   },
   components:{
-    Swipe,
-    SwipeItem,
-    CommonFooter
+    swiper,
+    swiperSlide,
+    CommonAddBuycar
   },
+  methods:{
+    buy:function(){
+      this.show=true;
+      // console.log(id);
+    },
+    isshow: function (a){
+      this.show = false;
+    }
+  },
+  mounted() {
+   var mySwiper = new Swiper('.swiper-container', {
+      pagination : '.swiper-pagination',
+      paginationClickable: true,
+      loop : true,
+      loopAdditionalSlides : 0,
+      watchSlidesProgress : true,
+      watchSlidesVisibility : true,
+    })
+ }
 }
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-@import "../../assets/css/vue-swipe.css";
 @import "../../assets/font/iconfont.css";
+@import "../../assets/css/swiper.min.css";
 </style>
 <style src="../../assets/css/page/details.css" scoped></style>

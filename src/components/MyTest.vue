@@ -7,12 +7,14 @@
       <swipe-item class="item3"></swipe-item>
     </swipe>
     <!-- <common-footer></common-footer> -->
+    <common-checkbox></common-checkbox>
   </div>
 </template>
 
 <script>
 // import CommonHeader from './common/CommonHeader'
 // import CommonFooter from './common/CommonFooter'
+import CommonCheckbox from './common/CommonCheckbox'
 import {Swipe, SwipeItem } from 'vue-swipe'
 Swipe.auto= false;
 export default {
@@ -26,6 +28,7 @@ export default {
   components:{
     // CommonHeader,
     // CommonFooter,
+    CommonCheckbox,
     Swipe,
     SwipeItem
   },

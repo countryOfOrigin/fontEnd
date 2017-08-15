@@ -20,26 +20,41 @@
       </ul>
     </div>
     <div class="packet">
-      <ul>
-        <li>
-          <span class="money">¥15</span>
-          <span class="con">农副<br />满减券</span>
-          <span class="circle1"></span>
-          <span class="circle2"></span>
-        </li>
-        <li>
-          <span class="money">¥150</span>
-          <span class="con">农副<br />满减券</span>
-          <span class="circle1"></span>
-          <span class="circle2"></span>
-        </li>
-        <li>
-          <span class="money">¥15</span>
-          <span class="con">农副<br />满减券</span>
-          <span class="circle1"></span>
-          <span class="circle2"></span>
-        </li>
-      </ul>
+      <div class="swiper-container">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide">
+            <span class="money">¥15</span>
+            <span class="con">农副<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+          <div class="swiper-slide">
+            <span class="money">¥15</span>
+            <span class="con">农副<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+          <div class="swiper-slide">
+            <span class="money">¥15</span>
+            <span class="con">农副<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+          <div class="swiper-slide">
+            <span class="money">¥15</span>
+            <span class="con">农副<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+          <div class="swiper-slide">
+            <span class="money">¥15</span>
+            <span class="con">农副<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+            
+        </div>
+      </div>
     </div>
     <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
@@ -109,6 +124,7 @@ import CommonFooter from '../common/CommonFooter'
 import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonAddBuycar from '../common/CommonAddBuycar'
 import {Swipe, SwipeItem } from 'vue-swipe'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
 Swipe.auto= false;
 export default {
   name: 'page-home',
@@ -126,12 +142,18 @@ export default {
   components:{   
     Swipe,
     SwipeItem,
+    swiper,
+    swiperSlide,
     CommonFooter,
     CommonFooterLogo,
     CommonAddBuycar
   },
   mounted(){
     this.com_home();
+    var mySwiper = new Swiper('.swiper-container', {
+      direction : 'horizontal',
+      slidesPerView : 'auto',
+    })
   },
   methods:{
     com_home:function(){

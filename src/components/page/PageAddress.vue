@@ -1,113 +1,28 @@
 <template>
   <div class="page-address">
     <ul id="address">
-      <li class="address-list">
+      <li class="address-list" v-for="elem in address_info">
         <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
+          <span class="name">{{elem.name}}</span>
+          <span class="tel">{{elem.telephone}}</span>
         </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
+        <p class="address">{{elem.province}}{{elem.district}}{{elem.city}}{{elem.address}}
+
         </p>
         <div class="edit">
-          <router-link to="/user/address/edit/:id"><span type="button" class="btn btn-primary btn-lg">
+          <router-link :to="'/user/address/edit/'+elem.receipt_id"><span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-edit"></span> 编辑
           </span></router-link>
-          <span type="button" class="btn btn-primary btn-lg">
+          <span type="button" class="btn btn-primary btn-lg" @click="delete_address">
             <span class="glyphicon glyphicon-remove"></span> 删除
           </span>
         </div>
       </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
-      <li class="address-list">
-        <div class="name-tel">
-          <span class="name">张三</span>
-          <span class="tel">123456789</span>
-        </div>
-        <p class="address">
-          黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号黑龙江省哈尔滨市南岗区学府路79号
-        </p>
-        <div class="edit">
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-edit"></span> 编辑
-          </button>
-          <button type="button" class="btn btn-primary btn-lg">
-            <span class="glyphicon glyphicon-remove"></span> 删除
-          </button>
-        </div>
-      </li>
 
     </ul>
-    <div id="footer">
+    <router-link to="/user/address/edit/select/:id"><div id="footer">
       添加新地址
-    </div>
+    </div> </router-link>
   </div>
 
 </template>
@@ -115,27 +30,67 @@
 <script>
 import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
+import Axios from 'axios'
 export default {
   name: 'page-address',
   data () {
     return {
-
-
+      user_id:"",
+      address_info:{}
     }
   },
   components:{
 
   },
+  mounted(){
+    if(document.cookie){
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+      this.get_address();
+
+    }
+  },
+  methods:{
+      get_address:function(){
+        var _this=this;
+        Axios.get('http://127.0.0.1:3000/get_address',{
+          params:{
+            userid:this.user_id,
+          }
+        }).then(function(res){
+          _this.address_info=JSON.parse(res.data);
+          console.log(res.data);
+        });
+      },
+    delete_address:function(){
+      var _this=this;
+      Axios.get('http://127.0.0.1:3000/delete_address',{
+        params:{
+          address_id:this.address_id,
+        }
+      }).then(function(res){
+        _this.flag=JSON.parse(res.data);
+        console.log(res.data);
+      });
+    },
+
+  }
+
 }
 </script>
 
 <style scoped>
+  body{
+    background: #fff;
+  }
   .page-address{
     /*padding:.2rem 0  1rem .2rem ;*/
     font-size:.2rem;
     padding-top: .2rem;
   }
   ul{
+    background: #fff;
     list-style: none;
     padding:0;
     padding-bottom:2rem;

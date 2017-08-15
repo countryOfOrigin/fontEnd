@@ -13,147 +13,42 @@ a{
 img{
     border: 0;
 }
-/*carousel开始*/
-.carousel{
-    width: 100%;
-    margin-bottom: 0.04rem;
-    border: 0.15rem solid #fff;
-    background: #fff;
-    position: relative;
-}
-.carousel .my-swipe {
-  height: 3rem;
-  font-size: 30px;
-  text-align: center;
-}
-.carousel .my-swipe .mint-swipe-item{
-  height: 100%;
-  background-repeat: no-repeat;
-  background-position: center center;
-  background-size: cover;
-}
-
-.carousel .item1 {
-  background: url('https://img3.doubanio.com/lpic/s27102925.jpg');
-  background-size: cover;
-}
-
-.carousel .item2 {
-  background: url('https://img3.doubanio.com/lpic/s6989253.jpg');
-  background-size: cover;
-}
-
-.carousel .item3 {
-  background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
-  background-size: cover;
-}
-/*carousel结束*/
 .content{
-  width: 100%;
-  height: 8rem;
-  background: #f9f2e2;
-}
-.content ul{
-  position: relative;
+  text-align: center;
 }
 .content ul li{
-  width: 1.3rem;
-  height: 1.3rem;
-  background: #000;
-  color: #fff; 
-  border-radius: 50%;
-  position: absolute;
-  left: 1rem;
-  top: 1.2rem;
-  text-align: center;
-  -webkit-transform-origin: 2.2rem 2.2rem;
+  width: 50%;
+  height: 2.6rem;
+  float: left;
+  padding-top: 0.4rem;
+  font-size: 0.35rem;
+  
 }
 .content ul li i{
-  display: inline-block;
-  margin-top: 0.2rem;
-  font-weight: bold;
+  font-size: 0.8rem;
 }
 .content ul .a1{
-  background: #e83a15;
+  background: #fcfafd;
 }
 .content ul .a2{
-  -webkit-transform: rotate(45deg);
-  background: #ff3333;
+  background: #edebee;
 }
 .content ul .a3{
-  -webkit-transform: rotate(90deg);
-  background: #c04385;
+  background: #efedf0;
 }
 .content ul .a4{
-  -webkit-transform: rotate(135deg);
-  background: #7e3a83;
+  background: #fedb10;
+  color: #fff;
 }
 .content ul .a5{
-  -webkit-transform: rotate(180deg);
-  background: #5287af;
+  background: #d0d7dd;
 }
 .content ul .a6{
-  -webkit-transform: rotate(225deg);
-  background: #69ae2f;
+  background: #fcfafd;
 }
 .content ul .a7{
-  -webkit-transform: rotate(270deg);
-  background: #d5b719;
+  background: #edeef3;
 }
 .content ul .a8{
-  -webkit-transform: rotate(315deg);
-  background: #ed761c;
-}
-.content ul .a2 div{
-  transform-origin: center center;
-  transform:rotate(-45deg);
-  margin-left: -0.2rem;
-}
-.content ul .a3 div{
-  transform-origin: center center;
-  transform:rotate(-90deg);
-  margin-left: -0.3rem;
-  margin-top: 0.12rem; 
-}
-.content ul .a4 div{
-  transform-origin: center center;
-  transform:rotate(-135deg);
-  position: absolute;
-  left: 0.24rem;
-  top: 0.24rem;
-}
-.content ul .a5 div{
-  transform-origin: center center;
-  transform:rotate(-180deg);
-  margin-top: 0.25rem; 
-}
-.content ul .a6 div{
-  transform-origin: center center;
-  transform:rotate(-225deg);
-  margin-top: 0.2rem; 
-  margin-left: 0.18rem;
-}
-.content ul .a7 div{
-  transform-origin: center center;
-  transform:rotate(-270deg);
-  margin-top: 0.12rem; 
-  margin-left: 0.2rem;
-}
-.content ul .a8 div{
-  transform-origin: center center;
-  transform:rotate(45deg);
-  margin-top: 0.03rem; 
-  margin-left: 0.2rem;
-}
-.content ul .a9{
-  background: #f3c203;
-  width: 1.5rem;
-  height: 1.5rem;
-  left: 2.45rem;
-  top: 2.6rem;
-  font-size: 0.3rem;
-}
-.content ul .a9 i{
-  font-size: 0.5rem;
-  margin-top: 0.15rem;
+  background: #e3e1e4;
 }
