@@ -50,7 +50,7 @@
           <p>不含运费</p>
         </div>
         
-        <a href="" class="clear">结算 (<b>2</b>)</a>
+        <a href="" class="clear color">结算 (<b>{{check.length}}</b>)</a>
         <a href="" class="del-all">删除</a>
       </div>
     </div>
@@ -308,6 +308,7 @@ export default {
     del:function(sid){
       this.checkFlag = [];
       this.check = [];
+      this.checkAll = false;
       Axios.get('http://localhost:3000/cart_del',{
           params:{
               u_id:this.user_id,
@@ -337,6 +338,11 @@ export default {
       }else{
         this.checkAll=false;
       }
+      if(this.check.length==0){
+        $(".clear").addClass("color");
+      }else{
+        $(".clear").removeClass("color");
+      }
 
       // console.log(this.check);
     },
@@ -345,11 +351,13 @@ export default {
       if(!this.checkAll){
         this.checkFlag = [];
         this.check = [];
+        $(".clear").addClass("color");
       }else{
         this.check=this.cartList;
         for (var i = 0; i < this.cartList.length; i++) {
           this.checkFlag[i] = true;
         }
+        $(".clear").removeClass("color");
       }
     }
   },
@@ -435,6 +443,9 @@ export default {
 .page-cart .min p{
   float: none;
   display: block;
+}
+.page-cart .color{
+  background: #aaa;
 }
 /*.page-cart input[type=checkbox] {
    width: 0.426666rem;
