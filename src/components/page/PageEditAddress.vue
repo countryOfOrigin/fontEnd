@@ -3,20 +3,20 @@
 	<ul id="edit-dress"  >
 		<li class="name" >
 			<span>收货人</span>
-			<input v-model="address_info.name" >
+			<input v-model="address_info[0].name" >
 		</li>
 		<li class="tel">
 			<span>联系电话</span>
-			<input v-model="address_info.telephone" >
+			<input v-model="address_info[0].telephone" >
 		</li>
 		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 			<span class="address-text">所在地区</span>
-      <span class="de-address" v-show="show" >{{address_info.province}}{{address_info.city}}{{address_info.district}}</span>
+      <span class="de-address" v-show="show" >{{address_info[0].province}}{{address_info[0].city}}{{address_info[0].district}}</span>
       <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
 
     </li>
 		<li class="detail-address">
-			<textarea v-model="address_info.address" ></textarea>
+			<textarea v-model="address_info[0].address" ></textarea>
 		</li>
 	</ul>
     <strong id="tip"></strong>
@@ -28,17 +28,18 @@
             <h5 class="modal-title" id="myModalLabel">请选择</h5>
           </div>
           <div class="modal-body">
-            <v-distpicker  type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
+            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
+            <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
           </div>
         </div><!-- /.modal-content -->
       </div><!-- /.modal -->
     </div>
 	<div id="delete-save">
-		<span class="save" @click="save_address" v-if="save">保存</span>
-    <span class="save" @click="insert_address" v-else="save">保存</span>
+		<!--<span class="del" @click="delete_address">删除地址</span>-->
+		<span class="save" @click="save_address">保存</span>
 	</div>
   </div>
 </template>
@@ -60,9 +61,7 @@ export default {
       pro:"",
       cit:"",
       dis:"",
-      success:"",
-      save:"",
-
+      success:""
 
     }
   },
@@ -70,14 +69,13 @@ export default {
     VDistpicker,
   },
   mounted(){
+//      console.log(this.address_info.telephone);
     if(document.cookie){
       var arr=document.cookie.split(";");
       var user_id=arr[0].split("=")[1];
       this.user_id=user_id;
-      if(this.address_id!=0){
-        this.save=true;
-        this.get_single_address();
-      }
+      this.get_single_address();
+
     }
   },
   methods:{
@@ -88,92 +86,68 @@ export default {
           address_id:this.address_id,
         }
       }).then(function(res){
-        _this.address_info=JSON.parse(res.data)[0];
-        console.log(_this.address_info);
+        _this.address_info=JSON.parse(res.data);
+//        console.log(_this.address_info.telephone);
       });
     },
     showTip(tip,type) {
       var $tip = $('#tip');
-      $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', - $tip.outerWidth() / 2).fadeIn(300).delay(200).fadeOut(300);
+      $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', - $tip.outerWidth() / 2).fadeIn(500).delay(200).fadeOut(500);
     },
     save_address(){
+      console.log(this.address_info[0]);
+//      console.log(this.address_info[0].name);
       if(this.select.city.value=="undefined" && this.select.area.value=="undefined" && this.select.province=="undefined"){
-          this.pro=this.address_info.province;
-          this.cit=this.address_info.city;
-          this.dis=this.address_info.district;
+          this.pro=this.address_info[0].province;
+          this.cit=this.address_info[0].city;
+          this.dis=this.address_info[0].district;
       }
       else{
         this.pro=this.select.province.value;
         this.cit=this.select.city.value;
         this.dis=this.select.area.value;
       }
+      var _this=this;
       Axios.get('http://127.0.0.1:3000/save_address',{
         params:{
-          address_id:this.address_info.receipt_id,
+          address_id:this.address_info[0].receipt_id,
 
 
-          name:this.address_info.name,
-          tel:this.address_info.telephone,
+          name:this.address_info[0].name,
+          tel:this.address_info[0].telephone,
           city:this.cit,
           pro:this.pro,
           dis:this.dis,
-          detail:this.address_info.address
+          detail:this.address_info[0].address
         },
 
       }).then((res)=>{
           this.success=res.data;
+//          console.log(_this.success);
         if(this.success==1){
+          console.log(111);
           this.showTip("编辑成功","success");
         }
         setTimeout(function(){
           window.history.go(-1);
-        },2000);
+        },3000);
       });
     },
-    insert_address(){
-      if(this.select.city.value=="undefined" && this.select.area.value=="undefined" && this.select.province=="undefined"){
-        this.pro="北京市";
-        this.cit="市辖区";
-        this.dis="海淀区";
-      }
-      else{
-        this.pro=this.select.province.value;
-        this.cit=this.select.city.value;
-        this.dis=this.select.area.value;
-      }
-      Axios.get('http://127.0.0.1:3000/insert_address',{
-        params:{
-          user_id:this.user_id,
-          name:this.address_info.name,
-          tel:this.address_info.telephone,
-          city:this.cit,
-          pro:this.pro,
-          dis:this.dis,
-          detail:this.address_info.address
-        },
-      }).then((res)=>{
-        this.success=res.data;
-        console.log(this.success);
-        if(this.success==1){
-          this.showTip("添加地址成功","success");
-        }
-        setTimeout(function(){
-          window.history.go(-2);
-        },2000);
-      });
-    },
+
     onselect(){
         console.log(this.select);
         this.show=false;
     },
     selectProvince(value) {
-          this.select.province = value;
+      this.select.province = value
+
     },
     selectCity(value) {
-          this.select.city = value;
+      this.select.city = value
+
     },
     selectArea(value) {
-          this.select.area = value;
+      this.select.area = value
 
     }
 
@@ -258,6 +232,12 @@ export default {
   #edit-dress .link-detail{
     float : right;
   }
+	/*input::-webkit-input-placeholder {*/
+		/*color: #eee;*/
+	/*}*/
+	/*textarea::-webkit-input-placeholder {*/
+		/*color: #eee;*/
+	/*}*/
 	#delete-save{
 		height: .8rem;
 		border-bottom: .02rem solid #eee;
