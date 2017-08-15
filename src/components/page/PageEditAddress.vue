@@ -89,7 +89,6 @@ export default {
         }
       }).then(function(res){
         _this.address_info=JSON.parse(res.data)[0];
-        console.log(_this.address_info);
       });
     },
     showTip(tip,type) {
