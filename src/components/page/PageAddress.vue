@@ -63,17 +63,18 @@ export default {
           console.log(res.data);
         });
       },
-    delete_address:function(){
-      var _this=this;
-      Axios.get('http://127.0.0.1:3000/delete_address',{
-        params:{
-          address_id:this.address_id,
-        }
-      }).then(function(res){
-        _this.flag=JSON.parse(res.data);
-        console.log(res.data);
-      });
-    },
+      delete_address:function(){
+        var _this=this;
+        Axios.get('http://127.0.0.1:3000/delete_address',{
+          params:{
+            address_id:this.address_id,
+          }
+        }).then((res)=>{
+          this.flag=JSON.parse(res.data);
+          this.get_address();
+          console.log(res.data);
+        });
+      },
 
   }
 
