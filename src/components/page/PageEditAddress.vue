@@ -87,7 +87,7 @@ export default {
         }
       }).then(function(res){
         _this.address_info=JSON.parse(res.data);
-//        console.log(_this.address_info.telephone);
+       // console.log(_this.address_info[0].name);
       });
     },
     showTip(tip,type) {
