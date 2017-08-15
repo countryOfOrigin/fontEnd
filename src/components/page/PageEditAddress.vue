@@ -1,45 +1,45 @@
 <template>
   <div class="page-edit-address">
-	<ul id="edit-dress" v-for="elem in address_info" >
-		<li class="name" >
-			<span>收货人</span>
-			<input v-model="elem.name" >
-		</li>
-		<li class="tel">
-			<span>联系电话</span>
-			<input v-model="elem.telephone" >
-		</li>
-		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-			<span class="address-text">所在地区</span>
-      <span class="de-address" v-show="show" >{{elem.province}}{{elem.city}}{{elem.district}}</span>
-      <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
+  	<ul id="edit-dress" v-for="elem in address_info" >
+  		<li class="name" >
+  			<span>收货人</span>
+  			<input v-model="elem.name" >
+  		</li>
+  		<li class="tel">
+  			<span>联系电话</span>
+  			<input v-model="elem.telephone" >
+  		</li>
+  		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+  			<span class="address-text">所在地区</span>
+        <span class="de-address" v-show="show" >{{elem.province}}{{elem.city}}{{elem.district}}</span>
+        <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
 
-    </li>
-		<li class="detail-address">
-			<textarea v-model="elem.address" ></textarea>
-		</li>
-	</ul>
-    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <div class="modal-header">
-            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-            <h5 class="modal-title" id="myModalLabel">请选择</h5>
-          </div>
-          <div class="modal-body">
-            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
-            <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
-          </div>
-        </div><!-- /.modal-content -->
-      </div><!-- /.modal -->
-    </div>
-	<div id="delete-save">
-		<!--<span class="del" @click="delete_address">删除地址</span>-->
-		<span class="save" @click="save_address">保存</span>
-	</div>
+      </li>
+  		<li class="detail-address">
+  			<textarea v-model="elem.address" ></textarea>
+  		</li>
+  	</ul>
+      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+              <h5 class="modal-title" id="myModalLabel">请选择</h5>
+            </div>
+            <div class="modal-body">
+              <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
+              <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
+            </div>
+          </div><!-- /.modal-content -->
+        </div><!-- /.modal -->
+      </div>
+  	<div id="delete-save">
+  		<!--<span class="del" @click="delete_address">删除地址</span>-->
+  		<span class="save" @click="save_address">保存</span>
+  	</div>
   </div>
 </template>
 

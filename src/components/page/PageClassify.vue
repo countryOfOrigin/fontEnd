@@ -41,7 +41,7 @@ import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonFooter from '../common/CommonFooter'
 import CommonAddBuycar from '../common/CommonAddBuycar'
 export default {
-  name: 'page-home',
+  name: 'page-classify',
   data () {
     return {
       commodityList:[],

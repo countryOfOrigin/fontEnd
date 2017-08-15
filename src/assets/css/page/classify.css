@@ -15,30 +15,30 @@ img{
     border: 0;
 }
 /*details开始*/
-.details img{
+.page-classify .details img{
     width: 100%;
     margin-top: 0.3rem;
 }
-.details .title{
+.page-classify .details .title{
     padding: 0.1rem 0;
     margin: 0.1rem 0.14rem;
     border-bottom: 0.01rem solid #ddd;
 }
-.details .title i{
+.page-classify .details .title i{
     font-size: 0.35rem;
 }
-.details .title span{
+.page-classify .details .title span{
     font-size: 0.35rem;
     font-weight: bold;
 }
-.cooperation ul li b{
+.page-classify .cooperation ul li b{
     float: right;
     font-size: 0.5rem;
     font-weight: 400;
     color: #bec2c3;
     margin-top: -0.2rem;
 }
-.details ul li{
+.page-classify .details ul li{
     width: 3.06rem;
     float: left;
     background: #fff;
@@ -47,21 +47,21 @@ img{
     position: relative;
     
 }
-.details ul li img{
+.page-classify .details ul li img{
     width: 2.9rem;
     height: 2.9rem;
 }
-.details ul li .goodname{
+.page-classify .details ul li .goodname{
     height: 0.65rem;
     font-size: 0.23rem;
 }
-.details ul li .price{
+.page-classify .details ul li .price{
     float: left;
     font-size: 0.25rem;
     font-weight: bold;
     color: #f60;
 }
-.details ul li span{
+.page-classify .details ul li span{
     float: right;
     font-size: 0.4rem;
     color: #aaa;
@@ -69,16 +69,16 @@ img{
 /*details结束*/
 
 /*page开始*/
-.page{
+.page-classify .page{
     border: 0.01rem solid #ccc;
     margin: 0.5rem 0.1rem;
 }
-.page a{
+.page-classify .page a{
     display: inline-block;
     padding: 0.1rem 1.04rem;
     font-size: 0.31rem;
 }
-.page .prev{
+.page-classify .page .prev{
     border-right: 0.01rem solid #ccc;
 }
 /*page结束*/

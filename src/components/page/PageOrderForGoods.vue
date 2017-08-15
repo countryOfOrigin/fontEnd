@@ -1,5 +1,5 @@
 <template>
-  <div class="page-aboutus">
+  <div class="page-orderforgoods">
     <div class="orderforgoods-title">
       <span class="glyphicon glyphicon-plus orderforgoods-title-font"></span>
       <span>新建收货地址</span>
@@ -86,7 +86,7 @@
 <script>
 
   export default {
-    name: 'daifukuan',
+    name: 'page-orderforgoods',
     data () {
       return {
 

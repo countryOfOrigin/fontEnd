@@ -17,14 +17,14 @@ img{
 
 
 /*carousel开始*/
-.carousel{
+.page-home .carousel{
     width: 100%;
     margin-bottom: 0.04rem;
     border: 0.15rem solid #fff;
     background: #fff;
     position: relative;
 }
-.carousel .form-control{
+.page-home .carousel .form-control{
     width: 5.8rem;
     position: absolute;
     z-index: 998;
@@ -32,7 +32,7 @@ img{
     margin: 0.15rem 0.15rem;
     padding-left: 0.5rem;
 }
-.carousel .glyphicon-search{
+.page-home .carousel .glyphicon-search{
     position: absolute;
     color: #a3bbbb;
     left: 0.3rem;
@@ -40,36 +40,36 @@ img{
     z-index: 999;
     opacity: 0.9; 
 }
-.carousel .my-swipe {
+.page-home .carousel .my-swipe {
   height: 3rem;
   font-size: 30px;
   text-align: center;
 }
-.carousel .my-swipe .mint-swipe-item{
+.page-home .carousel .my-swipe .mint-swipe-item{
   height: 100%;
   background-repeat: no-repeat;
   background-position: center center;
   background-size: cover;
 }
 
-.carousel .item1 {
+.page-home .carousel .item1 {
   background: url('https://img3.doubanio.com/lpic/s27102925.jpg');
   background-size: cover;
 }
 
-.carousel .item2 {
+.page-home .carousel .item2 {
   background: url('https://img3.doubanio.com/lpic/s6989253.jpg');
   background-size: cover;
 }
 
-.carousel .item3 {
+.page-home .carousel .item3 {
   background: url('https://img3.doubanio.com/lpic/s24468373.jpg');
   background-size: cover;
 }
 /*carousel结束*/
 
 /*nav开始*/
-.nav ul li{
+.page-home .nav ul li{
     float: left;
     height: 1.55rem;
     width: 25%;
@@ -79,52 +79,52 @@ img{
     text-align: center;
     padding-top: 0.15rem;
 }
-.nav ul li i{
+.page-home .nav ul li i{
     font-size: 0.5rem;
 }
-.nav ul li .i1{
+.page-home .nav ul li .i1{
     color: #dbc68f;
 }
-.nav ul li .i2{
+.page-home .nav ul li .i2{
     color: #bec1b0;
 }
-.nav ul li .i3{
+.page-home .nav ul li .i3{
     color: #8d7ce2;
 }
-.nav ul li .i4{
+.page-home .nav ul li .i4{
     color: #1cb6ea;
 }
-.nav ul li .i5{
+.page-home .nav ul li .i5{
     color: #b6c23a;
 }
-.nav ul li .i6{
+.page-home .nav ul li .i6{
     color: #da8b49;
 }
-.nav ul li .i7{
+.page-home .nav ul li .i7{
     color: #5fd038;
 }
-.nav ul li .i8{
+.page-home .nav ul li .i8{
     color: #ca6e6f;
 }
 /*nav结束*/
 
 /*packet开始*/
-.packet{
+.page-home .packet{
     width: 100%;
     overflow: hidden;
 }
-.swiper-container{
+.page-home .swiper-container{
   position: relative;
   overflow: hidden;
   z-index: 1;
 }
-.swiper-wrapper{
+.page-home .swiper-wrapper{
   width: 500%;
 }
-.swiper-slide{
+.page-home .swiper-slide{
   float: left;
 }
-.packet .swiper-slide{
+.page-home .packet .swiper-slide{
     width: 2.5rem;
     height: 1rem;
     background: #f06c5d;
@@ -134,14 +134,14 @@ img{
     color: #fff;
     position: relative;
 }
-.packet .swiper-slide .money{
+.page-home .packet .swiper-slide .money{
     font-size: 0.33rem;
     font-weight: bold;
     float: left;
     margin: 0.26rem 0.1rem;
     margin-left: 0.2rem;
 }
-.packet .swiper-slide .con{
+.page-home .packet .swiper-slide .con{
     width: 40%;
     font-size: 0.2rem;
     text-align: center;
@@ -150,7 +150,7 @@ img{
     padding: 0 0.08rem;
     border-left: 0.01rem solid #ddd;
 }
-.packet .swiper-slide .circle1{
+.page-home .packet .swiper-slide .circle1{
     display: inline-block;
     width: 0.12rem;
     height: 0.12rem;
@@ -160,7 +160,7 @@ img{
     left: 1.165rem;
     top: -0.06rem;
 }
-.packet .swiper-slide .circle2{
+.page-home .packet .swiper-slide .circle2{
     display: inline-block;
     width: 0.12rem;
     height: 0.12rem;
@@ -173,30 +173,30 @@ img{
 /*packet结束*/
 
 /*details开始*/
-.details img{
+.page-home .details img{
     width: 100%;
     margin-top: 0.3rem;
 }
-.details .title,.cooperation ul li{
+.page-home .details .title,.cooperation ul li{
     padding: 0.1rem 0;
     margin: 0.1rem 0.14rem;
     border-bottom: 0.01rem solid #ddd;
 }
-.details .title i,.cooperation ul li i{
+.page-home .details .title i,.cooperation ul li i{
     font-size: 0.25rem;
 }
-.details .title span,.cooperation ul li span{
+.page-home .details .title span,.cooperation ul li span{
     font-size: 0.25rem;
     font-weight: bold;
 }
-.details .title b,.cooperation ul li b{
+.page-home .details .title b,.cooperation ul li b{
     float: right;
     font-size: 0.5rem;
     font-weight: 400;
     color: #bec2c3;
     margin-top: -0.2rem;
 }
-.details ul li{
+.page-home .details ul li{
     width: 3.06rem;
     float: left;
     background: #fff;
@@ -205,21 +205,21 @@ img{
     position: relative;
     
 }
-.details ul li img{
+.page-home .details ul li img{
     width: 2.9rem;
     height: 2.9rem;
 }
-.details ul li .goodname{
+.page-home .details ul li .goodname{
     height: 0.65rem;
     font-size: 0.23rem;
 }
-.details ul li .price{
+.page-home .details ul li .price{
     float: left;
     font-size: 0.25rem;
     font-weight: bold;
     color: #f60;
 }
-.details ul li .buybtn{
+.page-home .details ul li .buybtn{
     position: absolute;
     width: 0.7rem;
     height: 0.4rem;
@@ -231,10 +231,10 @@ img{
 /*details结束*/
 
 /*message开始*/
-.message ul{
+.page-home .message ul{
     margin-left: 0.07rem;
 }
-.message ul li{
+.page-home .message ul li{
     float: left;
     width: 1.4rem;
     height: 0.6rem;
@@ -243,17 +243,17 @@ img{
     border: 0.01rem solid #ccc;
     border-radius: 5px;
 }
-.message ul li i{
+.page-home .message ul li i{
     font-size: 0.4rem;
     color: #0a8;
     float: left;
     margin: 0 0.08rem;
 }
-hr{
+.page-home hr{
     background: #ddd;
     margin: 0.3rem 0.14rem;
 }
-.message ul li span{
+.page-home .message ul li span{
     display: inline-block;
     font-size: 0.2rem;
 }
