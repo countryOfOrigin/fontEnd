@@ -20,7 +20,7 @@
       </li>
 
     </ul>
-    <router-link to="/user/address/edit/select/:id"><div id="footer">
+    <router-link to="/user/address/edit/0"><div id="footer">
       添加新地址
     </div> </router-link>
   </div>

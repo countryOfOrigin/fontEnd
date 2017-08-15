@@ -1,45 +1,46 @@
 <template>
   <div class="page-edit-address">
-  	<ul id="edit-dress" v-for="elem in address_info" >
-  		<li class="name" >
-  			<span>收货人</span>
-  			<input v-model="elem.name" >
-  		</li>
-  		<li class="tel">
-  			<span>联系电话</span>
-  			<input v-model="elem.telephone" >
-  		</li>
-  		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
-  			<span class="address-text">所在地区</span>
-        <span class="de-address" v-show="show" >{{elem.province}}{{elem.city}}{{elem.district}}</span>
-        <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
+	<ul id="edit-dress"  >
+		<li class="name" >
+			<span>收货人</span>
+			<input v-model="address_info[0].name" >
+		</li>
+		<li class="tel">
+			<span>联系电话</span>
+			<input v-model="address_info[0].telephone" >
+		</li>
+		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+			<span class="address-text">所在地区</span>
+      <span class="de-address" v-show="show" >{{address_info[0].province}}{{address_info[0].city}}{{address_info[0].district}}</span>
+      <span class="link-detail"> {{select.province.value}} {{select.city.value}} {{select.area.value}}&nbsp;&nbsp;&nbsp;&rsaquo;</span>
 
-      </li>
-  		<li class="detail-address">
-  			<textarea v-model="elem.address" ></textarea>
-  		</li>
-  	</ul>
-      <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-              <h5 class="modal-title" id="myModalLabel">请选择</h5>
-            </div>
-            <div class="modal-body">
-              <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
-            </div>
-            <div class="modal-footer">
-              <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
-              <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
-            </div>
-          </div><!-- /.modal-content -->
-        </div><!-- /.modal -->
-      </div>
-  	<div id="delete-save">
-  		<!--<span class="del" @click="delete_address">删除地址</span>-->
-  		<span class="save" @click="save_address">保存</span>
-  	</div>
+    </li>
+		<li class="detail-address">
+			<textarea v-model="address_info[0].address" ></textarea>
+		</li>
+	</ul>
+    <strong id="tip"></strong>
+    <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+            <h5 class="modal-title" id="myModalLabel">请选择</h5>
+          </div>
+          <div class="modal-body">
+            <v-distpicker province="北京" city="北京市" area="海淀区" type="mobile" @province="selectProvince" @city="selectCity" @area="selectArea"></v-distpicker>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal" @click="onselect" >关闭</button>
+            <!--<button type="button" class="btn btn-primary" @click="onselect">确定</button>-->
+          </div>
+        </div><!-- /.modal-content -->
+      </div><!-- /.modal -->
+    </div>
+	<div id="delete-save">
+		<!--<span class="del" @click="delete_address">删除地址</span>-->
+		<span class="save" @click="save_address">保存</span>
+	</div>
   </div>
 </template>
 
@@ -57,7 +58,10 @@ export default {
       address_info:{},
       flag:"",
       show:true,
-
+      pro:"",
+      cit:"",
+      dis:"",
+      success:""
 
     }
   },
@@ -83,32 +87,53 @@ export default {
         }
       }).then(function(res){
         _this.address_info=JSON.parse(res.data);
-//        console.log(_this.address_info.telephone);
+       // console.log(_this.address_info[0].name);
       });
     },
+    showTip(tip,type) {
+      var $tip = $('#tip');
+      $tip.stop(true).prop('class', 'alert alert-' + type).text(tip).css('margin-left', - $tip.outerWidth() / 2).fadeIn(500).delay(200).fadeOut(500);
+    },
     save_address(){
-      console.log(this.address_info);
-      console.log(this.address_info[0].name);
+      console.log(this.address_info[0]);
+//      console.log(this.address_info[0].name);
+      if(this.select.city.value=="undefined" && this.select.area.value=="undefined" && this.select.province=="undefined"){
+          this.pro=this.address_info[0].province;
+          this.cit=this.address_info[0].city;
+          this.dis=this.address_info[0].district;
+      }
+      else{
+        this.pro=this.select.province.value;
+        this.cit=this.select.city.value;
+        this.dis=this.select.area.value;
+      }
       var _this=this;
       Axios.get('http://127.0.0.1:3000/save_address',{
         params:{
           address_id:this.address_info[0].receipt_id,
+
+
           name:this.address_info[0].name,
           tel:this.address_info[0].telephone,
-
-          city:this.select.city.value,
-          pro:this.select.province.value,
-          dis:this.select.area.value,
+          city:this.cit,
+          pro:this.pro,
+          dis:this.dis,
           detail:this.address_info[0].address
         },
 
-      }).then(function(res){
-//        _this.address_info=JSON.parse(res.data);
-        console.log(_this.address_info);
+      }).then((res)=>{
+          this.success=res.data;
+//          console.log(_this.success);
+        if(this.success==1){
+          console.log(111);
+          this.showTip("编辑成功","success");
+        }
+        setTimeout(function(){
+          window.history.go(-1);
+        },3000);
       });
-//      console.log(this.address_info);
-
     },
+
     onselect(){
         console.log(this.select);
         this.show=false;
@@ -158,6 +183,19 @@ export default {
 		border-bottom: .02rem solid #eee;
 		padding: 0 0.2rem;
 	}
+
+  #tip {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    display: none;
+    z-index: 9999;
+    background: rgba(0,0,0,0.2);
+    color: #fff;
+  }
+
+
+
 	.page-edit-address{
 		font-size:.2rem;
 	}
