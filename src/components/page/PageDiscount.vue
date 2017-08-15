@@ -3,8 +3,7 @@
     <div class="discount-box">
       <div class="discount-left">
         <span class="circles"></span>
-          代金券
-
+          <p>代金券</p>
       </div>
       <div class="discount-right">
         <span class="circless"></span>
@@ -22,6 +21,7 @@
             认证获取
           </div>
           <div class="discount-footer-right">
+            <span class="glyphicon glyphicon-time"></span>
             2016/6/7~6/12有效
           </div>
 
@@ -31,7 +31,7 @@
     <div class="discount-box">
       <div class="discount-left">
         <span class="circles"></span>
-        代金券
+        <p>代金券</p>
       </div>
       <div class="discount-right">
         <span class="circless"></span>
@@ -49,6 +49,7 @@
             注册获取
           </div>
           <div class="discount-footer-right">
+            <span class="glyphicon glyphicon-time"></span>
             2016/6/7~6/12有效
           </div>
 
@@ -58,7 +59,7 @@
     <div class="discount-box">
       <div class="discount-left">
         <span class="circles"></span>
-        代金券
+        <p>代金券</p>
       </div>
       <div class="discount-right">
         <span class="circless"></span>
@@ -76,6 +77,7 @@
             首次获取
           </div>
           <div class="discount-footer-right">
+            <span class="glyphicon glyphicon-time"></span>
             2016/6/7~6/12有效
           </div>
 
@@ -85,7 +87,7 @@
     <div class="discount-box">
       <div class="discount-left">
         <span class="circles"></span>
-        代金券
+        <p>代金券</p>
       </div>
       <div class="discount-right">
         <span class="circless"></span>
@@ -103,6 +105,7 @@
             好友首次获取
           </div>
           <div class="discount-footer-right">
+            <span class="glyphicon glyphicon-time"></span>
             2016/6/7~6/12有效
           </div>
 
