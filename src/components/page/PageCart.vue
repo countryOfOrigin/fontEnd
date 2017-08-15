@@ -10,9 +10,9 @@
       <div class="list">
         <ul>
           <li v-for="cart in cartList">
-            <i class="iconfont ok" ch="1">&#xe657;</i>
+            <!-- <i class="iconfont ok" ch="1">&#xe657;</i> -->
             <!-- <i class="iconfont ok" ch="1">&#xe67c;</i> -->
-            <!-- <span class="ok"><input type="checkbox" v-model="check" :value="cart"></span> -->
+            <span class="ok"><input type="checkbox" v-model="check" :value="cart" @click="select"></span>
             <img :src="cart.url">
             <p class="goodname">{{cart.name}}</p>
             <div class="buynum"> 
@@ -29,8 +29,13 @@
       </div>
       <div class="foot">
         <div class="left-box">
-          <i class="iconfont ok" ch="1">&#xe657;</i>
-          <span class="all">全选</span>
+          <!-- <i class="iconfont ok" ch="1">&#xe657;</i>
+          <span class="all">全选</span> -->
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" @click="all_check" v-model="allCheck"> 全选
+            </label>
+          </div>
         </div>
         <div class="min">
           <span class="total">合计：¥<b>{{totalPrice}}</b></span>
@@ -62,7 +67,8 @@ export default {
       user_id:0,
       flag:true,
       cartList:[],
-      // check:[]
+      check:[],
+      allCheck:false,
     }
   },
   components:{
@@ -76,7 +82,6 @@ export default {
     var user_id=arr[0].split("=")[1];
     this.user_id=user_id;
     this.all_cart();
-
 
 
 
@@ -301,17 +306,42 @@ export default {
       }).catch((error)=>{
           console.log(error);
       });
+    },
+    all_check:function(){
+      this.allCheck=!this.allCheck;
+      // console.log(this.allCheck);
+      if(this.allCheck){
+        this.check=this.cartList;
+      }else{
+        this.check=[];
+      }
+      // console.log(this.allCheck);
+    },
+    select:function(){
+      if(this.check.length==this.cartList.length){
+        this.allCheck=true;
+      }else{
+        this.allCheck=false;
+      }
     }
   },
   computed:{
     totalPrice:function(){
       var total = 0;
-      this.cartList.forEach(function(val){
+      console.log(this.check);
+      this.check.forEach(function(val){
           total += val.price * val.count;
       })
       console.log(total);
       return total;
-    }
+    },
+    // allCheck:function(){
+    //   if(this.check.length==this.cartList.length){
+    //     return true;
+    //   }else{
+    //     return false;
+    //   }
+    // }
   }
 }
 </script>
@@ -326,11 +356,47 @@ export default {
 .page-cart .min{
   text-align: right;
 }
-/*.page-cart .ok input{
+.page-cart .ok input{
   width: .3rem;
   height: .3rem;
   display: inline-block;
   border-radius: .1rem;
   background: blue;
+}
+.page-cart .checkbox{
+  margin: .3rem 0 .3rem .2rem;
+  font-size: .3rem;
+}
+.page-cart .checkbox input[type=checkbox]{
+  width: .3rem;
+  height: .3rem;
+}
+/*.page-cart input[type=checkbox] {
+   width: 0.426666rem;
+   height: 0.426666rem;
+   border: 0;
+   outline: 0!important;
+   background-color: transparent;
+   -webkit-appearance: none;
+}
+.page-cart input[type=checkbox]:before {
+   content: '\e411';
+}
+.page-cart input[type=checkbox]:checked:before {
+   content: '\e441';
+}
+.page-cart input[type=checkbox]:before {
+   font-family: Muiicons;
+   font-size: 0.426666rem;
+   font-weight: 400;
+   line-height: 1;
+   text-decoration: none;
+   color: #81d8d0;
+   border-radius: 0;
+   background: 0 0;
+   -webkit-font-smoothing: antialiased;
+}
+.page-cart input[type=checkbox]:checked:before {
+    color: #81d8d0;
 }*/
 </style>
