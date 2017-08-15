@@ -8,6 +8,7 @@
 		<li class="tel">
 			<span>联系电话</span>
 			<input v-model="address_info[0].telephone" >
+
 		</li>
 		<li class="address btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
 			<span class="address-text">所在地区</span>
