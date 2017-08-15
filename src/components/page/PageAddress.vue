@@ -12,6 +12,7 @@
         <div class="edit">
           <router-link :to="'/user/address/edit/'+elem.receipt_id"><span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-edit"></span> 编辑
+
           </span></router-link>
           <span type="button" class="btn btn-primary btn-lg" @click="delete_address">
             <span class="glyphicon glyphicon-remove"></span> 删除
