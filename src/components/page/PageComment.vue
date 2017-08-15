@@ -1,5 +1,5 @@
 <template>
-  <div class="page-conment">
+  <div class="page-comment">
     <router-link to="/home">
         <div class="evaluation-title">
           <span class="glyphicon glyphicon-arrow-left">&nbsp发表评价</span>
@@ -65,7 +65,7 @@
 <script>
   import $ from 'jquery';
   export default {
-    name: 'page-aboutus',
+    name: 'page-comment',
     data () {
       return {
 

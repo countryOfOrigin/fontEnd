@@ -2,13 +2,15 @@
   <div class="page-user">
     <div class="header login" v-if="show">
       <div class="header-bg">
-        <div class="img-box"><router-link to="/user/set" >
-          <img :src='user_info.url' alt="" class="user-logo">
-          </router-link></div>
-          <div class="text-box">
-            <p class="user-name">{{user_name}}</p>
-            <p class="user-level"><span>LV</span>:{{user_info.grade}}</p>
-          </div>
+        <div class="img-box">
+          <router-link to="/user/set" >
+            <img :src='user_info.url' alt="" class="user-logo">
+          </router-link>
+        </div>
+        <div class="text-box">
+          <p class="user-name">{{user_name}}</p>
+          <p class="user-level"><span>LV</span>:{{user_info.grade}}</p>
+        </div>
       </div>
     </div>
     <div class="header unlogin" v-else>

@@ -13,10 +13,10 @@ a{
 img{
     border: 0;
 }
-.content{
+.page-all-class .content{
   text-align: center;
 }
-.content ul li{
+.page-all-class .content ul li{
   width: 50%;
   height: 2.6rem;
   float: left;
@@ -24,31 +24,31 @@ img{
   font-size: 0.35rem;
   
 }
-.content ul li i{
+.page-all-class .content ul li i{
   font-size: 0.8rem;
 }
-.content ul .a1{
+.page-all-class .content ul .a1{
   background: #fcfafd;
 }
-.content ul .a2{
+.page-all-class .content ul .a2{
   background: #edebee;
 }
-.content ul .a3{
+.page-all-class .content ul .a3{
   background: #efedf0;
 }
-.content ul .a4{
+.page-all-class .content ul .a4{
   background: #fedb10;
   color: #fff;
 }
-.content ul .a5{
+.page-all-class .content ul .a5{
   background: #d0d7dd;
 }
-.content ul .a6{
+.page-all-class .content ul .a6{
   background: #fcfafd;
 }
-.content ul .a7{
+.page-all-class .content ul .a7{
   background: #edeef3;
 }
-.content ul .a8{
+.page-all-class .content ul .a8{
   background: #e3e1e4;
 }
