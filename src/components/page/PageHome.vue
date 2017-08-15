@@ -52,7 +52,7 @@
             <span class="circle1"></span>
             <span class="circle2"></span>
           </div>
-            
+
         </div>
       </div>
     </div>
@@ -70,7 +70,7 @@
           </router-link>
           <router-link :to="'/details/'+common.good_id" class="goodname" tag="p">{{common.name}}</router-link>
           <p class="price">￥{{common.price}}</p>
-          <div class="buybtn" @click="buy(common.good_id)">    
+          <div class="buybtn" @click="buy(common.good_id)">
           </div>
         </li>
       </ul>
@@ -139,7 +139,7 @@ export default {
       shopId:0
     }
   },
-  components:{   
+  components:{
     Swipe,
     SwipeItem,
     swiper,
@@ -156,6 +156,12 @@ export default {
     })
   },
   methods:{
+//    get_coupon(){
+//      $(this).
+//      Axios.get('http://127.0.0.1:3000/get_coupon').then((res)=>{
+//        this.address_info=JSON.parse(res.data);
+//      });
+//    },
     com_home:function(){
       Axios.get('http://localhost:3000/com_home')
       .then((res)=>{
