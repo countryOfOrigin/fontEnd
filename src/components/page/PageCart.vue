@@ -9,10 +9,14 @@
       </div>
       <div class="list">
         <ul>
-          <li v-for="cart in cartList">
-            <!-- <i class="iconfont ok" ch="1">&#xe657;</i> -->
+          <li v-for="(cart,n) in cartList">
+            <!-- <i class="iconfont ok" ch="1" @click="select(n)" v-model="check" v-if="check">&#xe67c;</i> -->
+            <div @click="select(cart,n);" class="checkbox-box">
+              <img :src="checkFlag[n]?src1:src2" alt="" class="checkbox">
+            </div>
+            <!-- <i class="iconfont ok icon-dui1" ch="1" @click="select" v-model="check" v-if="!check"></i> -->
             <!-- <i class="iconfont ok" ch="1">&#xe67c;</i> -->
-            <span class="ok"><input type="checkbox" v-model="check" :value="cart" @click="select"></span>
+            <!-- <span class="ok"><input type="checkbox" v-model="check" :value="cart" @click="select"></span> -->
             <img :src="cart.url">
             <p class="goodname">{{cart.name}}</p>
             <div class="buynum"> 
@@ -31,14 +35,18 @@
         <div class="left-box">
           <!-- <i class="iconfont ok" ch="1">&#xe657;</i>
           <span class="all">全选</span> -->
-          <div class="checkbox">
+          <!-- <div class="checkbox">
             <label>
               <input type="checkbox" @click="all_check" v-model="allCheck"> 全选
             </label>
+          </div> -->
+          <div @click="all_check" class="checkall-box">
+            <img :src="checkAll?src1:src2" alt="" class="checkbox">
+            <span>全选</span>
           </div>
         </div>
         <div class="min">
-          <span class="total">合计：¥<b>{{totalPrice}}</b></span>
+          <p class="total">合计：¥<b>{{totalPrice}}</b></p>
           <p>不含运费</p>
         </div>
         
@@ -68,7 +76,11 @@ export default {
       flag:true,
       cartList:[],
       check:[],
-      allCheck:false,
+      src1:"/static/img/cart/yes.png",
+      src2:"/static/img/cart/no.png",
+      checkFlag:[],
+      checkAll:false,
+      // allCheck:[],
     }
   },
   components:{
@@ -259,9 +271,10 @@ export default {
           }
       }).then((res)=>{
           // if(res.data==1){
-          console.log(res.data);
+          // console.log(res.data);
           this.cartList=JSON.parse(res.data);
-          console.log(this.cartList);
+          // this.check=this.cartList;
+          // console.log(this.cartList);
       }).catch((error)=>{
           console.log(error);
       });
@@ -293,6 +306,8 @@ export default {
       }
     },
     del:function(sid){
+      this.checkFlag = [];
+      this.check = [];
       Axios.get('http://localhost:3000/cart_del',{
           params:{
               u_id:this.user_id,
@@ -306,33 +321,46 @@ export default {
       }).catch((error)=>{
           console.log(error);
       });
+    },   
+    select:function(cart,n){
+      // console.log(this.check.indexOf(cart));
+      var idx = this.check.indexOf(cart);
+      if(idx == -1){
+        this.check.push(cart);
+        this.checkFlag[n]=true;
+      }else{
+        this.check.splice(idx,1);
+        this.checkFlag[n]=false;
+      }
+      if(this.check.length==this.cartList.length){
+        this.checkAll=true;
+      }else{
+        this.checkAll=false;
+      }
+
+      // console.log(this.check);
     },
     all_check:function(){
-      // this.allCheck=!this.allCheck;
-      // console.log(this.allCheck);
-      if(this.allCheck){
+      this.checkAll = !this.checkAll;
+      if(!this.checkAll){
+        this.checkFlag = [];
+        this.check = [];
+      }else{
         this.check=this.cartList;
-      }else{
-        this.check=[];
-      }
-      // console.log(this.allCheck);
-    },
-    select:function(){
-      if(this.check.length==this.cartList.length){
-        this.allCheck=true;
-      }else{
-        this.allCheck=false;
+        for (var i = 0; i < this.cartList.length; i++) {
+          this.checkFlag[i] = true;
+        }
       }
     }
   },
   computed:{
     totalPrice:function(){
       var total = 0;
-      console.log(this.check);
+      // console.log(this.check);
       this.check.forEach(function(val){
           total += val.price * val.count;
       })
-      console.log(total);
+      // console.log(total);
       return total;
     },
     // allCheck:function(){
@@ -341,7 +369,17 @@ export default {
     //   }else{
     //     return false;
     //   }
-    // }
+    // },
+    // all_check:function(){
+    //   // this.allCheck=!this.allCheck;
+    //   // console.log(this.allCheck);
+    //   if(this.allCheck){
+    //     this.check=this.cartList;
+    //   }else{
+    //     this.check=[];
+    //   }
+    //   // console.log(this.allCheck);
+    // },
   }
 }
 </script>
@@ -363,13 +401,40 @@ export default {
   border-radius: .1rem;
   background: blue;
 }
-.page-cart .checkbox{
-  margin: .3rem 0 .3rem .2rem;
-  font-size: .3rem;
-}
-.page-cart .checkbox input[type=checkbox]{
+.page-cart .checkbox-box{
+  /*display: block;*/
   width: .3rem;
   height: .3rem;
+  float: left;
+  margin: .7rem .1rem .7rem 0rem;
+  /*line-height: 2rem;*/
+}
+.page-cart .checkall-box{
+  /*display: block;*/
+  /*width: .3rem;
+  height: .3rem;*/
+  float: left;
+  margin: .3rem 0rem .3rem .3rem;
+  /*line-height: 2rem;*/
+}
+.page-cart .checkall-box img{
+  float: left;
+  margin-right: .1rem;
+}
+.page-cart .checkbox{
+  width: .3rem;
+  height: .3rem;
+  margin: 0;
+  /*margin: .7rem .2rem;*/
+}
+.page-cart .min{
+  margin-left: 0;
+  text-align: right;
+  width: 3.1rem;
+}
+.page-cart .min p{
+  float: none;
+  display: block;
 }
 /*.page-cart input[type=checkbox] {
    width: 0.426666rem;
