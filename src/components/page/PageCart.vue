@@ -5,7 +5,7 @@
         <i class="iconfont ok" ch="1" style="display:none">&#xe657;</i>
         <i class="iconfont">&#xe67e;</i>
         <p>黑龙江电视台--龙江原产递</p>
-        <a href="javascript:;">编辑</a>
+        <a href="javascript:;" @click="gedit" class="gedit">编辑</a>
       </div>
       <div class="list">
         <ul>
@@ -51,7 +51,7 @@
         </div>
         
         <a href="" class="clear color">结算 (<b>{{check.length}}</b>)</a>
-        <a href="" class="del-all">删除</a>
+        <a class="del-all color" @click="del_all">删除(<b>{{check.length}}</b>)</a>
       </div>
     </div>
     
@@ -202,7 +202,7 @@ export default {
       $('.min').toggle();
       $('.clear').toggle();
       $('.del-all').toggle();
-      $('.foot a').toggleClass('null');
+      // $('.foot a').toggleClass('null');
       
       if($(this).text()=='编辑'){
         $(this).text('完成');
@@ -340,8 +340,10 @@ export default {
       }
       if(this.check.length==0){
         $(".clear").addClass("color");
+        $(".del-all").addClass("color");
       }else{
         $(".clear").removeClass("color");
+        $(".del-all").removeClass("color");
       }
 
       // console.log(this.check);
@@ -352,12 +354,32 @@ export default {
         this.checkFlag = [];
         this.check = [];
         $(".clear").addClass("color");
+        $(".del-all").addClass("color");
       }else{
         this.check=this.cartList;
         for (var i = 0; i < this.cartList.length; i++) {
           this.checkFlag[i] = true;
         }
         $(".clear").removeClass("color");
+        $(".del-all").removeClass("color");
+      }
+    },
+    gedit:function(){
+      this.checkFlag = [];
+      this.check = [];
+      this.checkAll = false;
+      $(".clear").addClass("color");
+      $(".del-all").addClass("color");
+    },
+    del_all:function(){
+      if(this.check.length){
+        // console.log(this.check);
+        var nums = [];
+        for (var i = 0; i < this.check.length; i++) {
+          nums.push(this.check[i].count);
+        }
+        // console.log(nums);
+        this.del(nums);
       }
     }
   },
