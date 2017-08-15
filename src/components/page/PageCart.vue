@@ -308,7 +308,7 @@ export default {
       });
     },
     all_check:function(){
-      this.allCheck=!this.allCheck;
+      // this.allCheck=!this.allCheck;
       // console.log(this.allCheck);
       if(this.allCheck){
         this.check=this.cartList;
