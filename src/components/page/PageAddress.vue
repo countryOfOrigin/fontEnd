@@ -12,6 +12,7 @@
         <div class="edit">
           <router-link :to="'/user/address/edit/'+elem.receipt_id"><span type="button" class="btn btn-primary btn-lg">
             <span class="glyphicon glyphicon-edit"></span> 编辑
+
           </span></router-link>
           <span type="button" class="btn btn-primary btn-lg" @click="delete_address">
             <span class="glyphicon glyphicon-remove"></span> 删除
@@ -63,17 +64,18 @@ export default {
           console.log(res.data);
         });
       },
-    delete_address:function(){
-      var _this=this;
-      Axios.get('http://127.0.0.1:3000/delete_address',{
-        params:{
-          address_id:this.address_id,
-        }
-      }).then(function(res){
-        _this.flag=JSON.parse(res.data);
-        console.log(res.data);
-      });
-    },
+      delete_address:function(){
+        var _this=this;
+        Axios.get('http://127.0.0.1:3000/delete_address',{
+          params:{
+            address_id:this.address_id,
+          }
+        }).then((res)=>{
+          this.flag=JSON.parse(res.data);
+          this.get_address();
+          console.log(res.data);
+        });
+      },
 
   }
 

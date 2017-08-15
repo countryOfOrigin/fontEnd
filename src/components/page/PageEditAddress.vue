@@ -52,7 +52,7 @@ export default {
   data () {
     return {
       showCode: false,
-      select: { city: '', province: '', area: '' },
+      select: { city: '市辖区', province: '北京市', area: '海淀区' },
       address_id:this.$route.params.id,
       address_info:{},
       flag:"",
@@ -89,7 +89,6 @@ export default {
         }
       }).then(function(res){
         _this.address_info=JSON.parse(res.data)[0];
-        console.log(_this.address_info);
       });
     },
     showTip(tip,type) {
@@ -131,37 +130,43 @@ export default {
       });
     },
     insert_address(){
-      Axios.get('http://127.0.0.1:3000/insert_address',{
-        params:{
-          user_id:this.user_id,
-          name:this.address_info.name,
-          tel:this.address_info.telephone,
-          city:this.cit,
-          pro:this.pro,
-          dis:this.dis,
-          detail:this.address_info.address
-        },
-      }).then((res)=>{
-        this.success=res.data;
-        console.log(this.success);
-        if(this.success==1){
-          this.showTip("添加地址成功","success");
-        }
-        setTimeout(function(){
-          window.history.go(-2);
-        },2000);
-      });
+      if(this.address_info.name!='' && this.address_info.telephone!="" && this.cit!=null && this.pro!="" && this.dis!="" && this.cit !=""){
+        Axios.get('http://127.0.0.1:3000/insert_address',{
+          params:{
+            user_id:this.user_id,
+            name:this.address_info.name,
+            tel:this.address_info.telephone,
+            city:this.cit,
+            pro:this.pro,
+            dis:this.dis,
+            detail:this.address_info.address
+          },
+        }).then((res)=>{
+          this.success=res.data;
+          console.log(this.success);
+          if(this.success==1){
+            this.showTip("添加地址成功","success");
+          }
+          setTimeout(function(){
+            window.history.go(-1);
+          },2000);
+        });
+      }else{
+          this.showTip("信息不完整","danger");
+      }
+
     },
     onselect(){
         console.log(this.select);
         this.show=false;
     },
     selectProvince(value) {
+
           this.select.province = value;
 
     },
     selectCity(value) {
-          this.select.city = "市辖区";
+          this.select.city =value ;
 
     },
     selectArea(value) {
