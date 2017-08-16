@@ -4,9 +4,9 @@
       <span class="glyphicon glyphicon-search"></span>
       <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品" @focus="focus">
       <swipe class="my-swipe">
-        <swipe-item class="item1"></swipe-item>
-        <swipe-item class="item2"></swipe-item>
-        <swipe-item class="item3"></swipe-item>
+        <swipe-item class="item1"><router-link to="/details/1" class="click"></router-link></swipe-item>
+        <swipe-item class="item2"><router-link to="/details/2" class="click"></router-link></swipe-item>
+        <swipe-item class="item3"><router-link to="/details/3" class="click"></router-link></swipe-item>
       </swipe>
     </div>
     <div class="nav">
@@ -22,7 +22,13 @@
     <div class="packet">
       <div class="swiper-container">
         <div class="swiper-wrapper">
-          <div class="swiper-slide">
+          <div class="swiper-slide" v-for="money in moneyList" @click="add_money(money.coupon_id)">
+            <span class="money">¥{{money.preferential}}</span>
+            <span class="con">全场通用<br />满减券</span>
+            <span class="circle1"></span>
+            <span class="circle2"></span>
+          </div>
+          <!-- <div class="swiper-slide">
             <span class="money">¥15</span>
             <span class="con">农副<br />满减券</span>
             <span class="circle1"></span>
@@ -51,13 +57,15 @@
             <span class="con">农副<br />满减券</span>
             <span class="circle1"></span>
             <span class="circle2"></span>
-          </div>
+          </div> -->
 
         </div>
       </div>
     </div>
     <div class="details">
-      <img src="../../../static/img/home/g1.jpg">
+      <router-link to="/details/">
+        <img src="../../../static/img/home/g1.jpg" class="gimg">
+      </router-link>
       <div class="title hot-title">
         <i class="glyphicon glyphicon-fire"></i>&nbsp;
         <span>热卖商品</span>
@@ -75,7 +83,9 @@
       </ul>
     </div>
     <div class="details" v-for="(commodity,index) in commodityList">
-      <img src="../../../static/img/home/g1.jpg">
+      <router-link :to="'/details/'+commodity[0].good_id">
+        <img src="../../../static/img/home/g1.jpg">
+      </router-link>
       <router-link :to="'/classify/'+classify[index]+'/1'" tag="div" class="title">
         <i class="iconfont" :class="classifyIcon[index]" ></i>&nbsp;
         <span>{{classify[index]}}</span>
@@ -115,7 +125,7 @@
         </li>
       </ul>
     </div>
-    <div class="cooperation">
+    <!-- <div class="cooperation">
       <ul>
         <li>
           <i class="iconfont">&#xe609;</i>&nbsp;
@@ -128,10 +138,12 @@
           <b>></b>
         </li>
       </ul>
-    </div>
+    </div> -->
+    <div style="clear:both"></div>
     <common-footer-logo  style="margin-bottom:1rem;"></common-footer-logo>
     <common-footer></common-footer>
     <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
+    <div class="prompt">{{prompt}}</div>
   </div>
 </template>
 
@@ -142,7 +154,7 @@ import CommonFooter from '../common/CommonFooter'
 import CommonFooterLogo from '../common/CommonFooterLogo'
 import CommonAddBuycar from '../common/CommonAddBuycar'
 import {Swipe, SwipeItem } from 'vue-swipe'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import {swiper, swiperSlide } from 'vue-awesome-swiper'
 Swipe.auto= false;
 export default {
   name: 'page-home',
@@ -156,6 +168,8 @@ export default {
       show:false,
       shopId:0,
       hotList:[],
+      moneyList:[],
+      prompt:""
     }
   },
   components:{
@@ -170,10 +184,8 @@ export default {
   mounted(){
     this.com_home();
     this.hot_goods();
-    var mySwiper = new Swiper('.swiper-container', {
-      direction : 'horizontal',
-      slidesPerView : 'auto',
-    })
+    this.get_money();
+    
   },
   methods:{
 //    get_coupon(){
@@ -187,7 +199,22 @@ export default {
       .then((res)=>{
         // console.log(res.data);
         this.commodityList=JSON.parse(res.data);
-        console.log(this.commodityList);
+        // console.log(this.commodityList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
+    get_money:function(){
+      Axios.get('http://localhost:3000/get_money')
+      .then((res)=>{
+        this.moneyList=JSON.parse(res.data);
+        // console.log(this.moneyList);
+        this.$nextTick(function(){
+          var mySwiper = new Swiper('.swiper-container', {
+            direction : 'horizontal',
+            slidesPerView : 'auto',
+          });
+        });
       }).catch((error)=>{
         console.log(error);
       });
@@ -197,9 +224,37 @@ export default {
       .then((res)=>{
         // console.log(res.data);
         this.hotList=JSON.parse(res.data);
-        console.log(this.hotList);
+        // console.log(this.hotList);
       }).catch((error)=>{
         console.log(error);
+      });
+    },
+    add_money:function(id){
+      if(!document.cookie){
+        this.$router.push("/login"); 
+      }
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      Axios.get('http://localhost:3000/add_money',{
+          params:{
+              uid:user_id,
+              cid:id
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.prompt="获取代金券成功"; 
+          }else if(res.data==0){
+            this.prompt="代金券已存在"; 
+          }else{
+            this.prompt="代金券获取失败"; 
+          }
+          $(".page-home .prompt").stop(true,true).slideDown(200, function(){
+            setTimeout(function(){
+              $(".page-home .prompt").stop(true,true).slideUp(200);
+            },1500);
+          });
+      }).catch((error)=>{
+          console.log(error);
       });
     },
     focus:function(){
@@ -212,8 +267,9 @@ export default {
     },
     isshow: function (a){
       this.show = false;
-    }
-  }
+    },
+  }, 
+
 }
 </script>
 
@@ -228,5 +284,31 @@ export default {
 }
 .page-home .hot-title{
   color: #d83131;
+}
+.page-home .my-swipe .click{
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.page-home .details img.gimg{
+  margin-top: .1rem;
+}
+.page-home .prompt{
+  display: none;
+  z-index: 999;
+  position: fixed;
+  top: 0;
+  height: .8rem;
+  line-height: .8rem;
+  width: 100%;
+  background: #a6c73a;
+  color: #fff;
+  font-weight: bolder;
+  text-align: center;
+  font-size: .26rem;
+  /*transition: display 2s;
+  -moz-transition: display 2s; 
+  -webkit-transition: display 2s; 
+  -o-transition: display 2s; */
 }
 </style>

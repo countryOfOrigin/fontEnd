@@ -46,7 +46,7 @@ export default {
     return {
       commodityList:[],
       name:this.$route.params.name,
-      count:4,
+      count:16,
       page:this.$route.params.page,
       prev_page:1,
       next_page:1,
@@ -89,7 +89,7 @@ export default {
           page:this.page
         }
       }).then((res)=>{
-        console.log(res.data);
+        // console.log(res.data);
         this.commodityList=JSON.parse(res.data).goods;
         this.all_page=JSON.parse(res.data).sum;
         if(this.page == 1){

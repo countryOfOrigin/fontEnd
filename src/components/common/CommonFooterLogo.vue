@@ -4,8 +4,8 @@
   		<ul>
   			<router-link tag="li" to="/home">店铺主页</router-link>	
   			<router-link tag="li" to="/user">会员中心</router-link>	
-  			<router-link tag="li" to="/">关于我们</router-link>	
-  			<router-link tag="li" to="/">店铺信息</router-link>	
+  			<router-link tag="li" to="/aboutus">关于我们</router-link>	
+  			<router-link tag="li" to="/aboutus">店铺信息</router-link>	
   		</ul>
   	</div>
   	<img src="../../assets/img/logo.png" alt="">
