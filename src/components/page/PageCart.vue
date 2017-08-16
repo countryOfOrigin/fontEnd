@@ -19,7 +19,7 @@
             <!-- <span class="ok"><input type="checkbox" v-model="check" :value="cart" @click="select"></span> -->
             <img :src="cart.url">
             <p class="goodname">{{cart.name}}</p>
-            <div class="buynum"> 
+            <div class="buynum">
                 <span class="sub" @click="sub(cart.count,cart.shop_id);cart.count==1?1:cart.count--;">-</span>
                 <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="" v-model="cart.count" class="num" @blur="update_cart(cart.count,cart.shop_id);">
                 <span class="add" @click="add(cart.count,cart.shop_id);cart.count==999?999:cart.count++;">+</span>
@@ -49,12 +49,12 @@
           <p class="total">合计：¥<b>{{totalPrice}}</b></p>
           <p>不含运费</p>
         </div>
-        
-        <a href="" class="clear color">结算 (<b>{{check.length}}</b>)</a>
+
+        <router-link to="/cart/orderforgoods"><div href="" class="clear color" @click="settlement">结算 (<b>{{check.length}}</b>)</div></router-link>
         <a class="del-all color" @click="del_all">删除(<b>{{check.length}}</b>)</a>
       </div>
     </div>
-    
+
     <div v-else>
       <div class="empty-list">
         <h4>购物车快饿瘪了 T.T</h4>
@@ -84,18 +84,18 @@ export default {
     }
   },
   components:{
-    
+
   },
   mounted(){
     if(!document.cookie){
-      this.$router.push("/login"); 
+      this.$router.push("/login");
     }
     var arr=document.cookie.split(";");
     var user_id=arr[0].split("=")[1];
     this.user_id=user_id;
-    this.all_cart();
+    this.all_cart()
 
-
+//    console.log(this.cartList);
 
 
     var $sub = $('.sub');
@@ -107,92 +107,8 @@ export default {
     var $footOk = $('.foot .ok');
 
 
-    
-    // function listAll(){
-    //   var sum = 0;
-    //   $listOk.each(function(){
-    //   if($(this).attr('ch')==1){
-    //       sum += 1;
-    //     }
-    //   });
-    //   $('.foot a b').text(sum);
-    //   if($('.foot a b').text()==0){
-    //     $('.foot a').addClass('null');
-    //   }else{
-    //     $('.foot a').removeClass('null');
-    //   }
-    // }
 
 
-
-    // function totalAll(){
-    //   var total = 0;
-    //   $listOk.each(function(){
-    //     $(this).siblings('.buynum').find('.num').val($(this).siblings('.number').find('b').text());
-    //     var itemtotal = $(this).siblings('.price').find('b').text()*$(this).siblings('.number').find('b').text();
-    //     if($(this).attr('ch')==1){
-    //       total += itemtotal;
-    //     }
-    //   });
-    //   $('.total b').text(total);
-    // }
-    
-    // totalAll();
-    // listAll();
-    
-    // $listOk.on('click',function(){
-    //   if($(this).attr('ch')==1){
-    //     $(this).html('&#xe67c;').attr('ch','0');
-    //     $editOk.html('&#xe67c;').attr('ch','0');
-    //     $footOk.html('&#xe67c;').attr('ch','0');     
-    //   }
-    //   else{
-    //     $(this).html('&#xe657;');
-    //     $(this).attr('ch','1');
-    //     var arr = new Array();
-    //     $listOk.each(function(){
-    //       arr.push($(this).attr('ch'));
-    //       if($.inArray('0', arr)==-1){
-    //         $editOk.html('&#xe657;').attr('ch','1');
-    //         $footOk.html('&#xe657;').attr('ch','1');
-    //       }else{
-    //         $editOk.html('&#xe67c;').attr('ch','0');
-    //         $footOk.html('&#xe67c;').attr('ch','0');
-    //       }
-          
-    //     }); 
-    //   }
-    //   totalAll();
-    //   listAll();
-    // });
-    // $editOk.on('click',function(){
-    //   if($(this).attr('ch')==1){
-    //     $(this).html('&#xe67c;').attr('ch','0');
-    //     $listOk.html('&#xe67c;').attr('ch','0');
-    //     $footOk.html('&#xe67c;').attr('ch','0');
-    //   }
-    //   else{
-    //     $(this).html('&#xe657;').attr('ch','1');
-    //     $listOk.html('&#xe657;').attr('ch','1');
-    //     $footOk.html('&#xe657;').attr('ch','1');
-    //   }
-    //   totalAll();
-    //   listAll();
-    // });
-    // $footOk.on('click',function(){
-    //   if($(this).attr('ch')==1){
-    //     $(this).html('&#xe67c;').attr('ch','0');
-    //     $listOk.html('&#xe67c;').attr('ch','0');
-    //     $editOk.html('&#xe67c;').attr('ch','0');
-    //   }
-    //   else{
-    //     $(this).html('&#xe657;').attr('ch','1');
-    //     $listOk.html('&#xe657;').attr('ch','1');
-    //     $editOk.html('&#xe657;').attr('ch','1');
-    //   }
-    //   totalAll();
-    //   listAll();
-    // });
 
     $edit.on('click',function(){
       $('.goodname').toggle();
@@ -203,7 +119,7 @@ export default {
       $('.clear').toggle();
       $('.del-all').toggle();
       // $('.foot a').toggleClass('null');
-      
+
       if($(this).text()=='编辑'){
         $(this).text('完成');
         // $('.ok').html('&#xe67c;');
@@ -211,7 +127,7 @@ export default {
         $editOk.attr('ch','0');
         $footOk.attr('ch','0');
         // totalAll();
-        
+
       }
       else{
         $(this).text('编辑');
@@ -219,51 +135,15 @@ export default {
         $listOk.each(function(){
           $(this).siblings('.number').find('b').text($(this).siblings('.buynum').find('.num').val());
         });
-        
+
       }
-      // listAll();
     });
-    // $add.on('click',function(){
-    //   var $num =  $(this).siblings('.num');
-    //     $num.val(parseInt($num.val())+1);
-    //     if($num.val()>=999){
-    //         $num.val(999);
-    //         $(this).addClass('cancel');
-    //     }
-    //     else{
-    //         $(this).removeClass('cancel');
-    //         $(this).siblings('.sub').removeClass('cancel');
-    //     }
-    // });
-    // $sub.on('click',function(){
-    //   var $num =  $(this).siblings('.num');
-    //     $num.val(parseInt($num.val())-1);
-    //     if($num.val()<=1){
-    //         $num.val(1);
-    //         $(this).addClass('cancel');       
-    //     }
-    //     else{
-    //         $(this).removeClass('cancel');
-    //         $(this).siblings('.add').removeClass('cancel');
-    //     }
-    // });
-    // $('input').bind('input propertychange', function() {
-    //   var $add = $(this).siblings('.add');
-    //   var $sub = $(this).siblings('.sub');
-    //     if($(this).val()>=999){
-    //         $add.addClass('cancel');
-    //         $sub.removeClass('cancel');
-    //     }
-    //     else if($(this).val()<=1){
-    //         $sub.addClass('cancel');
-    //         $add.removeClass('cancel');
-    //     }else{
-    //         $sub.removeClass('cancel');
-    //         $add.removeClass('cancel');
-    //     }
-    // });
+
   },
   methods:{
+    settlement(){
+        this.$store.dispatch('get_goods_info',this.check);
+    },
     all_cart:function(){
       Axios.get('http://localhost:3000/cart_all',{
           params:{
@@ -277,7 +157,7 @@ export default {
           }else{
             this.flag=false;
           }
-          
+
           // this.check=this.cartList;
           // console.log(this.cartList);
       }).catch((error)=>{
@@ -327,7 +207,7 @@ export default {
       }).catch((error)=>{
           console.log(error);
       });
-    },   
+    },
     select:function(cart,n){
       // console.log(this.check.indexOf(cart));
       var idx = this.check.indexOf(cart);

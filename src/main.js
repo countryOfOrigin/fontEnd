@@ -10,6 +10,7 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import 'bootstrap/dist/css/bootstrap.min.css'
 import VueTouch from 'vue-touch'
 import VueAwesomeSwiper from 'vue-awesome-swiper'
+import store from './vuex/store'
 
 require('./assets/js/rem.js')
 Vue.use(VueAwesomeSwiper)
@@ -36,6 +37,7 @@ Vue.component('v-distpicker',VDistpicker);
 new Vue({
   el: '#app',
   router,
+  store,
   template: '<App/>',
   components: { App }
 })
