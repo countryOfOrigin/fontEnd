@@ -50,7 +50,7 @@
           <p>不含运费</p>
         </div>
 
-        <router-link to="/cart/orderforgoods"><div href="" class="clear color" @click="settlement">结算 (<b>{{check.length}}</b>)</div></router-link>
+        <a class="clear color" @click="settlement">结算 (<b>{{check.length}}</b>)</a>
         <a class="del-all color" @click="del_all">删除(<b>{{check.length}}</b>)</a>
       </div>
     </div>
@@ -143,6 +143,7 @@ export default {
   methods:{
     settlement(){
         this.$store.dispatch('get_goods_info',this.check);
+        this.$router.push("/cart/orderforgoods");
     },
     all_cart:function(){
       Axios.get('http://localhost:3000/cart_all',{
@@ -200,13 +201,16 @@ export default {
               s_id:sid,
           }
       }).then((res)=>{
-          // if(res.data==1){
-          console.log(res.data);
-          this.cartList=JSON.parse(res.data);
-          console.log(this.cartList);
+          if(res.data!=0){
+            this.cartList=JSON.parse(res.data);
+            $(".del-all").addClass("color");
+          }else{
+            this.flag=false;
+          }
       }).catch((error)=>{
           console.log(error);
       });
+
     },
     select:function(cart,n){
       // console.log(this.check.indexOf(cart));
@@ -265,6 +269,7 @@ export default {
         }
         // console.log(nums);
         this.del(nums);
+
       }
     }
   },
