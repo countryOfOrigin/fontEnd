@@ -25,7 +25,7 @@ import PageSearchResult from '@/components/page/PageSearchResult'//搜索结果
 import PageDiscount from '@/components/page/PageDiscount'//优惠券
 import PageAboutus from '@/components/page/PageAboutus'//关于我们
 import PageComment from '@/components/page/PageComment'//评论页
-import PageOrderForGoods from '@/components/page/PageOrderForGoods'//评论页
+import PageOrderForGoods from '@/components/page/PageOrderForGoods'//付款页
 
 import MyTest from '@/components/MyTest'
 
@@ -117,7 +117,7 @@ export default new Router({
       component: PageSearch,
       children: [
         { path: "/search/recommend", component: PageSearchRecommend },
-        { path: "/search/result", component: PageSearchResult },
+        { path: "/search/result/:key", component: PageSearchResult },
       ]
     },
     {

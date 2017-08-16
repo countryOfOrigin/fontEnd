@@ -5,8 +5,8 @@
         <i class="iconfont" :class="icon"></i>&nbsp;
         <span>{{name}}</span>
       </div>
-      <ul v-for="commodity in commodityList">
-        <li>
+      <ul>
+        <li v-for="commodity in commodityList">
           <router-link :to="'/details/'+commodity.good_id">
             <img :src="commodity.url">
           </router-link>

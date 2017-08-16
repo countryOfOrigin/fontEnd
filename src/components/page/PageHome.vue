@@ -56,6 +56,24 @@
         </div>
       </div>
     </div>
+    <div class="details">
+      <img src="../../../static/img/home/g1.jpg">
+      <div class="title hot-title">
+        <i class="glyphicon glyphicon-fire"></i>&nbsp;
+        <span>热卖商品</span>
+      </div>
+      <ul>
+        <li v-for="hot in hotList">
+          <router-link :to="'/details/'+hot.good_id">
+            <img :src="hot.url">
+          </router-link>
+          <router-link :to="'/details/'+hot.good_id" class="goodname" tag="p">{{hot.name}}</router-link>
+          <p class="price">￥{{hot.price}}</p>
+          <div class="buybtn" @click="buy(hot.good_id)">
+          </div>
+        </li>
+      </ul>
+    </div>
     <div class="details" v-for="(commodity,index) in commodityList">
       <img src="../../../static/img/home/g1.jpg">
       <router-link :to="'/classify/'+classify[index]+'/1'" tag="div" class="title">
@@ -136,7 +154,8 @@ export default {
       classifyIconColor:["icon-mifan i1","icon-mogu i2","icon-lingshi-copy i3","icon-haixian i4","icon-cha i5","icon-shiwu i6","icon-shengxian i7","icon-jiaju i8"],
       commodityList:[],
       show:false,
-      shopId:0
+      shopId:0,
+      hotList:[],
     }
   },
   components:{
@@ -150,6 +169,7 @@ export default {
   },
   mounted(){
     this.com_home();
+    this.hot_goods();
     var mySwiper = new Swiper('.swiper-container', {
       direction : 'horizontal',
       slidesPerView : 'auto',
@@ -168,6 +188,16 @@ export default {
         // console.log(res.data);
         this.commodityList=JSON.parse(res.data);
         console.log(this.commodityList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
+    hot_goods:function(){
+      Axios.get('http://localhost:3000/hot_goods')
+      .then((res)=>{
+        // console.log(res.data);
+        this.hotList=JSON.parse(res.data);
+        console.log(this.hotList);
       }).catch((error)=>{
         console.log(error);
       });
@@ -195,5 +225,8 @@ export default {
 @import "../../assets/font/iconfont.css";
 .page-home{
   background: #eee;
+}
+.page-home .hot-title{
+  color: #d83131;
 }
 </style>

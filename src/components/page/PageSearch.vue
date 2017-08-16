@@ -2,8 +2,8 @@
   <div class="page-search">
   <div class="search">
     <span class="glyphicon glyphicon-search"></span>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品" @focus="focus">
-    <input type="button" name="" class="sea-btn" value="搜索">
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="输入您想要的商品" v-model="keyword"><!-- @focus="focus" -->
+    <input type="button" name="" class="sea-btn" value="搜索" @click="searchKey">
   </div>
     
     <router-view></router-view>
@@ -16,8 +16,7 @@ export default {
   name: 'page-search',
   data () {
     return {
-
-
+      keyword:"",
     }
   },
   components:{
@@ -25,6 +24,13 @@ export default {
   },
   mounted(){
     document.getElementById("exampleInputEmail1").focus();
+  },
+  methods:{
+    searchKey:function(){
+      if(this.keyword!=""){
+        this.$router.push("/search/result/"+this.keyword);
+      }
+    }
   }
 }
 </script>

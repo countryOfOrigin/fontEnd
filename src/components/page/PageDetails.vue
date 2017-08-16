@@ -72,12 +72,14 @@
     <div class="more">
       <p class="title">更多精选商品</p>
       <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
+        <li v-for="hot in hotList">
+          <router-link :to="'/details/'+hot.good_id" tag="div">
+            <img :src="hot.url">
+          </router-link>
+          <router-link :to="'/details/'+hot.good_id" class="goodname" tag="p">{{hot.name}}</router-link>
+          <p class="price">￥{{hot.price}}</p>
         </li>
-        <li>
+       <!--  <li>
           <img src="../../../static/img/home/02.jpg">
           <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
           <p class="price">¥118.00</p>
@@ -91,10 +93,10 @@
           <img src="../../../static/img/home/04.jpg">
           <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
           <p class="price">¥118.00</p>
-        </li>
+        </li> -->
       </ul>
       <p class="pb">
-        <a class="btn">进店逛逛></a>
+        <router-link class="btn" to="/home">进店逛逛></router-link>
       </p>
     </div>
     <div class="details-foot">
@@ -114,6 +116,7 @@
 </template>
 
 <script>
+import Axios from 'axios'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import CommonAddBuycar from '../common/CommonAddBuycar'
 export default {
@@ -121,8 +124,8 @@ export default {
   data () {
     return {
       show:false,
-      shopId:this.$route.params.tag
-
+      shopId:this.$route.params.tag,
+      hotList:[]
 
     }
   },
@@ -138,7 +141,17 @@ export default {
     },
     isshow: function (a){
       this.show = false;
-    }
+    },
+    hot_goods:function(){
+      Axios.get('http://localhost:3000/hot_goods')
+      .then((res)=>{
+        // console.log(res.data);
+        this.hotList=JSON.parse(res.data);
+        // console.log(this.hotList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
   },
   mounted() {
    var mySwiper = new Swiper('.swiper-container', {
@@ -148,7 +161,8 @@ export default {
       loopAdditionalSlides : 0,
       watchSlidesProgress : true,
       watchSlidesVisibility : true,
-    })
+    });
+   this.hot_goods();
  }
 }
 </script>

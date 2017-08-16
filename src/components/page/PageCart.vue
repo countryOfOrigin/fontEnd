@@ -59,7 +59,7 @@
       <div class="empty-list">
         <h4>购物车快饿瘪了 T.T</h4>
         <p>快给我挑点宝贝</p>
-        <a href="">去逛逛</a>
+        <router-link to="/home">去逛逛</router-link>
       </div>
     </div>
   </div>
@@ -272,7 +272,12 @@ export default {
       }).then((res)=>{
           // if(res.data==1){
           // console.log(res.data);
-          this.cartList=JSON.parse(res.data);
+          if(res.data!=0){
+            this.cartList=JSON.parse(res.data);
+          }else{
+            this.flag=false;
+          }
+          
           // this.check=this.cartList;
           // console.log(this.cartList);
       }).catch((error)=>{
@@ -376,7 +381,7 @@ export default {
         // console.log(this.check);
         var nums = [];
         for (var i = 0; i < this.check.length; i++) {
-          nums.push(this.check[i].count);
+          nums.push(this.check[i].shop_id);
         }
         // console.log(nums);
         this.del(nums);

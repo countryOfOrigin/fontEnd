@@ -3,36 +3,24 @@
     <div class="recommend">
         <p>推荐搜索</p>
         <ul>
-            <li>鸣人</li>
+          <li v-for="search in searchList">{{search.content}}</li>
+            <!-- <li>鸣人</li>
             <li>佐助</li>
             <li>卡卡西</li>
             <li>晓</li>
-            <li>四代目火影</li>
+            <li>四代目火影</li> -->
         </ul>
     </div>
     <div style="clear: both;"></div>
     <div class="more">
       <p class="title">热卖商品</p>
       <ul>
-        <li>
-          <img src="../../../static/img/home/01.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-        </li>
-        <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
+        <li v-for="hot in hotList">
+          <router-link :to="'/details/'+hot.good_id" tag="div">
+            <img :src="hot.url">
+          </router-link>
+          <router-link :to="'/details/'+hot.good_id" class="goodname" tag="p">{{hot.name}}</router-link>
+          <p class="price">￥{{hot.price}}</p>
         </li>
       </ul>
     </div>
@@ -40,18 +28,45 @@
 </template>
 
 <script>
-
+import Axios from 'axios'
 export default {
   name: 'page-search-recommend',
   data () {
     return {
-
+      searchList:[],
+      hotList:[],
 
     }
   },
   components:{
 
   },
+  mounted(){
+    this.hot_search();
+    this.hot_goods();
+  },
+  methods:{
+    hot_search:function(){
+      Axios.get('http://localhost:3000/hot_search')
+      .then((res)=>{
+        // console.log(res.data);
+        this.searchList=JSON.parse(res.data);
+        // console.log(this.hotList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
+    hot_goods:function(){
+      Axios.get('http://localhost:3000/hot_goods')
+      .then((res)=>{
+        // console.log(res.data);
+        this.hotList=JSON.parse(res.data);
+        // console.log(this.hotList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    },
+  }
 }
 </script>
 

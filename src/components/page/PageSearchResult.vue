@@ -2,7 +2,21 @@
   <div class="page-search-result">
     <div class="result">
         <ul class="list">
+            <li v-for="commodity in commodityList">
+                <img :src="commodity.url">
+                <p class="goodname">{{commodity.name}}</p>
+                <span class="new-price">¥<b>{{commodity.price}}</b></span>
+                <span class="old-price">¥<del>128.00</del></span>
+                <span class="number">评论<b>146</b>条</span>
+            </li>
             <li>
+                <img src="../../assets/img/m01.jpg">
+                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                <span class="new-price">¥<b>68.00</b></span>
+                <span class="old-price">¥<del>128.00</del></span>
+                <span class="number">评论<b>146</b>条</span>
+            </li>
+            <!-- <li>
                 <img src="../../assets/img/m01.jpg">
                 <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                 <span class="new-price">¥<b>68.00</b></span>
@@ -22,21 +36,7 @@
                 <span class="new-price">¥<b>68.00</b></span>
                 <span class="old-price">¥<del>128.00</del></span>
                 <span class="number">评论<b>146</b>条</span>
-            </li>
-            <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
-            <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
+            </li> -->
         </ul>
         
     </div>
@@ -44,18 +44,44 @@
 </template>
 
 <script>
-
+import Axios from 'axios'
 export default {
   name: 'page-search-result',
   data () {
     return {
-
-
+        keyword:this.$route.params.key,
+        commodityList:[],
+        flag:true
     }
   },
   components:{
 
   },
+  mounted(){
+    this.search_key();
+  },
+  methods:{
+    search_key:function(){
+      Axios.get('http://localhost:3000/search_key',{
+        params:{
+          key:this.keyword,
+        }
+      }).then((res)=>{
+        // console.log(res.data);
+        this.commodityList=JSON.parse(res.data);
+        console.log(this.commodityList);
+      }).catch((error)=>{
+        console.log(error);
+      });
+    }
+  },
+    watch:{
+      '$route'(to,from){
+        this.keyword=this.$route.params.key,
+        this.search_key();
+      }
+    },
+
 }
 </script>
 
