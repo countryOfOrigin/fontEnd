@@ -60,15 +60,59 @@
         </span>
       </div>
     </div>
-    <div class="goodimg">
-      <img src="../../../static/img/details/goods-01.jpg">
-      <img src="../../../static/img/details/goods-02.jpg">
-      <img src="../../../static/img/details/goods-03.jpg">
-      <img src="../../../static/img/details/goods-04.jpg">
-      <img src="../../../static/img/details/goods-05.jpg">
-      <img src="../../../static/img/details/goods-06.jpg">
-      <img src="../../../static/img/details/goods-07.jpg">
+    <div class="checkbox">
+      <div class="ckeckleft selected">商品详情</div>
+      <div class="checkright">评论</div>
     </div>
+    <div class="checkcon">
+      <div class="content-text goodimg">
+        <img src="../../../static/img/details/goods-01.jpg">
+        <img src="../../../static/img/details/goods-02.jpg">
+        <img src="../../../static/img/details/goods-03.jpg">
+        <img src="../../../static/img/details/goods-04.jpg">
+        <img src="../../../static/img/details/goods-05.jpg">
+        <img src="../../../static/img/details/goods-06.jpg">
+        <img src="../../../static/img/details/goods-07.jpg">
+      </div>
+      <div class="content-text comment">
+        <ul>
+          <li>
+            <div class="con-header">
+              <img src="../../../static/img/details/1.jpg">
+              <span>我来自二次元</span>
+            </div>
+            <div>
+              <span class="time">2017-08-08</span>&nbsp;
+              <span class="size">规格：5kg</span>
+            </div>
+            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
+          </li>
+          <li>
+            <div class="con-header">
+              <img src="../../../static/img/details/1.jpg">
+              <span>我来自二次元</span>
+            </div>
+            <div>
+              <span class="time">2017-08-08</span>&nbsp;
+              <span class="size">规格：5kg</span>
+            </div>
+            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
+          </li>
+          <li>
+            <div class="con-header">
+              <img src="../../../static/img/details/1.jpg">
+              <span>我来自二次元</span>
+            </div>
+            <div>
+              <span class="time">2017-08-08</span>&nbsp;
+              <span class="size">规格：5kg</span>
+            </div>
+            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
     <div class="more">
       <p class="title">更多精选商品</p>
       <ul>
@@ -79,21 +123,6 @@
           <router-link :to="'/details/'+hot.good_id" class="goodname" tag="p">{{hot.name}}</router-link>
           <p class="price">￥{{hot.price}}</p>
         </li>
-       <!--  <li>
-          <img src="../../../static/img/home/02.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾</p>
-          <p class="price">¥118.00</p>
-        </li>
-        <li>
-          <img src="../../../static/img/home/03.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-        </li>
-        <li>
-          <img src="../../../static/img/home/04.jpg">
-          <p class="goodname">【顺丰包邮】正宗盱眙龙虾 加热即食</p>
-          <p class="price">¥118.00</p>
-        </li> -->
       </ul>
       <p class="pb">
         <router-link class="btn" to="/home">进店逛逛></router-link>
@@ -116,6 +145,7 @@
 </template>
 
 <script>
+import $ from 'jquery'
 import Axios from 'axios'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import CommonAddBuycar from '../common/CommonAddBuycar'
@@ -154,7 +184,14 @@ export default {
     },
   },
   mounted() {
-   var mySwiper = new Swiper('.swiper-container', {
+    //选项卡
+    var $checkbox = $('.checkbox div');
+    $checkbox.on('click',function(){
+      $(this).addClass('selected').siblings().removeClass('selected');
+      $('.content-text').eq($(this).index()).show().siblings().hide();
+    });
+    //图片切换
+    var mySwiper = new Swiper('.swiper-container', {
       pagination : '.swiper-pagination',
       paginationClickable: true,
       loop : true,
