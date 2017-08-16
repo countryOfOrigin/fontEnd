@@ -3,7 +3,7 @@
     <div class="userset-1">
       <span class="user-font font-2">头像</span>
       <span class="user-content">
-        <img src="../../../static/img/userset/userset.png" alt="" class="user-logo"> 
+        <img src="../../../static/img/userset/userset.png" alt="" class="user-logo">
         <button class="btn btn-primary  btn-me" data-toggle="modal" data-target="#myModal">&nbsp; ></button>
       </span>
       <!--弹层开始-->
@@ -62,7 +62,7 @@
       <img src="../../assets/img/logo.png" class alt="">
       <p>龙江原产递</p>
     </div>
-    
+
     <div class="userset-4">
       <router-link to="/user"><button class="cencle-box">退出登录</button></router-link>
     </div>
@@ -73,7 +73,7 @@
 
 <script>
   import $ from 'jquery';
-
+  import Axios from 'axios'
 
 export default {
   name: 'page-user-set',

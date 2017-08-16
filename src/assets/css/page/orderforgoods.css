@@ -5,11 +5,14 @@
 ul, ol{
   list-style: none;
 }
+body{
+  background: #fff;
+}
 .page-orderforgoods .orderforgoods-title{
   width: 100%;
   height:1.6rem;
   line-height:1.6rem;
-  background: #f6f7f1;
+  /*background: #f6f7f1;*/
   border-bottom: 0.0053rem solid #f6f7f1;
 }
 .page-orderforgoods .orderforgoods-title-font{
@@ -23,39 +26,46 @@ ul, ol{
 }
 .page-orderforgoods .orderforgoods-logo{
   width: 100%;
-  height: 0.8 rem;
+  height: 0.8rem;
   line-height:0.8rem;
-  background: #fffff;
+  padding:0 .2rem;
+  background: #ffffff;
   border: 0.0053rem solid #f6f7f1;
 
 }
 .page-orderforgoods .orderforgoods-content{
+  padding:0 .2rem;
   width: 100%;
-  height:1.5rem;
-  overflow: hidden;
-  background: #f6f7f1;
+  height:1.8rem;
+  background: rgba(221, 221, 221, 0.15);
+  border-bottom: .1rem solid #fff;
 }
 .page-orderforgoods .orderforgoods-content img{
   height: 1.5rem;
   width: 1.5rem;
   float: left;
+  margin-top: .1rem;
+  width:30%;
 }
 .page-orderforgoods .orderforgoods-content-2{
   float: left;
   width: 4.9rem;
+  width:68%;
 }
 .page-orderforgoods .orderforgoods-content-5{
+  padding: 0 .2rem;
   width: 100%;
   height: 1.2rem;
 }
 .page-orderforgoods .orderforgoods-content-4{
+  padding-left: .2rem;
 }
 .page-orderforgoods .orderforgoods-content-3{
   height: 1.2rem;
   line-height: 1.2rem;
 }
 .page-orderforgoods .o-3-left{
-
+  margin-left:.2rem;
 }
 .page-orderforgoods .o-3-right{
   float: right;
@@ -63,17 +73,19 @@ ul, ol{
 }
 .page-orderforgoods .orderforgoods-content-5{
   width: 100%;
-  height:1.2rem;
+  height:1rem;
   position: relative;
   border-bottom: 0.053rem solid #f6f7f1;
+  /*line-height: 1.2rem;*/
 }
 .page-orderforgoods .orderforgoods-content-6{
-  height:1.2rem;
-  line-height: 1.2rem;
+  height:1rem;
+  line-height: 1rem;
   float: left;
 
 }
 .page-orderforgoods .orderforgoods-content-7{
+  padding:0 .2rem;
   position: absolute;
   right: 0.2rem;
   top:0.2rem
@@ -84,22 +96,44 @@ ul, ol{
 }
 .page-orderforgoods .orderforgoods-footer{
   width: 100%;
-  height:2.0rem;
+  height:1.0rem;
   border-top: 0.0053rem solid #f6f7f1;
   text-align: right;
-  line-height: 1.5rem;
+  line-height: 1.0rem;
+  position: fixed;
+  bottom:0;
+  background: #fff;
 
 }
 .page-orderforgoods .orderforgoods-button{
   display:inline-block;
-  height: 1.2rem;
+  height: 1rem;
   width: 2.0rem;
   float: right;
   text-align: center;
-  line-height: 1.2rem;
+  line-height: 1rem;
   margin-left: 0.3rem;
   background: rgba(20,172,33,0.65);
   color: #ffffff;
 }
-
-
+.page-orderforgoods .total-price{
+  height: 1rem;
+  line-height: 1rem;
+  margin-top:0;
+  padding-top:0;
+  float: right;
+  margin-right:0.2rem;
+}
+.page-orderforgoods .discount{
+  height:1rem;
+  line-height:1rem;
+}
+.page-orderforgoods .use-discount{
+  float: right;
+  margin-right:.2rem;
+  height:1rem;
+  line-height:1rem;
+}
+.content{
+  padding-bottom: 1rem;
+}

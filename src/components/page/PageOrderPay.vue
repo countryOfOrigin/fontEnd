@@ -128,7 +128,7 @@ export default {
 
   }
   #order-pay .order-content{
-    height:2rem;
+    height:1.8rem;
     /*border-bottom: .03rem solid #eeeeee;*/
     padding:0 .1rem;
     background: rgba(245,245,245,0.5);
@@ -137,9 +137,9 @@ export default {
     display: block;
     float: left;
     width:30%;
-    /*height:2rem;*/
+    height:1.6rem;
     margin-right:.2rem;
-    margin-top:.06rem;
+    margin-top:.09rem;
   }
   #order-pay .order-detail{
     width:66%;
