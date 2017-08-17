@@ -46,7 +46,7 @@
             <i class="iconfont">&#xe610;</i>
             <p>已收货</p>
           </router-link></li>
-          <li ><router-link to="/order/wait_go"><!--路由不对-->
+          <li ><router-link to="/order/comment_all">
             <i class="iconfont">&#xe652;</i>
             <p>待评价</p>
           </router-link></li>

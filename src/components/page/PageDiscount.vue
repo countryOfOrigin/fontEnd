@@ -1,6 +1,6 @@
 <template>
   <div class="page-discount">
-    <div class="discount-box">
+    <!-- <div class="discount-box" v-for="discount in discountList">
       <div class="discount-left">
         <span class="circles"></span>
           <p>代金券</p>
@@ -9,11 +9,11 @@
         <span class="circless"></span>
         <div class="discount-price">
           <div class="discount-price-left">
-            10元
+            {{discount.preferential}}元
           </div>
           <div class="discount-price-right">
             <p>全品类通用</p>
-            <p>单笔金额>1000元</p>
+            <p>单笔金额>{{disount.limit}}元</p>
           </div>
         </div>
         <div class="discount-footer">
@@ -22,12 +22,12 @@
           </div>
           <div class="discount-footer-right">
             <span class="glyphicon glyphicon-time"></span>
-            2016/6/7~6/12有效
+            {{disount.get_time}}~{{disount.deadline}}有效
           </div>
 
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="discount-box">
       <div class="discount-left">
         <span class="circles"></span>
@@ -113,29 +113,45 @@
       </div>
     </div>
   </div>
-
-
-
-
-
-
-
-
 </template>
 
 <script>
-
+import Axios from 'axios'
 export default {
+
   name: 'page-discount',
   data () {
     return {
-
-
+      discountList:[], 
+      user_id:0,
     }
   },
   components:{
 
   },
+  mounted(){
+    if(!document.cookie){
+       this.$router.push("/login"); 
+    }
+    var arr=document.cookie.split(";");
+    var user_id=arr[0].split("=")[1];
+    this.user_id=user_id;
+    this.get_discount();
+  },
+  methods:{
+    get_discount:function(){
+      Axios.get('http://localhost:3000/get_discount',{
+          params:{
+              uid:this.user_id,
+          }
+      }).then((res)=>{
+          console.log(JSON.parse(res.data));
+          this.discountList=JSON.parse(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    }
+  }
 }
 </script>
 

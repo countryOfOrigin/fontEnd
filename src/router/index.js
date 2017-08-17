@@ -17,6 +17,7 @@ import PageOrderPay from '@/components/page/PageOrderPay'//待付款订单
 import PageOrderGo from '@/components/page/PageOrderGo'//待发货订单
 import PageOrderWait from '@/components/page/PageOrderWait'//待收货订单
 import PageOrderOn from '@/components/page/PageOrderOn'//已收货订单
+import PageOrderComment from '@/components/page/PageOrderComment'//已收货订单
 import PageAllClass from '@/components/page/PageAllClass'//所有分类
 import PageClassify from '@/components/page/PageClassify'//分类页
 import PageSearch from '@/components/page/PageSearch'//搜索
@@ -77,6 +78,10 @@ export default new Router({
       ]
     },
     {
+      path:'/order/comment_all',
+      component: PageOrderComment
+    },
+    {
       path:'/details/:tag',
       component: PageDetails
     },
@@ -129,7 +134,7 @@ export default new Router({
       component: PageAboutus,
     },
     {
-      path:'/comment',
+      path:'/order/comment_all/comment',
       component: PageComment,
     },
     {
