@@ -6,7 +6,6 @@ ul, ol{
     list-style: none;
 }
 body{
-    background: #ecf0f1;
     color: #333;
 }
 a{
@@ -15,7 +14,9 @@ a{
 img{
     border: 0;
 }
-
+.page-details{
+  background: #fff;
+}
 
 /*carousel开始*/
 .page-details .carousel{
@@ -104,10 +105,12 @@ img{
 
 /*size开始*/
 .page-details .size{
-  margin: 0.15rem 0;
+  /*margin: 0.15rem 0;*/
   padding: 0.15rem 0.1rem;
   background: #fff;
   font-size: 0.21rem;
+  border-top: 0.1rem solid #f1f1f1;
+  border-bottom: 0.1rem solid #f1f1f1;
 }
 .page-details .size b{
   float: right;
@@ -186,6 +189,7 @@ img{
 /*checkcon开始*/
 .page-details .checkcon .comment{
   padding: 0.15rem 0;
+  display: none;
 }
 .page-details .checkcon .comment li{
   border-bottom: 0.1rem solid #f1f1f1;
@@ -197,7 +201,7 @@ img{
   width: 0.8rem;
   height: 0.8rem;
 }
-.page-details .checkcon .comment li .time,.page-details .checkcon .comment li .size{
+.page-details .checkcon .comment li .time,.page-details .checkcon .comment li .con-size{
   font-size: 0.21rem;
   color: #999;
 }

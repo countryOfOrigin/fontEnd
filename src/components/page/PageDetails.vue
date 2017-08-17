@@ -83,7 +83,7 @@
             </div>
             <div>
               <span class="time">2017-08-08</span>&nbsp;
-              <span class="size">规格：5kg</span>
+              <span class="con-size">规格：5kg</span>
             </div>
             <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
           </li>
@@ -94,7 +94,7 @@
             </div>
             <div>
               <span class="time">2017-08-08</span>&nbsp;
-              <span class="size">规格：5kg</span>
+              <span class="con-size">规格：5kg</span>
             </div>
             <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
           </li>
@@ -105,7 +105,7 @@
             </div>
             <div>
               <span class="time">2017-08-08</span>&nbsp;
-              <span class="size">规格：5kg</span>
+              <span class="con-size">规格：5kg</span>
             </div>
             <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
           </li>
