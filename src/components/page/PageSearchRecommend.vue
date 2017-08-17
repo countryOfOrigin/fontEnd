@@ -3,7 +3,7 @@
     <div class="recommend">
         <p>推荐搜索</p>
         <ul>
-          <li v-for="search in searchList">{{search.content}}</li>
+          <router-link tag="li" v-for="search in searchList" :to="'/search/result/'+search.content">{{search.content}}</router-link>
             <!-- <li>鸣人</li>
             <li>佐助</li>
             <li>卡卡西</li>

@@ -9,28 +9,7 @@
                 <span class="old-price">¥<del>128.00</del></span>
                 <span class="number">评论<b>146</b>条</span>
             </li>
-            <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
             <!-- <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
-            <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
-            <li>
                 <img src="../../assets/img/m01.jpg">
                 <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
                 <span class="new-price">¥<b>68.00</b></span>
