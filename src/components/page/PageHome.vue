@@ -182,6 +182,15 @@ export default {
     CommonAddBuycar
   },
   mounted(){
+    var searchH = $(".form-control").offset().top;
+    $(window).scroll(function(){
+      var scroH = $(this).scrollTop();
+      if(scroH>searchH){
+        $(".form-control").css({"opacity":"1"});
+      }else if(scroH<=searchH){
+        $(".form-control").css({"opacity":"0.9"});
+      }
+    })
     this.com_home();
     this.hot_goods();
     this.get_money();

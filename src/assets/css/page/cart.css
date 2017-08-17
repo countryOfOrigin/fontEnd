@@ -19,8 +19,12 @@ b{
 }
 /*editor开始*/
 .editor{
+    width: 100%;
     padding: 0.25rem 0.2rem;
     background: #fff;
+    position: fixed;
+    z-index: 998;
+    box-shadow: 0px 1px 10px rgba(0,0,0,0.1);
 }
 .ok{
     font-size: 0.36rem;
@@ -51,7 +55,11 @@ b{
 /*list开始*/
 .list{
     margin-bottom: 1rem;
+    overflow: hidden;
     
+}
+.list ul{
+    margin-top: 1rem;
 }
 .list li{
     width: 100%;
@@ -59,6 +67,7 @@ b{
     border-bottom: 0.1rem solid #fff;
     padding: 0.1rem 0.2rem;
     position: relative;
+    background: #fafafa;
 }
 .list .ok{
     float: left;

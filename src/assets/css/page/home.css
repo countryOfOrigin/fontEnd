@@ -26,19 +26,19 @@ img{
 }
 .page-home .carousel .form-control{
     width: 5.8rem;
-    position: absolute;
+    position: fixed;
     z-index: 998;
     opacity: 0.9; 
     margin: 0.15rem 0.15rem;
     padding-left: 0.5rem;
 }
 .page-home .carousel .glyphicon-search{
-    position: absolute;
+    position: fixed;
     color: #a3bbbb;
-    left: 0.3rem;
-    top: 0.33rem;
+    left: 0.45rem;
+    top: 0.51rem;
     z-index: 999;
-    opacity: 0.9; 
+    /*opacity: 0.9; */
 }
 .page-home .carousel .my-swipe {
   height: 3rem;

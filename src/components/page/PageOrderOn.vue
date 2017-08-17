@@ -1,25 +1,34 @@
 <template>
   <div class="page-order-on">
-	   <ul id="order-on">
-      <li class="order-list" v-for="elem in orders_info">
-          <div class="time-state">
-            <p class="order-time">下单时间：{{elem.time}}</p>
-            <p class="order-state">{{elem.state}}</p>
-          </div>
-          <div class="order-content">
-            <img :src='elem.url' alt="">
-            <div class="order-detail">
-              <p class="overhide">订单编号：{{elem.order_id}}</p>
-              <p class="overhide">商品名：{{elem.name}}</p>
+    <div v-if="flag">
+      <ul id="order-on">
+        <li class="order-list" v-for="elem in orders_info">
+            <div class="time-state">
+              <p class="order-time">下单时间：{{elem.time}}</p>
+              <p class="order-state">{{elem.state}}</p>
             </div>
+            <div class="order-content">
+              <img :src='elem.url' alt="">
+              <div class="order-detail">
+                <p class="overhide">订单编号：{{elem.order_id}}</p>
+                <p class="overhide">商品名：{{elem.name}}</p>
+              </div>
+            </div>
+            <p class="total-price">共&nbsp;{{elem.count}}件商品 合计：{{elem.price*elem.count}}</p>
+          <div class="order-state-list">
+              <span>申请退款</span>
+              <span>售后</span>
           </div>
-          <p class="total-price">共&nbsp;{{elem.count}}件商品 合计：{{elem.price*elem.count}}</p>
-  		  <div class="order-state-list">
-            <span>申请退款</span>
-            <span>售后</span>
-        </div>
-      </li>
-    </ul>
+        </li>
+      </ul>
+    </div>
+	  <div v-else>
+      <div class="empty-list">
+        <h4>这里空空的，一份订单也没有 T.T</h4>
+        <p>赶快去下单</p>
+        <router-link to="/home">去逛逛</router-link>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -29,6 +38,7 @@ export default {
   name: 'page-order-on',
   data () {
     return {
+      flag:false,
       user_id:"",
       orders_info:{},
       state:"已收货"
@@ -158,4 +168,26 @@ export default {
     text-align: center;
     color: #504c4c;
   }
+  /*empty-list开始*/
+  .empty-list{
+      margin: 1rem 1rem;
+      text-align: center;
+  }
+  .empty-list h4{
+      font-size: 0.32rem;
+      margin-bottom: 0.2rem;
+      color: #666;
+  }
+  .empty-list p{
+      color: #999;
+  }
+  .empty-list a{
+      display: inline-block;
+      border-radius: 3px;
+      color: #f60;
+      border: 0.01rem solid #f60;
+      padding: 0.1rem 0.6rem 0.13rem 0.6rem;
+      margin-top: 0.15rem;
+  }
+  /*empty-list结束*/
 </style>
