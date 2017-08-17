@@ -97,5 +97,26 @@ body{
   float: right;
   width:55%;
 }
-
+/*empty-list开始*/
+.empty-list{
+    margin: 1rem 1rem;
+    text-align: center;
+}
+.empty-list h4{
+    font-size: 0.32rem;
+    margin-bottom: 0.2rem;
+    color: #666;
+}
+.empty-list p{
+    color: #999;
+}
+.empty-list a{
+    display: inline-block;
+    border-radius: 3px;
+    color: #f60;
+    border: 0.01rem solid #f60;
+    padding: 0.1rem 0.6rem 0.13rem 0.6rem;
+    margin-top: 0.15rem;
+}
+/*empty-list结束*/
 
