@@ -1,18 +1,27 @@
 <template>
   <div class="page-collect">
-    <ul id="collect">
-      <li class="collect-list" v-for="elem in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
-        <div class="img-detail">
-         <!-- /*跳转页面传参数为tag（商品id）*/ -->
-          <router-link to="/details/:tag"><img :src='elem.url' alt=""></router-link>
-        </div>
-        <div class="product-detail" >
-          <router-link to="/details/:tag"><p class="product-info overhide">{{elem.name}}</p></router-link>
-          <span class="product-price">￥&nbsp;{{elem.price}}</span>
-          <span class="like"><i class="iconfont">&#xe60a;</i> <!--//调用收藏接口，传出数据为商品id--></span>
-        </div>
-      </li>
-    </ul>
+    <div v-if='flag'>
+      <ul id="collect">
+        <li class="collect-list" v-for="elem in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
+          <div class="img-detail">
+           <!-- /*跳转页面传参数为tag（商品id）*/ -->
+            <router-link to="/details/:tag"><img :src='elem.url' alt=""></router-link>
+          </div>
+          <div class="product-detail" >
+            <router-link to="/details/:tag"><p class="product-info overhide">{{elem.name}}</p></router-link>
+            <span class="product-price">￥&nbsp;{{elem.price}}</span>
+            <span class="like"><i class="iconfont">&#xe60a;</i> <!--//调用收藏接口，传出数据为商品id--></span>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div v-else>
+      <div class="empty-list">
+        <h4>您还没有收藏过宝贝 T.T</h4>
+        <p>赶快挑点宝贝</p>
+        <router-link to="/home">去逛逛</router-link>
+      </div>
+    </div>
     <common-footer></common-footer>
   </div>
 </template>
@@ -25,6 +34,7 @@ export default {
   name: 'page-collect',
   data () {
     return {
+      flag:true,
       user_id:"",
       collect_info:{}
     }
@@ -109,5 +119,26 @@ export default {
     color: #867e7e;
 
   }
-
+  /*empty-list开始*/
+  .empty-list{
+      margin: 1rem 1rem;
+      text-align: center;
+  }
+  .empty-list h4{
+      font-size: 0.32rem;
+      margin-bottom: 0.2rem;
+      color: #666;
+  }
+  .empty-list p{
+      color: #999;
+  }
+  .empty-list a{
+      display: inline-block;
+      border-radius: 3px;
+      color: #f60;
+      border: 0.01rem solid #f60;
+      padding: 0.1rem 0.6rem 0.13rem 0.6rem;
+      margin-top: 0.15rem;
+  }
+  /*empty-list结束*/
 </style>
