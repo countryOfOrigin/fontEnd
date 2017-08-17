@@ -16,7 +16,7 @@ export default {
   name: 'page-search',
   data () {
     return {
-      keyword:"",
+      keyword:this.$route.params.key,
     }
   },
   components:{
@@ -27,11 +27,16 @@ export default {
   },
   methods:{
     searchKey:function(){
-      if(this.keyword!=""){
+      if(this.keyword){
         this.$router.push("/search/result/"+this.keyword);
       }
     }
-  }
+  },
+    watch:{
+      '$route'(to,from){
+        this.keyword=this.$route.params.key;
+      }
+    },
 }
 </script>
 
