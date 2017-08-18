@@ -308,20 +308,20 @@ export default {
 <style src="../../assets/css/page/cart.css" scoped></style>
 <style scoped>
 @import "../../assets/font/iconfont.css";
-.page-cart .buynum input{
+div.page-cart .buynum input{
   border: .005rem solid #999;
 }
-.page-cart .min{
+div.page-cart .min{
   text-align: right;
 }
-.page-cart .ok input{
+div.page-cart .ok input{
   width: .3rem;
   height: .3rem;
   display: inline-block;
   border-radius: .1rem;
   background: blue;
 }
-.page-cart .checkbox-box{
+div.page-cart .checkbox-box{
   /*display: block;*/
   width: .3rem;
   height: .3rem;
@@ -329,7 +329,7 @@ export default {
   margin: .7rem .1rem .7rem 0rem;
   /*line-height: 2rem;*/
 }
-.page-cart .checkall-box{
+div.page-cart .checkall-box{
   /*display: block;*/
   /*width: .3rem;
   height: .3rem;*/
@@ -337,26 +337,26 @@ export default {
   margin: .3rem 0rem .3rem .3rem;
   /*line-height: 2rem;*/
 }
-.page-cart .checkall-box img{
+div.page-cart .checkall-box img{
   float: left;
   margin-right: .1rem;
 }
-.page-cart .checkbox{
+div.page-cart .checkbox{
   width: .3rem;
   height: .3rem;
   margin: 0;
   /*margin: .7rem .2rem;*/
 }
-.page-cart .min{
+div.page-cart .min{
   margin-left: 0;
   text-align: right;
   width: 3.1rem;
 }
-.page-cart .min p{
+div.page-cart .min p{
   float: none;
   display: block;
 }
-.page-cart .color{
+div.page-cart .color{
   background: #aaa;
 }
 /*.page-cart input[type=checkbox] {

@@ -1,11 +1,11 @@
-*{
+.page-orderforgoods *{
   margin: 0;
   padding: 0;
 }
-ul, ol{
+.page-orderforgoods ul, .page-orderforgoods ol{
   list-style: none;
 }
-body{
+.page-orderforgoods body{
   background: #fff;
 }
 .page-orderforgoods .orderforgoods-title{

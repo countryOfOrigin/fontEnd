@@ -1,16 +1,16 @@
-*{
+.page-comment *{
   margin: 0;
   padding: 0;
 }
-ul, ol{
+.page-comment ul, .page-comment ol{
   list-style: none;
 }
-body{
+.page-comment body{
 }
-a{
+.page-comment a{
   text-decoration: none;
 }
-img{
+.page-comment img{
   border: 0;
 
 }

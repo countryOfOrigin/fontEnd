@@ -1,16 +1,16 @@
-*{
+.page-all-class *{
     margin: 0;
     padding: 0;
 }
-ul, ol{
+.page-all-class ul,.page-all-class ol{
     list-style: none;
 }
-body{
+.page-all-class body{
 }
-a{
+.page-all-class a{
     text-decoration: none;
 }
-img{
+.page-all-class img{
     border: 0;
 }
 .page-all-class .content{
