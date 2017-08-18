@@ -18,8 +18,8 @@
 
       </div>
       <div class="gooddetail">
-        <p class="goodname">圣谷山日照绿茶（赠茶具）</p>
-        <span class="price">¥158.00-¥198.00</span>
+        <p class="goodname">{{myShop.name}}</p>
+        <span class="price">¥{{myShop.price}}</span>
         <span class="like">
           <i class="iconfont">&#xe60a;</i>
           <span>喜欢</span>
@@ -47,7 +47,7 @@
     <div class="store">
       <div class="enter">
         <p><i class="iconfont">&#xe67e;</i> 黑龙江电视台--龙江原产递</p>
-        <span>进入店铺<b>&rsaquo;</b></span>
+        <router-link tag="span" to="/home">进入店铺<b>&rsaquo;</b></router-link>
       </div>
       <div class="safety">
         <span>
@@ -66,48 +66,26 @@
     </div>
     <div class="checkcon">
       <div class="content-text goodimg">
-        <img src="../../../static/img/details/goods-01.jpg">
-        <img src="../../../static/img/details/goods-02.jpg">
+        <img v-for="img in myShop.img_all" :src="img">
+        <!-- <img src="../../../static/img/details/goods-02.jpg">
         <img src="../../../static/img/details/goods-03.jpg">
         <img src="../../../static/img/details/goods-04.jpg">
         <img src="../../../static/img/details/goods-05.jpg">
         <img src="../../../static/img/details/goods-06.jpg">
-        <img src="../../../static/img/details/goods-07.jpg">
+        <img src="../../../static/img/details/goods-07.jpg"> -->
       </div>
       <div class="content-text comment">
         <ul>
-          <li>
+          <li v-for="comment in commentList">
             <div class="con-header">
-              <img src="../../../static/img/details/1.jpg">
-              <span>我来自二次元</span>
+              <img :src="comment.url">
+              <span>{{comment.name}}</span>
             </div>
             <div>
-              <span class="time">2017-08-08</span>&nbsp;
-              <span class="con-size">规格：5kg</span>
+              <span class="time">{{comment.time}}</span>&nbsp;
+              <span class="con-size">规格：{{myShop.parameter}}</span>
             </div>
-            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
-          </li>
-          <li>
-            <div class="con-header">
-              <img src="../../../static/img/details/1.jpg">
-              <span>我来自二次元</span>
-            </div>
-            <div>
-              <span class="time">2017-08-08</span>&nbsp;
-              <span class="con-size">规格：5kg</span>
-            </div>
-            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
-          </li>
-          <li>
-            <div class="con-header">
-              <img src="../../../static/img/details/1.jpg">
-              <span>我来自二次元</span>
-            </div>
-            <div>
-              <span class="time">2017-08-08</span>&nbsp;
-              <span class="con-size">规格：5kg</span>
-            </div>
-            <p>只要有树叶飞舞的地方 火就会燃烧。火的影子会照耀着村子 并且 让新的树叶发芽 当想要保护自己所珍惜的人时...忍者真正的力量才会表现出来。</p>
+            <p>{{comment.content}}</p>
           </li>
         </ul>
       </div>
@@ -133,10 +111,11 @@
         <i class="iconfont">&#xe7a3;</i>
         <span>客服</span>
       </a>
-      <a href="" class="collect col-md-2">
-        <i class="iconfont">&#xe60a;</i><br />
+      <span class="collect col-md-2" @click="collect">
+        <i class="iconfont" v-if="iscollect">&#xe605;</i>
+        <i class="iconfont" v-else>&#xe60a;</i><br />
         <span>收藏</span>
-      </a>
+      </span>
       <span class="buycar col-md-4" @click="buy()">加入购物车</span>
       <a href="" class="buyying col-md-4">立即购买</a>
     </div>
@@ -155,8 +134,10 @@ export default {
     return {
       show:false,
       shopId:this.$route.params.tag,
-      hotList:[]
-
+      hotList:[],
+      myShop:{},
+      commentList:[],
+      iscollect:false
     }
   },
   components:{
@@ -182,8 +163,100 @@ export default {
         console.log(error);
       });
     },
+    get_goods:function(){
+      Axios.get('http://localhost:3000/get_goods',{
+          params:{
+              sid:this.shopId,
+          }
+      }).then((res)=>{
+          // console.log(JSON.parse(res.data));
+          this.myShop=JSON.parse(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    get_comment:function(){
+      Axios.get('http://localhost:3000/get_comment',{
+          params:{
+              sid:this.shopId,
+          }
+      }).then((res)=>{
+          console.log(JSON.parse(res.data));
+          this.commentList=JSON.parse(res.data);
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    is_collect:function(){
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      Axios.get('http://localhost:3000/is_collect',{
+          params:{
+              sid:this.shopId,
+              uid:user_id
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.iscollect=true;
+          }else{
+            this.iscollect=false;
+          }
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    collect:function(){
+      if(!document.cookie){
+        this.$router.push("/login");
+      }
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      if(this.iscollect){
+        this.collect_out(user_id);
+      }else{
+        this.collect_in(user_id);
+      }
+    },
+    collect_in:function(uid){
+      Axios.get('http://localhost:3000/collect_in',{
+          params:{
+              sid:this.shopId,
+              uid:uid
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.iscollect=true;
+          }else{
+            this.iscollect=false;
+          }
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    collect_out:function(uid){
+      Axios.get('http://localhost:3000/collect_out',{
+          params:{
+              sid:this.shopId,
+              uid:uid
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.iscollect=false;
+          }else{
+            this.iscollect=true;
+          }
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
   },
   mounted() {
+    this.hot_goods();
+    this.get_goods();
+    this.get_comment();
+    if(document.cookie){
+      this.is_collect();
+    }
     //选项卡
     var $checkbox = $('.checkbox div');
     $checkbox.on('click',function(){
@@ -199,7 +272,7 @@ export default {
       watchSlidesProgress : true,
       watchSlidesVisibility : true,
     });
-   this.hot_goods();
+   
  }
 }
 </script>

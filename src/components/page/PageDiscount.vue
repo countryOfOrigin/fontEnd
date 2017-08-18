@@ -29,7 +29,7 @@
       </div>
     </div> -->
     <div v-if="flag">
-      <div class="discount-box">
+      <div class="discount-box" v-for="discount in discountList">
         <div class="discount-left">
           <span class="circles"></span>
           <p>代金券</p>
@@ -38,76 +38,20 @@
           <span class="circless"></span>
           <div class="discount-price">
             <div class="discount-price-left">
-              100元
+              {{discount.preferential}}元
             </div>
             <div class="discount-price-right">
-              <p>仅限美亚宝3月期</p>
-              <p>单笔金额>10000元</p>
+              <p>全品类通用</p>
+              <p>单笔金额>{{discount.limit}}元</p>
             </div>
           </div>
           <div class="discount-footer">
             <div class="discount-footer-left">
-              注册获取
+              {{discount.get_time}}获取
             </div>
             <div class="discount-footer-right">
               <span class="glyphicon glyphicon-time"></span>
-              2016/6/7~6/12有效
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="discount-box">
-        <div class="discount-left">
-          <span class="circles"></span>
-          <p>代金券</p>
-        </div>
-        <div class="discount-right">
-          <span class="circless"></span>
-          <div class="discount-price">
-            <div class="discount-price-left">
-              20元
-            </div>
-            <div class="discount-price-right">
-              <p>仅限美亚宝6月期</p>
-              <p>单笔金额>5000元</p>
-            </div>
-          </div>
-          <div class="discount-footer">
-            <div class="discount-footer-left">
-              首次获取
-            </div>
-            <div class="discount-footer-right">
-              <span class="glyphicon glyphicon-time"></span>
-              2016/6/7~6/12有效
-            </div>
-
-          </div>
-        </div>
-      </div>
-      <div class="discount-box">
-        <div class="discount-left">
-          <span class="circles"></span>
-          <p>代金券</p>
-        </div>
-        <div class="discount-right">
-          <span class="circless"></span>
-          <div class="discount-price">
-            <div class="discount-price-left">
-              50元
-            </div>
-            <div class="discount-price-right">
-              <p>仅限美亚宝12月期</p>
-              <p>单笔金额>3000元</p>
-            </div>
-          </div>
-          <div class="discount-footer">
-            <div class="discount-footer-left">
-              好友首次获取
-            </div>
-            <div class="discount-footer-right">
-              <span class="glyphicon glyphicon-time"></span>
-              2016/6/7~6/12有效
+              {{discount.deadline}}有效
             </div>
 
           </div>
@@ -156,7 +100,12 @@ export default {
           }
       }).then((res)=>{
           console.log(JSON.parse(res.data));
-          this.discountList=JSON.parse(res.data);
+          if(res.data!=0){
+            this.discountList=JSON.parse(res.data);
+            this.flag=true;
+          }else{
+            this.flag=false;
+          }         
       }).catch((error)=>{
           console.log(error);
       });

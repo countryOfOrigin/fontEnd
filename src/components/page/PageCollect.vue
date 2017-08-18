@@ -2,7 +2,7 @@
   <div class="page-collect">
     <div v-if='flag'>
       <ul id="collect">
-        <li class="collect-list" v-for="elem in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
+        <li class="collect-list" v-for="(elem,n) in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
           <div class="img-detail">
            <!-- /*跳转页面传参数为tag（商品id）*/ -->
             <router-link to="/details/:tag"><img :src='elem.url' alt=""></router-link>
@@ -10,7 +10,11 @@
           <div class="product-detail" >
             <router-link to="/details/:tag"><p class="product-info overhide">{{elem.name}}</p></router-link>
             <span class="product-price">￥&nbsp;{{elem.price}}</span>
-            <span class="like"><i class="iconfont">&#xe60a;</i> <!--//调用收藏接口，传出数据为商品id--></span>
+            <span class="like" @click="collect(n)">
+              <i class="iconfont" v-if="iscollect[n]">&#xe605;</i>
+              <i class="iconfont" v-else>&#xe60a;</i>
+               <!--//调用收藏接口，传出数据为商品id-->
+            </span>
           </div>
         </li>
       </ul>
@@ -34,9 +38,10 @@ export default {
   name: 'page-collect',
   data () {
     return {
-      flag:true,
+      flag:false,
       user_id:"",
-      collect_info:{}
+      collect_info:{},
+      iscollect:[]
     }
   },
   components:{
@@ -54,10 +59,61 @@ export default {
           user_id:this.user_id
         }
       }).then(function(res){
-
-        _this.collect_info=JSON.parse(res.data);
+        if(res.data!=0){
+          _this.collect_info=JSON.parse(res.data);
+          _this.flag = true;
+          for (var i = 0; i < _this.collect_info.length; i++) {
+            _this.iscollect.push(true);
+          }
+          console.log(_this.collect_info);
+        }
+       
       });
+    }else{
+      this.$router.push("/login");
     }
+  },
+  methods:{
+    collect:function(n){
+      console.log(this.iscollect[n]);
+      if(this.iscollect[n]){
+        this.collect_out(n);
+      }else{
+        this.collect_in(n);
+      }
+    },
+    collect_in:function(n){
+      Axios.get('http://localhost:3000/collect_in',{
+          params:{
+              sid:this.shopId,
+              uid:this.user_id
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.iscollect[n]=true;
+          }else{
+            this.iscollect[n]=false;
+          }
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
+    collect_out:function(n){
+      Axios.get('http://localhost:3000/collect_out',{
+          params:{
+              sid:this.shopId,
+              uid:this.user_id
+          }
+      }).then((res)=>{
+          if(res.data==1){
+            this.iscollect[n]=false;
+          }else{
+            this.iscollect[n]=true;
+          }
+      }).catch((error)=>{
+          console.log(error);
+      });
+    },
   }
 }
 </script>
