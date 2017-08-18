@@ -1,23 +1,31 @@
 <template>
   <div class="page-search-result">
-    <div class="result">
-        <ul class="list">
-            <li v-for="commodity in commodityList">
-                <img :src="commodity.url">
-                <p class="goodname">{{commodity.name}}</p>
-                <span class="new-price">¥<b>{{commodity.price}}</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li>
-            <!-- <li>
-                <img src="../../assets/img/m01.jpg">
-                <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
-                <span class="new-price">¥<b>68.00</b></span>
-                <span class="old-price">¥<del>128.00</del></span>
-                <span class="number">评论<b>146</b>条</span>
-            </li> -->
-        </ul>
-        
+    <div v-if="flag">
+        <div class="result">
+            <ul class="list">
+                <li v-for="commodity in commodityList">
+                    <img :src="commodity.url">
+                    <p class="goodname">{{commodity.name}}</p>
+                    <span class="new-price">¥<b>{{commodity.price}}</b></span>
+                    <span class="old-price">¥<del>128.00</del></span>
+                    <span class="number">评论<b>146</b>条</span>
+                </li>
+                <!-- <li>
+                    <img src="../../assets/img/m01.jpg">
+                    <p class="goodname">五常大米啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</p>
+                    <span class="new-price">¥<b>68.00</b></span>
+                    <span class="old-price">¥<del>128.00</del></span>
+                    <span class="number">评论<b>146</b>条</span>
+                </li> -->
+            </ul>
+        </div>
+    </div>
+    <div v-else> 
+        <div class="empty-list">
+            <h4>啥也没搜到，搜点别的 T.T</h4>
+            <p>要不回首页找找</p>
+            <router-link to="/home">去找找</router-link>
+        </div>
     </div>
   </div>
 </template>
@@ -30,7 +38,7 @@ export default {
     return {
         keyword:this.$route.params.key,
         commodityList:[],
-        flag:true
+        flag:false
     }
   },
   components:{
@@ -124,4 +132,26 @@ export default {
         color: #666;
         float: right;
     }
+    /*empty-list开始*/
+    .empty-list{
+        padding: 4rem 1rem;
+        text-align: center;
+    }
+    .empty-list h4{
+        font-size: 0.32rem;
+        margin-bottom: 0.2rem;
+        color: #666;
+    }
+    .empty-list p{
+        color: #999;
+    }
+    .empty-list a{
+        display: inline-block;
+        border-radius: 3px;
+        color: #f60;
+        border: 0.01rem solid #f60;
+        padding: 0.1rem 0.6rem 0.13rem 0.6rem;
+        margin-top: 0.15rem;
+    }
+    /*empty-list结束*/
 </style>

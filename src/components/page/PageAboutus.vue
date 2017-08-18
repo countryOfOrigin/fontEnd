@@ -1,44 +1,80 @@
 <template>
   <div class="page-aboutus">
-    <div id="abbout-header">
-      <router-link to="/user"><span class="about-header-home"><</span></router-link>
-      <span class="about-header-logo">龙江原产递</span>
+    <div class="about-header">
+      <img src="../../assets/img/logo.jpg">
+      <p>龙江原产递</p>
     </div>
-    <div class="about-title">
-      关于我们
+    <div class="about-content">
+      <div class="con-top">
+        <span>简介</span>
+        <p>
+          &nbsp; &nbsp; 黑龙江电视台《龙江原产递》结合传统媒体的权威性和专业性，搭建电视购物，网络电商，线下体验店为一体的O2O优质黑龙江特产销售渠道，为广大消费者，提供最安全、最地道、最正宗、最优质的农产品食材和特产，推荐最农产品的原产地。
+        </p>
+      </div>
+      <div class="con-top">
+        <span>优质服务</span>
+        <p>
+          &nbsp; &nbsp; 在这里，我们把黑龙江本土严选的好特产、好食材，一点一点带给您，同时，把我们认知里健康生活方式也一点一点传递给您，让我们一同享受原产地美食，一同享受健康品质生活。
+        </p>
+      </div>
+      <div class="con-top">
+        <span>联系我们</span><br />
+        <i class="iconfont qq btn" data-toggle="modal" data-target=".bs-example-modal-sm">&#xe63a;</i>
+        <i class="iconfont weixin btn" data-toggle="modal" data-target=".bs-example-modal-sm">&#xe7ba;</i>
+        <i class="iconfont weibo btn" data-toggle="modal" data-target=".bs-example-modal-sm">&#xe620;</i>
+      </div>
+      <div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel">
+        <div class="modal-dialog modal-sm" role="document">
+          <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title" id="myModalLabel">客服QQ</h4>
+          </div>
+          <div class="modal-body">
+            <img src="../../assets/img/logo.jpg" class="qq-img">
+            <img src="../../assets/img/weixin.jpg" class="weixin-img">
+            <img src="../../assets/img/logo.png" class="weibo-img">
+          </div>
+          <!-- <div class="modal-content">
+            <p>客服QQ</p>
+            <img src="../../assets/img/logo.jpg">
+          </div> -->
+        </div>
+      </div>
+      </div>
     </div>
-    <div id="about-content">
-             <p>&nbsp &nbsp原产递电子商务公司涉及项目运营、平台开发、线上宣传、线下服务、食品销售及批发、公益活动、空运物流、同城物流等一体化运营模式的公司。</p>
-      　　   <p>&nbsp &nbsp目前主营业务有销售黑龙江自然农作协会旗下的五常大米、麻辣小龙虾、罗甸红心火龙果。</p>
-      　　   <p>&nbsp &nbsp公司获得泰国燕窝椰子冻黑龙江总代理、越南榴莲饼、德国威化、经销权。除了销售工作外还包含了品牌包装、宣传、运营工作。</p>
-      　　
-    </div>
-    <div class="about-title">
-      联系我们
-    </div>
-    <div class="about-us-content">
-      <img src="../../assets/img/weixin2.jpg" alt="">
-      <span>我们会在15秒内回复您!</span>
-
-    </div>
-
   </div>
 
 </template>
 
 <script>
-
+  import $ from 'jquery';
   export default {
     name: 'page-aboutus',
     data () {
       return {
-
-
       }
     },
     components:{
 
     },
+    mounted(){
+      var $iqq = $('.con-top .qq');
+      var $iweixin = $('.con-top .weixin');
+      var $iweibo = $('.con-top .weibo');
+      $iqq.on('click',function(){
+        $('.modal-title').text('客服QQ');
+        $('.qq-img').show().siblings().hide();
+      });
+      $iweixin.on('click',function(){
+        $('.modal-title').text('客服微信');
+        $('.weixin-img').show().siblings().hide();
+      });
+      $iweibo.on('click',function(){
+        $('.modal-title').text('客服微博');
+        $('.weibo-img').show().siblings().hide();
+      });
+    }
   }
 </script>
 
