@@ -4,7 +4,7 @@
       <span class="user-font font-2">头像</span>
       <span class="user-content">
         <img src="../../../static/img/userset/userset.png" alt="" class="user-logo">
-        <button class="btn btn-primary  btn-me" data-toggle="modal" data-target="#myModal">&nbsp; ></button>
+        <button class="btn btn-me" data-toggle="modal" data-target="#myModal">&nbsp; ></button>
       </span>
       <!--弹层开始-->
       <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
@@ -42,20 +42,20 @@
     <div class="userset-2">
       <span class="user-font">昵称</span>
       <span class="user-content">
-        <button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">{{user_name}}&nbsp; ></button>
+        <button class="btn btn-he" data-toggle="modal" data-target="#myModal">{{user_name}}&nbsp; ></button>
       </span>
     </div>
     <div class="userset-2">
       <span class="user-font">性别</span>
       <span class="user-content">
-        <button class="btn btn-primary  btn-you" data-toggle="modal" data-target="#myModal">性别&nbsp; ></button>
+        <button class="btn btn-you" data-toggle="modal" data-target="#myModal">性别&nbsp; ></button>
       </span>
     </div>
     <div class="userset-2">
       <span class="user-font">会员等级</span>
       <span class="user-content">
         <!-- <a href="" class="vip">V0普通会员 ></a> -->
-        <button class="btn btn-primary  btn-you vip" data-toggle="modal" data-target="#myModal">V{{user_info.grade}}普通会员&nbsp; ></button>
+        <button class="btn btn-he vip">V{{user_info.grade}}普通会员&nbsp; ></button>
       </span>
     </div>
     <div class="userset-3">
