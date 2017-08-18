@@ -39,7 +39,7 @@ export default {
   name: 'page-order-all',
   data () {
     return {
-      flag:false,
+      flag:true,
       user_id:"",
       orders_info:{},
       state:""
@@ -95,6 +95,9 @@ export default {
     padding-top: .8rem;
     font-size: .2rem;
 
+  }
+  #order-all{
+    padding-bottom:1rem;
   }
   #order-all .order-list{
     border-bottom: 0.2rem solid #eee;

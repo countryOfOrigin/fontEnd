@@ -40,7 +40,7 @@ export default {
   name: 'page-order-wait',
   data () {
     return {
-      flag:false,
+      flag:true,
       user_id:"",
       orders_info:{},
       state:"待收货"
@@ -95,6 +95,9 @@ export default {
     padding-top: .8rem;
     font-size: .2rem;
 
+  }
+  #order-wait {
+    padding-bottom:1rem;
   }
   #order-wait .order-list{
     border-bottom: 0.2rem solid #eee;

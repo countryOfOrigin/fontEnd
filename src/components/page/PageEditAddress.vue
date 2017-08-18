@@ -115,7 +115,7 @@ export default {
           tel:this.address_info.telephone,
           city:this.cit,
           pro:this.pro,
-          dis:this.dis,
+          dis:this.select.area.value,
           detail:this.address_info.address
         },
 
@@ -130,15 +130,20 @@ export default {
       });
     },
     insert_address(){
-      if(this.address_info.name!='' && this.address_info.telephone!="" && this.cit!=null && this.pro!="" && this.dis!="" && this.cit !=""){
+      if(this.address_info.name=='' || this.address_info.telephone=="" || this.select.city.value==undefined || this.select.province.value==undefined || this.select.area.value==undefined || this.address_info.address==""){
+
+          this.showTip("信息不完整","danger");
+
+      }else{
+
         Axios.get('http://127.0.0.1:3000/insert_address',{
           params:{
             user_id:this.user_id,
             name:this.address_info.name,
             tel:this.address_info.telephone,
-            city:this.cit,
-            pro:this.pro,
-            dis:this.dis,
+            city:this.select.city.value,
+            pro:this.select.province.value,
+            dis:this.select.area.value,
             detail:this.address_info.address
           },
         }).then((res)=>{
@@ -151,8 +156,6 @@ export default {
             window.history.go(-1);
           },2000);
         });
-      }else{
-          this.showTip("信息不完整","danger");
       }
 
     },

@@ -35,7 +35,7 @@ export default {
   name: 'page-order-go',
   data () {
     return {
-      flag:false,
+      flag:true,
       user_id:"",
       orders_info:{},
       state:"待发货"
@@ -91,6 +91,9 @@ export default {
     padding-top: .8rem;
     font-size: .2rem;
 
+  }
+  #order-go {
+    padding-bottom:1rem;
   }
   #order-go .order-list{
     border-bottom: 0.2rem solid #eee;

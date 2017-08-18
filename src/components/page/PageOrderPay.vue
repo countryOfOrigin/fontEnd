@@ -1,6 +1,6 @@
 <template>
   <div class="page-order-pay">
-    <div v-if="flag"> 
+    <div v-if="flag">
       <ul id="order-pay">
         <li class="order-list" v-for="elem in orders_info">
           <div class="time-state">
@@ -61,7 +61,7 @@ export default {
   name: 'page-order-pay',
   data () {
     return {
-      flag:false,
+      flag:true,
       user_id:"",
       orders_info:{},
       state:"待付款"
@@ -117,6 +117,9 @@ export default {
     padding-top: .8rem;
     font-size: .2rem;
 
+  }
+  #order-pay {
+    padding-bottom:1rem;
   }
   #order-pay .order-list{
     border-bottom: 0.2rem solid #eee;
