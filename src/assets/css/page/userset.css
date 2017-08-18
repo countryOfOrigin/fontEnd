@@ -1,21 +1,21 @@
-*{
+.page-user-set *{
   margin: 0;
   padding: 0;
 }
-ul, ol{
+.page-user-set ul, .page-user-set ol{
   list-style: none;
 }
-body{
+.page-user-set body{
   background: #f6f7f1;
 }
-a{
+.page-user-set a{
   text-decoration: none;
 }
-img{
+.page-user-set img{
   border: 0;
 }
 /*通用样式结束*/
-.userset-1{
+.page-user-set .userset-1{
   width: 100%;
   height:2.5rem;
   background: #ffffff;
@@ -25,32 +25,32 @@ img{
 
 
 }
-.userset-1 img{
+.page-user-set .userset-1 img{
   width: 1.5rem;
   height:1.5rem;
 
 }
-.user-font{
+.page-user-set .user-font{
   font-size: 0.25rem;
   font-weight: 550;
   margin-left: 0.15rem;
 
 }
-.font-2{
+.page-user-set .font-2{
   margin:0.83rem 0;
   margin-left: 0.15rem;
 }
-.user-content{
+.page-user-set .user-content{
   float: right;
 }
-.user-content .vip{
+.page-user-set .user-content .vip{
   color:#9e9e9e;
 }
-.user-content .btn{
+.page-user-set .user-content .btn{
   font-size: 0.25rem;
   padding: 0;
 }
-.userset-2{
+.page-user-set .userset-2{
   height: 0.8rem;
   padding: 0.2rem;
   background: #ffffff;
@@ -58,30 +58,30 @@ img{
   line-height:0.35rem;
 
 }
-.userset-3{
+.page-user-set .userset-3{
   text-align: center;
 }
-.userset-3 img{
+.page-user-set .userset-3 img{
   width: 3rem;
   height: 2.1rem;
   margin-top: 2rem;
 }
-.userset-3 p{
+.page-user-set .userset-3 p{
   font-weight: bolder;
   font-family: "\534E\6587\65B0\9B4F","\534E\6587\884C\6977";
   font-size: 0.3rem;
 }
-.userset-4{
+.page-user-set .userset-4{
   text-align: center;
 
 }
-.userset-5{
+.page-user-set .userset-5{
   height:1rem;
 }
-.userset-6{
+.page-user-set .userset-6{
   height:1rem;
 }
-.user-footer{
+.page-user-set .user-footer{
   display: inline-block;
 
   background: #ffffff;
@@ -90,7 +90,7 @@ img{
   margin-left: 0.8rem;
   margin-top: 0.9rem;
 }
-.cencle-box{
+.page-user-set .cencle-box{
 
   width:5rem;
   border: 0;
@@ -101,25 +101,25 @@ img{
   padding: 0.1rem 0;
 }
 /*弹层开始*/
-.btn-me{
+.page-user-set .btn-me{
   border: 0;
   color: #ccc;
   background-color: #ffffff;
 
 }
-.btn-you{
+.page-user-set .btn-you{
   border: 0;
   color: #ccc;
   background-color: #ffffff;
 
 }
-.btn-he{
+.page-user-set .btn-he{
   border: 0;
   color: #ccc;
   background-color: #ffffff;
 
 }
-.modal-dialog{
+.page-user-set .modal-dialog{
   width: 6rem;
   height:5rem;
   line-height: normal;
@@ -128,13 +128,13 @@ img{
   margin-top: -2.5rem;
 
 }
-
+.page-user-set 
 .btn-content{
   width: 6rem;
   height:5rem;
 
 }
-.modal-footer{
+.page-user-set .modal-footer{
   height: 1rem;
 }
 

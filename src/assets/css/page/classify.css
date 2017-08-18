@@ -1,17 +1,17 @@
-*{
+.page-classify *{
     margin: 0;
     padding: 0;
 }
-ul, ol{
+.page-classify ul,.page-classify ol{
     list-style: none;
 }
-body{
+.page-classify body{
     background: #ecf0f1;
 }
-a{
+.page-classify a{
     text-decoration: none;
 }
-img{
+.page-classify img{
     border: 0;
 }
 /*details开始*/

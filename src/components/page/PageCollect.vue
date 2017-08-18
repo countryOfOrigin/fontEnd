@@ -5,14 +5,13 @@
         <li class="collect-list" v-for="(elem,n) in collect_info"> <!--/*遍历传入数据，包括商品名，价格*/-->
           <div class="img-detail">
            <!-- /*跳转页面传参数为tag（商品id）*/ -->
-            <router-link to="/details/:tag"><img :src='elem.url' alt=""></router-link>
+            <router-link :to="'/details/'+elem.good_id"><img :src='elem.url' alt=""></router-link>
           </div>
           <div class="product-detail" >
-            <router-link to="/details/:tag"><p class="product-info overhide">{{elem.name}}</p></router-link>
+            <router-link :to="'/details/'+elem.good_id"><p class="product-info overhide">{{elem.name}}</p></router-link>
             <span class="product-price">￥&nbsp;{{elem.price}}</span>
-            <span class="like" @click="collect(n)">
-              <i class="iconfont" v-if="iscollect[n]">&#xe605;</i>
-              <i class="iconfont" v-else>&#xe60a;</i>
+            <span class="like" @click="collect(n,elem.good_id)">
+              <i class="iconfont gicon">&#xe605;</i>
                <!--//调用收藏接口，传出数据为商品id-->
             </span>
           </div>
@@ -63,7 +62,7 @@ export default {
           _this.collect_info=JSON.parse(res.data);
           _this.flag = true;
           for (var i = 0; i < _this.collect_info.length; i++) {
-            _this.iscollect.push(true);
+            _this.iscollect[i]=true;
           }
           console.log(_this.collect_info);
         }
@@ -74,41 +73,47 @@ export default {
     }
   },
   methods:{
-    collect:function(n){
-      console.log(this.iscollect[n]);
+    collect:function(n,gid){
+      console.log(this.iscollect);
       if(this.iscollect[n]){
-        this.collect_out(n);
+        this.collect_out(n,gid);
       }else{
-        this.collect_in(n);
+        this.collect_in(n,gid);
       }
     },
-    collect_in:function(n){
+    collect_in:function(n,gid){
       Axios.get('http://localhost:3000/collect_in',{
           params:{
-              sid:this.shopId,
+              sid:gid,
               uid:this.user_id
           }
       }).then((res)=>{
+          console.log("aaain"+res.data);
           if(res.data==1){
             this.iscollect[n]=true;
+            $(".gicon").eq(n).html("&#xe605;");
           }else{
             this.iscollect[n]=false;
+            $(".gicon").eq(n).html("&#xe60a;");
           }
       }).catch((error)=>{
           console.log(error);
       });
     },
-    collect_out:function(n){
+    collect_out:function(n,gid){
       Axios.get('http://localhost:3000/collect_out',{
           params:{
-              sid:this.shopId,
+              sid:gid,
               uid:this.user_id
           }
       }).then((res)=>{
+        console.log("aaaout"+res.data);
           if(res.data==1){
             this.iscollect[n]=false;
+            $(".gicon").eq(n).html("&#xe60a;");
           }else{
             this.iscollect[n]=true;
+            $(".gicon").eq(n).html("&#xe605;");
           }
       }).catch((error)=>{
           console.log(error);
@@ -121,6 +126,9 @@ export default {
 
 <style src="../../assets/font/iconfont.css" scoped></style>
 <style scoped>
+  .page-collect{
+    margin-bottom: 1rem;
+  }
   ul{
     list-style:none;
     padding: .1rem 0  ;

@@ -1,17 +1,17 @@
-*{
+.page-details *{
     margin: 0;
     padding: 0;
 }
-ul, ol{
+.page-details ul,.page-details ol{
     list-style: none;
 }
-body{
+.page-details body{
     color: #333;
 }
-a{
+.page-details a{
     text-decoration: none;
 }
-img{
+.page-details img{
     border: 0;
 }
 .page-details{

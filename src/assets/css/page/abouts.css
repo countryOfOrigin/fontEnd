@@ -1,17 +1,17 @@
-*{
+.about-header *{
   margin: 0;
   padding: 0;
 }
-ul, ol{
+.about-header ul,.about-header ol{
   list-style: none;
 }
-body{
+.about-header body{
   background: #f2f2f2;
 }
-a{
+.about-header a{
   text-decoration: none;
 }
-img{
+.about-header img{
   border: 0;
 }
 .about-header{

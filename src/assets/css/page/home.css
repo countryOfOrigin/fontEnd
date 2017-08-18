@@ -1,17 +1,17 @@
-*{
+.page-home *{
     margin: 0;
     padding: 0;
 }
-ul, ol{
+.page-home ul, .page-home ol{
     list-style: none;
 }
-body{
+.page-home body{
     background: #ecf0f1;
 }
-a{
+.page-home a{
     text-decoration: none;
 }
-img{
+.page-home img{
     border: 0;
 }
 

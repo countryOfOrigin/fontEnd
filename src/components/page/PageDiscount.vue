@@ -118,5 +118,4 @@ export default {
 <style scoped>
   @import "../../assets/css/page/discount.css";
   @import "../../assets/font/iconfont.css";
-
 </style>

@@ -4,8 +4,12 @@
         <div class="result">
             <ul class="list">
                 <li v-for="commodity in commodityList">
-                    <img :src="commodity.url">
-                    <p class="goodname">{{commodity.name}}</p>
+                    <router-link :to="'/details/'+commodity.good_id">
+                        <img :src="commodity.url">
+                    </router-link>
+                    <router-link :to="'/details/'+commodity.good_id">
+                        <p class="goodname">{{commodity.name}}</p>
+                    </router-link>
                     <span class="new-price">¥<b>{{commodity.price}}</b></span>
                     <span class="old-price">¥<del>128.00</del></span>
                     <span class="number">评论<b>146</b>条</span>
@@ -55,8 +59,13 @@ export default {
         }
       }).then((res)=>{
         // console.log(res.data);
-        this.commodityList=JSON.parse(res.data);
-        console.log(this.commodityList);
+        if(res.data!=0){
+            this.commodityList=JSON.parse(res.data);
+            console.log(this.commodityList);
+            this.flag=true;
+        }else{
+            this.flag=false;
+        }
       }).catch((error)=>{
         console.log(error);
       });
@@ -74,45 +83,45 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-    *{
+    .page-search-result *{
         margin: 0;
         padding: 0;
     }
-    ul, ol{
+    .page-search-result ul, .page-search-result ol{
         list-style: none;
     }
-    body{
+    .page-search-result body{
         background: #ecf0f1;
         color: #333;
     }
-    a{
+    .page-search-result a{
         text-decoration: none;
     }
-    img{
+    .page-search-result img{
         border: 0.01rem solid #eee;
     }
-    b{
+    .page-search-result b{
         font-weight: 400;
     }
-    .result{
+    .page-search-result .result{
         padding: 0 0.15rem;
         padding-top: 1.3rem;
     }
-    .list li{
+    .page-search-result .list li{
         width: 100%;
         height: 2.12rem;
         border-bottom: 0.03rem solid #ddd;
         padding: 0.1rem 0.2rem;
         position: relative;
     }
-    .list img{
+    .page-search-result .list img{
         width: 1.8rem;
         height: 1.8rem;
         float: left;
         /*margin: 0 0.1rem;*/
         margin-right: 0.25rem;
     }
-    .list .goodname{
+    .page-search-result .list .goodname{
         /*display: inline-block;*/
         font-size: 0.25rem;
         height: 0.8rem;
@@ -120,32 +129,32 @@ export default {
         margin-left: 0.2rem;
         margin-bottom: 0.25rem;
     }
-    .list .old-price{
+    .page-search-result .list .old-price{
         font-size: 0.22rem;
         color: #aaa;
     }
-    .list .new-price{
+    .page-search-result .list .new-price{
         color: #e33a35;
     }
-    .list .number{
+    .page-search-result .list .number{
         font-size: 0.22rem;
         color: #666;
         float: right;
     }
     /*empty-list开始*/
-    .empty-list{
+    .page-search-result .empty-list{
         padding: 4rem 1rem;
         text-align: center;
     }
-    .empty-list h4{
+    .page-search-result .empty-list h4{
         font-size: 0.32rem;
         margin-bottom: 0.2rem;
         color: #666;
     }
-    .empty-list p{
+    .page-search-result .empty-list p{
         color: #999;
     }
-    .empty-list a{
+    .page-search-result .empty-list a{
         display: inline-block;
         border-radius: 3px;
         color: #f60;
