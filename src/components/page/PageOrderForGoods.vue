@@ -1,11 +1,23 @@
 <template>
   <div class="page-orderforgoods">
     <div class="content">
-      <div class="orderforgoods-title">
+      <div class="orderforgoods-exist" v-if="flag">
+        <div class="exist-left">
+          <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+        </div>
+        <div class="exist-center">
+          <span class="user-name">收货人：叶女士</span>
+          <span class="user-phone">15777777777</span>
+          <p class="user-address">收货地址：黑龙江省哈尔滨市南岗区学府路黑龙江大学</p>
+        </div>
+        <div class="exist-right">
+          <span>></span>
+        </div>
+      </div>
+      <div class="orderforgoods-title" v-else>
         <span class="glyphicon glyphicon-plus orderforgoods-title-font"></span>
         <span>新建收货地址</span>
       </div>
-
       <div class="orderforgoods-logo">
         <span class="	glyphicon glyphicon-briefcase orderforgoods-logo-font"></span>
         <span>龙江原产递</span>
@@ -88,7 +100,7 @@
     name: 'page-orderforgoods',
     data () {
       return {
-
+        flag:true,
 
       }
     },
