@@ -91,22 +91,36 @@
 
 
 </template>
-
 <script>
-
+  import Axios from 'axios'
   export default {
     name: 'page-orderforgoods',
     data () {
       return {
         flag:true,
-
+        address_info:{},
       }
     },
     components:{
 
     },
     mounted(){
-        console.log(this.$store.state.goods_info);
+//      console.log(this.$store.state.goods_info);
+      this.get_address();
+
+    },
+    methods:{
+      get_address:function(){
+
+        Axios.get('http://127.0.0.1:3000/get_address',{
+          params:{
+            userid:this.user_id,
+          }
+        }).then((res)=>{
+          this.address_info=JSON.parse(res.data);
+          console.log(this.address_info);
+        });
+      }
     }
   }
 </script>

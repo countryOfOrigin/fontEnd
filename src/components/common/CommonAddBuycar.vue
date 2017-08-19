@@ -45,7 +45,7 @@ export default {
         user_id:0,
         show:true,
         check:[],
-        type_:true
+        type_:true,
     }
   },
   mounted(){
@@ -149,16 +149,16 @@ export default {
       if(!document.cookie){
         this.$router.push("/login");
       }
-//      var check=new Array(this.goods);
       var arr=document.cookie.split(";");
       var user_id=arr[0].split("=")[1];
       this.user_id=user_id;
-      this.goods.count=this.num;
-//      console.log(check);
-      this.$store.dispatch('get_goods_info',new Array(this.goods));
+      var check=new Array(this.goods);
+      check[0].count=this.num;
+      check[0].user_id=this.user_id;
+      this.$store.dispatch('get_goods_info',check);
       this.$router.push('/cart/orderforgoods');
-
     }
+
   }
 
 }
