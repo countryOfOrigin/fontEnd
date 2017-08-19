@@ -16,7 +16,7 @@
 
     </li>
 		<li class="detail-address">
-			<textarea v-model="address_info.address" ></textarea>
+			<textarea v-model="address_info.address" placeholder="请输入详细地址"></textarea>
 		</li>
 	</ul>
     <strong id="tip"></strong>

@@ -142,6 +142,10 @@ export default {
   },
   methods:{
     settlement(){
+//        var goodsinfo=new Array(this.check);
+//        for(var i=0;i<goodsinfo.length;i++){
+//            goodsinfo[i].user_id=this.user_id;
+//        }
         this.$store.dispatch('get_goods_info',this.check);
         this.$router.push("/cart/orderforgoods");
     },

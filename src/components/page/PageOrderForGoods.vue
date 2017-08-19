@@ -1,19 +1,20 @@
 <template>
   <div class="page-orderforgoods">
     <div class="content">
-      <div class="orderforgoods-exist" v-if="flag">
+      <div class="orderforgoods-exist" v-if="flag"><router-link to="/user/address">
         <div class="exist-left">
           <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
         </div>
         <div class="exist-center">
-          <span class="user-name">收货人：叶女士</span>
-          <span class="user-phone">15777777777</span>
-          <p class="user-address">收货地址：黑龙江省哈尔滨市南岗区学府路黑龙江大学</p>
+          <p class="user-name">收货人：{{address_info[0].name}}</p>
+          <p class="user-phone">联系电话：{{address_info[0].telephone}}</p>
+
+          <p class="user-address overhide">收货地址：{{address_info[0].province }}{{address_info[0].city}}{{ address_info[0].district}}{{address_info[0].address}}</p>
         </div>
         <div class="exist-right">
           <span>></span>
         </div>
-      </div>
+      </router-link></div>
       <div class="orderforgoods-title" v-else>
         <span class="glyphicon glyphicon-plus orderforgoods-title-font"></span>
         <span>新建收货地址</span>
@@ -31,7 +32,7 @@
           </div>
           <div class="orderforgoods-content-4">
             <span>5kg</span>
-            <span class="o-3-right">*{{elem.count}}</span>
+            <span class="o-3-right">x{{elem.count}}</span>
           </div>
         </div>
       </div>
@@ -49,7 +50,7 @@
           <span>合计</span>
         </div>
         <span class="total-price">
-        ￥298.00
+        ￥{{$store.state.goods_info[0].price*$store.state.goods_info[0].count}}
       </span>
       </div>
 
@@ -99,13 +100,20 @@
       return {
         flag:true,
         address_info:{},
+        user_id:""
       }
     },
     components:{
 
     },
     mounted(){
-//      console.log(this.$store.state.goods_info);
+      if(document.cookie){
+        var arr=document.cookie.split(";");
+        var user_id=arr[0].split("=")[1];
+        this.user_id=user_id;
+      }
+      console.log(11111);
+      console.log(this.$store.state.goods_info);
       this.get_address();
 
     },
