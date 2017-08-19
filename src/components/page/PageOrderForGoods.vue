@@ -103,6 +103,7 @@
         first_address:[],
         user_id:"",
         index:'0'
+
       }
     },
     components:{
