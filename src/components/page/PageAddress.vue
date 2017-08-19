@@ -50,6 +50,8 @@ export default {
       this.user_id=user_id;
       this.get_address();
 
+
+
     }
   },
   methods:{
