@@ -90,7 +90,7 @@
         </ul>
       </div>
     </div>
-    
+
     <div class="more">
       <p class="title">更多精选商品</p>
       <ul>
@@ -117,9 +117,9 @@
         <span>收藏</span>
       </span>
       <span class="buycar col-md-4" @click="buy()">加入购物车</span>
-      <a href="" class="buyying col-md-4">立即购买</a>
+      <span class="buyying col-md-4" @click="buy_immediately()">立即购买</span>
     </div>
-    <common-add-buycar v-if="show" :shopId="shopId" v-on:child-isshow="isshow"></common-add-buycar>
+    <common-add-buycar v-if="show" :shopId="shopId" :type="type"  v-on:child-isshow="isshow"></common-add-buycar>
   </div>
 </template>
 
@@ -137,7 +137,8 @@ export default {
       hotList:[],
       myShop:{},
       commentList:[],
-      iscollect:false
+      iscollect:false,
+      type:false
     }
   },
   components:{
@@ -149,6 +150,12 @@ export default {
     buy:function(){
       this.show=true;
       // console.log(id);
+      this.type=true;
+    },
+    buy_immediately(){
+      this.show=true;
+      // console.log(id);
+      this.type=false;
     },
     isshow: function (a){
       this.show = false;
@@ -272,7 +279,7 @@ export default {
       watchSlidesProgress : true,
       watchSlidesVisibility : true,
     });
-   
+
  }
 }
 </script>

@@ -7,7 +7,7 @@
                 <!-- <img src="../../assets/img/m01.jpg"> -->
                 <!-- <img src="/static/img/nongfu/01.jpg" alt=""> -->
                 <p>{{goods.name}}</p>
-                <span class="price">¥{{goods.price}}</span>                   
+                <span class="price">¥{{goods.price}}</span>
                 <span class="glyphicon glyphicon-remove-circle remove" @click="isshow"></span>
             </div>
             <div class="size">
@@ -24,7 +24,9 @@
                 <input type="text" maxlength="3" onkeyup="value=value.replace(/[^\d]/g,'')" name="num" v-model="num" class="num">
                 <span class="add">+</span>
             </div>
-            <span class="addbtn" @click="buy">加入购物车</span>
+            <span class="addbtn" @click="buy" v-if="type_">加入购物车</span>
+            <span class="addbtn" @click="buy_immediately" v-else>立即购买</span>
+
         </div>
     </div>
   </div>
@@ -35,16 +37,23 @@ import Axios from 'axios'
 import $ from 'jquery'
 export default {
   name: 'common-addbuycar',
-  props: ['shopId'],
+  props: ['shopId','type'],
   data () {
     return {
         goods:{},
         num:1,
-        user_id:0, 
-        show:true
+        user_id:0,
+        show:true,
+        check:[],
+        type_:true
     }
   },
   mounted(){
+      console.log(this.type);
+    if(this.type==false){
+      this.type_=false;
+    }
+
     var $sub = $('.sub');
     var $add = $('.add');
     var $num = $('.num');
@@ -71,7 +80,7 @@ export default {
         _this.num--;
         if(_this.num<=1){
             _this.num=1;
-            $(this).addClass('cancel');       
+            $(this).addClass('cancel');
         }
         else{
             $(this).removeClass('cancel');
@@ -92,7 +101,7 @@ export default {
             $sub.removeClass('cancel');
             $add.removeClass('cancel');
         }
-    
+
     });
     this.info();
   },
@@ -111,7 +120,7 @@ export default {
     },
     buy:function(){
         if(!document.cookie){
-           this.$router.push("/login"); 
+           this.$router.push("/login");
         }
         var arr=document.cookie.split(";");
         var user_id=arr[0].split("=")[1];
@@ -135,9 +144,23 @@ export default {
         // console.log("close");
         this.show=false;
         this.$emit('child-isshow',this.show);
+    },
+    buy_immediately(){
+      if(!document.cookie){
+        this.$router.push("/login");
+      }
+//      var check=new Array(this.goods);
+      var arr=document.cookie.split(";");
+      var user_id=arr[0].split("=")[1];
+      this.user_id=user_id;
+      this.goods.count=this.num;
+//      console.log(check);
+      this.$store.dispatch('get_goods_info',new Array(this.goods));
+      this.$router.push('/cart/orderforgoods');
+
     }
   }
-    
+
 }
 </script>
 

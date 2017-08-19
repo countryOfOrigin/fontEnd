@@ -69,14 +69,12 @@
       </div>
     </div>
     <div class="orderforgoods-footer">
-      <span>合计:￥298</span></span>
+      <span>合计:￥298</span>
       <div class="orderforgoods-button">提交订单</div>
     </div>
 
   </div>
 
-
-  </div>
 
 
 
