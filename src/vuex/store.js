@@ -14,7 +14,8 @@ const state = {
   name:"",
   price:"",
   url:"",
-  goods_info:''
+  goods_info:'',
+  address:''
 }
 
 //定义动作 事件处理方法
@@ -22,11 +23,15 @@ const mutations = {
   get_goods_info(state,status){
     state.goods_info = status;
   },
+  get_address(state,status){
+    state.address=status[0];
+  }
 }
 
 //对外的事件方法
 const actions = {
   get_goods_info:({commit},status)=>commit('get_goods_info',status),
+  get_address:({commit},status)=>commit('get_address',status)
 }
 
 const getters = {

@@ -1,7 +1,7 @@
 <template>
   <div class="page-address">
     <ul id="address">
-      <li class="address-list" v-for="elem in address_info">
+      <li class="address-list" v-for="elem in address_info"  @click="select_address(elem.receipt_id)">
         <div class="name-tel">
           <span class="name">{{elem.name}}</span>
           <span class="tel">{{elem.telephone}}</span>
@@ -14,7 +14,7 @@
             <span class="glyphicon glyphicon-edit"></span> 编辑
 
           </span></router-link>
-          <span type="button" class="btn btn-primary btn-lg" @click="delete_address">
+          <span type="button" class="btn btn-primary btn-lg" @click="delete_address(elem.receipt_id)">
             <span class="glyphicon glyphicon-remove"></span> 删除
           </span>
         </div>
@@ -32,6 +32,7 @@
 import CommonHeader from '../common/CommonHeader'
 import CommonFooter from '../common/CommonFooter'
 import Axios from 'axios'
+import $ from 'jquery'
 export default {
   name: 'page-address',
   data () {
@@ -55,6 +56,10 @@ export default {
     }
   },
   methods:{
+    select_address:function(ads_id){
+      this.$store.dispatch('get_address',[ads_id]);
+      window.history.go(-1);
+    },
       get_address:function(){
         var _this=this;
         Axios.get('http://127.0.0.1:3000/get_address',{
@@ -63,12 +68,15 @@ export default {
           }
         }).then(function(res){
           _this.address_info=JSON.parse(res.data);
+          console.log(_this.address_info);
         });
       },
-      delete_address:function(){
+      delete_address:function(ads_id){
+
+        console.log(this.address_info[0].receipt_id);
         Axios.get('http://127.0.0.1:3000/delete_address',{
           params:{
-            address_id:this.address_info[0].receipt_id,
+            address_id:ads_id,
           }
         }).then((res)=>{
           this.flag=JSON.parse(res.data);
