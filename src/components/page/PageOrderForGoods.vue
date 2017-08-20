@@ -125,6 +125,9 @@
             this.flag=false;
         }
     },
+    created(){
+      window.scrollTo(0,0);
+    },
     methods:{
       //当没有地址是添加新地址
       newAddress:function(){

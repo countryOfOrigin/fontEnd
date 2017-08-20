@@ -55,6 +55,9 @@ export default {
 
     }
   },
+  created(){
+    window.scrollTo(0,0);
+  },
   methods:{
     select_address:function(ads_id){
       this.$store.dispatch('get_address',[ads_id]);

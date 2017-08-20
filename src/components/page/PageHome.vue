@@ -196,6 +196,9 @@ export default {
     this.get_money();
     
   },
+  created(){
+    window.scrollTo(0,0);
+  },
   methods:{
 //    get_coupon(){
 //      $(this).

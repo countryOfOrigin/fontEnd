@@ -256,6 +256,9 @@ export default {
           console.log(error);
       });
     },
+    menu:function(){
+      window.scrollTo(0,0);
+    }
   },
   mounted() {
     this.hot_goods();
@@ -279,8 +282,22 @@ export default {
       watchSlidesProgress : true,
       watchSlidesVisibility : true,
     });
-
- }
+  },
+  created(){
+    this.menu();
+  },
+ watch:{
+    '$route'(to,from){
+      this.menu();
+      this.shopId=this.$route.params.tag,
+      this.hot_goods();
+      this.get_goods();
+      this.get_comment();
+      if(document.cookie){
+        this.is_collect();
+      }
+    }
+  }
 }
 </script>
 
